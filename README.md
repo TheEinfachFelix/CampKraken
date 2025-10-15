@@ -10,3 +10,6 @@ This is the IT Backbone of our Camp
 Online Form
 Webserver
 API
+
+
+qmake-qt6 -r CONFIG+=release PREFIX=C:\Program Files\pgmodeler pgmodeler.pro
