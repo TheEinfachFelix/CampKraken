@@ -12,4 +12,6 @@ Webserver
 API
 
 
-qmake-qt6 -r CONFIG+=release PREFIX=C:\Program Files\pgmodeler pgmodeler.pro
+grep -E "(DROP TABLE|DROP DATABASE)" schema.sql && echo "❌ Drop detected!" && exit 1
+
+ALTER TABLE users ADD COLUMN IF NOT EXISTS nickname TEXT;
