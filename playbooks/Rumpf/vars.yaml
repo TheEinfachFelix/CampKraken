@@ -1,0 +1,7 @@
+---
+db_name: mydatabase
+db_user: postgres
+sql_files:
+  - /path/to/schema.sql
+  - /path/to/changes.sql
+  - /path/to/data.sql

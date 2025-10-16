@@ -1,0 +1,14 @@
+---
+- name: Update DB Schema and Data
+  hosts: camp
+  vars_files:
+    - vars.yaml
+  tasks:
+    - name: Init DB
+      ansible.builtin.import_role:
+        name: postgres.init
+      vars:
+        db_name: Rumpf #
+        sql_files:
+          - /home/ansible/myAnsible/submoduls/CampKraken/Moduls/Rumpf/schema.sql #
+          - /home/ansible/myAnsible/submoduls/CampKraken/Moduls/Rumpf/data.sql #
