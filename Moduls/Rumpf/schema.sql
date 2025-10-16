@@ -202,29 +202,29 @@ CREATE TABLE IF NOT EXISTS "staff" (
 
 
 
-ALTER TABLE "genders"
-ADD FOREIGN KEY("genderId") REFERENCES "person"("genderId")
+ALTER TABLE "person"
+ADD FOREIGN KEY("genderId") REFERENCES "genders"("genderId")
 ON UPDATE CASCADE ON DELETE RESTRICT;
 ALTER TABLE "personToAddress"
 ADD FOREIGN KEY("personId") REFERENCES "person"("personId")
 ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE "addresses"
-ADD FOREIGN KEY("addressId") REFERENCES "personToAddress"("addressId")
+ALTER TABLE "personToAddress"
+ADD FOREIGN KEY("addressId") REFERENCES "addresses"("addressId")
 ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE "federalStates"
-ADD FOREIGN KEY("federalStateId") REFERENCES "addresses"("federalStateID")
+ALTER TABLE "addresses"
+ADD FOREIGN KEY("federalStateID") REFERENCES "federalStates"("federalStateId")
 ON UPDATE CASCADE ON DELETE RESTRICT;
-ALTER TABLE "contactInfo"
-ADD FOREIGN KEY("contactInfoId") REFERENCES "contactInfoToPerson"("contactInfoId")
+ALTER TABLE "contactInfoToPerson"
+ADD FOREIGN KEY("contactInfoId") REFERENCES "contactInfo"("contactInfoId")
 ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE "contactInfoToPerson"
 ADD FOREIGN KEY("personId") REFERENCES "person"("personId")
 ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE "contactInfoTypes"
-ADD FOREIGN KEY("contactInfoTypeId") REFERENCES "contactInfo"("contactInfoTypeId")
+ALTER TABLE "contactInfo"
+ADD FOREIGN KEY("contactInfoTypeId") REFERENCES "contactInfoTypes"("contactInfoTypeId")
 ON UPDATE CASCADE ON DELETE RESTRICT;
-ALTER TABLE "days"
-ADD FOREIGN KEY("dayId") REFERENCES "presences"("dayId")
+ALTER TABLE "presences"
+ADD FOREIGN KEY("dayId") REFERENCES "days"("dayId")
 ON UPDATE CASCADE ON DELETE RESTRICT;
 ALTER TABLE "presences"
 ADD FOREIGN KEY("personId") REFERENCES "person"("personId")
@@ -235,26 +235,26 @@ ON UPDATE CASCADE ON DELETE RESTRICT;
 ALTER TABLE "permissionToParticipant"
 ADD FOREIGN KEY("participantId") REFERENCES "participants"("participantId")
 ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE "permissions"
-ADD FOREIGN KEY("permissionId") REFERENCES "permissionToParticipant"("permissionId")
+ALTER TABLE "permissionToParticipant"
+ADD FOREIGN KEY("permissionId") REFERENCES "permissions"("permissionId")
 ON UPDATE CASCADE ON DELETE RESTRICT;
-ALTER TABLE "discountCodes"
-ADD FOREIGN KEY("discountCodeId") REFERENCES "participants"("discountCodeId")
+ALTER TABLE "participants"
+ADD FOREIGN KEY("discountCodeId") REFERENCES "discountCodes"("discountCodeId")
 ON UPDATE CASCADE ON DELETE RESTRICT;
-ALTER TABLE "shirtSizes"
-ADD FOREIGN KEY("shirtSizeId") REFERENCES "participants"("shirtSizeId")
+ALTER TABLE "participants"
+ADD FOREIGN KEY("shirtSizeId") REFERENCES "shirtSizes"("shirtSizeId")
 ON UPDATE CASCADE ON DELETE RESTRICT;
 ALTER TABLE "participantsPrivate"
 ADD FOREIGN KEY("participantId") REFERENCES "participants"("participantId")
 ON UPDATE CASCADE ON DELETE RESTRICT;
-ALTER TABLE "nutritions"
-ADD FOREIGN KEY("nutritionId") REFERENCES "participantsPrivate"("nutritionId")
+ALTER TABLE "participantsPrivate"
+ADD FOREIGN KEY("nutritionId") REFERENCES "nutritions"("nutritionId")
 ON UPDATE CASCADE ON DELETE RESTRICT;
-ALTER TABLE "schoolTypes"
-ADD FOREIGN KEY("schoolTypeId") REFERENCES "participantsPrivate"("schoolTypeId")
+ALTER TABLE "participantsPrivate"
+ADD FOREIGN KEY("schoolTypeId") REFERENCES "schoolTypes"("schoolTypeId")
 ON UPDATE CASCADE ON DELETE RESTRICT;
-ALTER TABLE "nationalitys"
-ADD FOREIGN KEY("nationalityId") REFERENCES "participantsPrivate"("nationalityId")
+ALTER TABLE "participantsPrivate"
+ADD FOREIGN KEY("nationalityId") REFERENCES "nationalitys"("nationalityId")
 ON UPDATE CASCADE ON DELETE RESTRICT;
 ALTER TABLE "staff"
 ADD FOREIGN KEY("personId") REFERENCES "person"("personId")
