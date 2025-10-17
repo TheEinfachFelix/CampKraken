@@ -1,0 +1,26 @@
+---
+- name: Setup DB
+  hosts: camp
+  gather_facts: false
+  vars_files:
+    - vars.yaml
+  roles:
+    - common
+  tasks:
+    - name: Install DB
+      ansible.builtin.import_role:
+        name: postgres.install
+      vars:
+        postgres_allowed_subnet: "{{ pg_allowed_subnet }}"
+        postgres_password: "{{ pg_password }}"
+        postgres_admin_db: "{{ pg_admin_db }}"
+        postgres_user: "{{ pg_user }}"
+    
+    - name: Init DB
+      ansible.builtin.import_role:
+        name: postgres.init
+      vars:
+        db_name: "{{ rumpf_db_name }}"
+        sql_files: "{{ sql_conf_files }}"
+        postgres_user: "{{ pg_user }}"
+        sql_files_path: "{{sql_conf_files_path}}"

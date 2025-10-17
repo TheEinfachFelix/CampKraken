@@ -8,7 +8,7 @@
       ansible.builtin.import_role:
         name: postgres.init
       vars:
-        db_name: Rumpf #
-        sql_files:
-          - /home/ansible/myAnsible/submoduls/CampKraken/Moduls/Rumpf/schema.sql #
-          - /home/ansible/myAnsible/submoduls/CampKraken/Moduls/Rumpf/data.sql #
+        db_name: "{{ rumpf_db_name }}"
+        sql_files: "{{ sql_conf_files }}"
+        postgres_user: "{{ pg_user }}"
+        sql_files_path: "{{sql_conf_files_path}}"

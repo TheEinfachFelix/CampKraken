@@ -1,7 +1,12 @@
 ---
-db_name: mydatabase
-db_user: postgres
-sql_files:
-  - /path/to/schema.sql
-  - /path/to/changes.sql
-  - /path/to/data.sql
+rumpf_db_name: Rumpf
+pg_user: postgres
+sql_conf_files_path: /home/ansible/myAnsible/submoduls/CampKraken/Moduls/Rumpf/
+sql_conf_files: 
+  - schema.sql
+  - data.sql
+
+  # Install
+pg_allowed_subnet: 192.168.178.0/24 #
+pg_password: "secure_password"  #
+pg_admin_db: postgres #

@@ -1,0 +1,11 @@
+---
+- name: Remove Database
+  hosts: camp
+  vars_files:
+    - vars.yaml
+  tasks:
+    - name: Init DB
+      ansible.builtin.import_role:
+        name: postgres.clean
+      vars:
+        db_name: "{{ rumpf_db_name }}"
