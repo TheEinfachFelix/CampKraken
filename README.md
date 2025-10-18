@@ -4,8 +4,7 @@ This is the IT Backbone of our Camp
 # TODO
 
 [x] DB Spawning
-- fixe add Constraint
-[ ] DB Schema Auto
+[x] DB Schema Auto
 [ ] DB Perms
 [ ] DB Data
 [ ] DB Mirror
