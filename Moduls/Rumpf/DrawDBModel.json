@@ -3,8 +3,8 @@
     {
       "id": "CRHJZ36-GnXuhky0CCZnt",
       "name": "person",
-      "x": -205,
-      "y": -93,
+      "x": -192.93913923437503,
+      "y": -90.31980871874998,
       "locked": false,
       "fields": [
         {
@@ -120,48 +120,10 @@
       "color": "#175e7a"
     },
     {
-      "id": "imgf8qNfUazotHqKp_zOI",
-      "name": "personToAddress",
-      "x": -587,
-      "y": -91,
-      "locked": false,
-      "fields": [
-        {
-          "name": "personId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": true,
-          "unique": false,
-          "notNull": true,
-          "increment": false,
-          "comment": "",
-          "id": "HzKi1fKSOyuysJut9HfqD"
-        },
-        {
-          "id": "q4OF6b4QpS_eOyEcHusdX",
-          "name": "addressId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": true,
-          "unique": false,
-          "notNull": true,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        }
-      ],
-      "comment": "",
-      "indices": [],
-      "color": "#175e7a"
-    },
-    {
       "id": "ORsEWh0l2SUMZDtLTOtsX",
       "name": "addresses",
-      "x": -964,
-      "y": -121,
+      "x": -963.9999999999999,
+      "y": -68.73627001562511,
       "locked": false,
       "fields": [
         {
@@ -175,6 +137,20 @@
           "increment": true,
           "comment": "",
           "id": "IkBP6wbfNeoSBUg-TNc7i"
+        },
+        {
+          "id": "X70BkvFUSOdk1tCgdG5LL",
+          "name": "personId",
+          "type": "INTEGER",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "size": "",
+          "values": []
         },
         {
           "id": "7539jfHpdwPfQyU-mB2aF",
@@ -231,96 +207,6 @@
           "comment": "",
           "size": "",
           "values": []
-        },
-        {
-          "id": "qcj8oAiTh3v8xLBCjMs0j",
-          "name": "federalStateID",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        }
-      ],
-      "comment": "",
-      "indices": [],
-      "color": "#175e7a"
-    },
-    {
-      "id": "W2WngMRHYRu0JiHYJ75WF",
-      "name": "federalStates",
-      "x": -1309.6861051460605,
-      "y": 57.681545108687146,
-      "locked": false,
-      "fields": [
-        {
-          "name": "federalStateId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": true,
-          "unique": true,
-          "notNull": true,
-          "increment": true,
-          "comment": "",
-          "id": "GXfhxd0iEngxCxiXZ8KRK"
-        },
-        {
-          "id": "cpJqL4P6yYNMNd1WBZsDF",
-          "name": "name",
-          "type": "TEXT",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": true,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        }
-      ],
-      "comment": "",
-      "indices": [],
-      "color": "#175e7a"
-    },
-    {
-      "id": "4kol_hp5DUZNyitb-huTH",
-      "name": "contactInfoToPerson",
-      "x": -574.3172605596457,
-      "y": -229.17862938036865,
-      "locked": false,
-      "fields": [
-        {
-          "name": "personId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": true,
-          "unique": false,
-          "notNull": true,
-          "increment": false,
-          "comment": "",
-          "id": "fgBs9c5Hn6MDXj-4DPZgW"
-        },
-        {
-          "id": "qJo2eL4WFZAnR9cnOyQ2_",
-          "name": "contactInfoId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": true,
-          "unique": false,
-          "notNull": true,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
         }
       ],
       "comment": "",
@@ -347,9 +233,9 @@
           "id": "TuB6-qDTizHqCOGsheNQF"
         },
         {
-          "id": "f8hdBbDaGxJGbdCwnEBEF",
-          "name": "info",
-          "type": "TEXT",
+          "id": "ZEAmYXw5Y1tfouyogn7ld",
+          "name": "personId",
+          "type": "INTEGER",
           "default": "",
           "check": "",
           "primary": false,
@@ -373,6 +259,34 @@
           "comment": "",
           "size": "",
           "values": []
+        },
+        {
+          "id": "f8hdBbDaGxJGbdCwnEBEF",
+          "name": "info",
+          "type": "TEXT",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "size": "",
+          "values": []
+        },
+        {
+          "id": "jcx_rMiuqmj7Rxyv2aG12",
+          "name": "details",
+          "type": "TEXT",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "size": "",
+          "values": []
         }
       ],
       "comment": "",
@@ -382,8 +296,8 @@
     {
       "id": "RmT2f7jOImZnmYF2PaEf6",
       "name": "contactInfoTypes",
-      "x": -1332.3482157735864,
-      "y": -236.72122594966146,
+      "x": -1258.6429555392112,
+      "y": -301.0458166996615,
       "locked": false,
       "fields": [
         {
@@ -541,6 +455,20 @@
           "values": []
         },
         {
+          "id": "tHex_5DuuzN9rhC8uN16N",
+          "name": "userDiscountCode",
+          "type": "TEXT",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "size": "",
+          "values": []
+        },
+        {
           "id": "P28ug3kOIRW9A5gfov6SE",
           "name": "shirtSizeId",
           "type": "INTEGER",
@@ -549,6 +477,20 @@
           "primary": false,
           "unique": false,
           "notNull": true,
+          "increment": false,
+          "comment": "",
+          "size": "",
+          "values": []
+        },
+        {
+          "id": "gla6uIzIICHPUWWpU9Rgr",
+          "name": "selectedSlot",
+          "type": "TEXT",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
           "increment": false,
           "comment": "",
           "size": "",
@@ -617,7 +559,7 @@
     },
     {
       "id": "2x5xceuZHB6C1meY7wmRN",
-      "name": "permissionToParticipant",
+      "name": "tagToParticipant",
       "x": -583.286972433824,
       "y": 256.53188962246486,
       "locked": false,
@@ -636,7 +578,7 @@
         },
         {
           "id": "eByJZjFf7PgUp_Nu0K4jg",
-          "name": "permissionId",
+          "name": "tagId",
           "type": "INTEGER",
           "default": "",
           "check": "",
@@ -655,13 +597,13 @@
     },
     {
       "id": "HOe2JOCba52nU0LxBNRSw",
-      "name": "permissions",
+      "name": "tags",
       "x": -936.6819736798691,
       "y": 252.8406107863587,
       "locked": false,
       "fields": [
         {
-          "name": "permissionId",
+          "name": "tagId",
           "type": "INTEGER",
           "default": "",
           "check": "",
@@ -770,8 +712,8 @@
     {
       "id": "rNwBAAm9mcLdBfkZH5oFk",
       "name": "participantsPrivate",
-      "x": -148.58203596956878,
-      "y": 665.7864674083786,
+      "x": -159.30280109456885,
+      "y": 730.1110581583787,
       "locked": false,
       "fields": [
         {
@@ -815,20 +757,6 @@
           "values": []
         },
         {
-          "id": "dTAcC9WbpAjS7NwALG9w-",
-          "name": "nationalityId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": true,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        },
-        {
           "id": "uDGEkIKW525zeTlDy7j3x",
           "name": "insuredBy",
           "type": "TEXT",
@@ -857,22 +785,8 @@
           "values": []
         },
         {
-          "id": "kxaqHo0YFYGDh6Hp--V25",
-          "name": "isHealthy",
-          "type": "BOOLEAN",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        },
-        {
           "id": "Q9T-FD6Js_AtpqFvHVX0Y",
-          "name": "medication",
+          "name": "healthInfo",
           "type": "TEXT",
           "default": "",
           "check": "",
@@ -885,9 +799,23 @@
           "values": []
         },
         {
-          "id": "thSnJnMfBPxrS5xxDwzbE",
-          "name": "hasLiabilityInsurance",
-          "type": "BOOLEAN",
+          "id": "cSJ1YNehfR6jFl7UZ5Bwt",
+          "name": "doctor",
+          "type": "TEXT",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "size": "",
+          "values": []
+        },
+        {
+          "id": "EK6Ip61TougP92n3bnk6U",
+          "name": "intolerances",
+          "type": "TEXT",
           "default": "",
           "check": "",
           "primary": false,
@@ -924,44 +852,6 @@
         },
         {
           "id": "YxJZ_YIdS9khLp1zqlCzF",
-          "name": "name",
-          "type": "TEXT",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": true,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        }
-      ],
-      "comment": "",
-      "indices": [],
-      "color": "#175e7a"
-    },
-    {
-      "id": "nuljowc1Qr1Wp0QOV7TZo",
-      "name": "nationalitys",
-      "x": -625.8481616153595,
-      "y": 991.565392763867,
-      "locked": false,
-      "fields": [
-        {
-          "name": "nationalityId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": true,
-          "unique": true,
-          "notNull": true,
-          "increment": true,
-          "comment": "",
-          "id": "c5tjZV9B9g-TcEljl-Ser"
-        },
-        {
-          "id": "xOumL9uZfMNpfPZYSwf1v",
           "name": "name",
           "type": "TEXT",
           "default": "",
@@ -1097,61 +987,6 @@
       "id": "vcrRZ_qNmXOtgzjAMawTd"
     },
     {
-      "startTableId": "imgf8qNfUazotHqKp_zOI",
-      "startFieldId": "HzKi1fKSOyuysJut9HfqD",
-      "endTableId": "CRHJZ36-GnXuhky0CCZnt",
-      "endFieldId": "OWJ4lWsOXyPjVm0DoUwY1",
-      "cardinality": "many_to_one",
-      "updateConstraint": "Cascade",
-      "deleteConstraint": "Cascade",
-      "name": "fk_personToAddress_personId_person",
-      "id": "0jvKPa28rSagGiK48lwws"
-    },
-    {
-      "startTableId": "imgf8qNfUazotHqKp_zOI",
-      "startFieldId": "q4OF6b4QpS_eOyEcHusdX",
-      "endTableId": "ORsEWh0l2SUMZDtLTOtsX",
-      "endFieldId": "IkBP6wbfNeoSBUg-TNc7i",
-      "cardinality": "many_to_one",
-      "updateConstraint": "Cascade",
-      "deleteConstraint": "Cascade",
-      "name": "fk_personToAddress_addressId_addresses",
-      "id": "5bnSKtnGpz1bKISeWWhBn"
-    },
-    {
-      "startTableId": "ORsEWh0l2SUMZDtLTOtsX",
-      "startFieldId": "qcj8oAiTh3v8xLBCjMs0j",
-      "endTableId": "W2WngMRHYRu0JiHYJ75WF",
-      "endFieldId": "GXfhxd0iEngxCxiXZ8KRK",
-      "cardinality": "many_to_one",
-      "updateConstraint": "Cascade",
-      "deleteConstraint": "Restrict",
-      "name": "fk_addresses_federalStateID_federalStates",
-      "id": "oQk3CbGTxS6soSoZQwRlW"
-    },
-    {
-      "startTableId": "4kol_hp5DUZNyitb-huTH",
-      "startFieldId": "qJo2eL4WFZAnR9cnOyQ2_",
-      "endTableId": "pE222eck9HWy8GMfxz6Vg",
-      "endFieldId": "TuB6-qDTizHqCOGsheNQF",
-      "cardinality": "many_to_one",
-      "updateConstraint": "Cascade",
-      "deleteConstraint": "Cascade",
-      "name": "fk_contactInfoToPerson_contactInfoId_contactInfo",
-      "id": "xU7J3QbzJM2BfzeCbCAeN"
-    },
-    {
-      "startTableId": "4kol_hp5DUZNyitb-huTH",
-      "startFieldId": "fgBs9c5Hn6MDXj-4DPZgW",
-      "endTableId": "CRHJZ36-GnXuhky0CCZnt",
-      "endFieldId": "OWJ4lWsOXyPjVm0DoUwY1",
-      "cardinality": "many_to_one",
-      "updateConstraint": "Cascade",
-      "deleteConstraint": "Cascade",
-      "name": "fk_contactInfoToPerson_personID_person",
-      "id": "Q1cv9YfSgreutqq_sKamG"
-    },
-    {
       "startTableId": "pE222eck9HWy8GMfxz6Vg",
       "startFieldId": "_vtXCS0Uj0hT3xNQ2RUYp",
       "endTableId": "RmT2f7jOImZnmYF2PaEf6",
@@ -1274,17 +1109,6 @@
       "id": "-2ujsgXQPatQhcyLQuMQf"
     },
     {
-      "startTableId": "rNwBAAm9mcLdBfkZH5oFk",
-      "startFieldId": "dTAcC9WbpAjS7NwALG9w-",
-      "endTableId": "nuljowc1Qr1Wp0QOV7TZo",
-      "endFieldId": "c5tjZV9B9g-TcEljl-Ser",
-      "cardinality": "many_to_one",
-      "updateConstraint": "Cascade",
-      "deleteConstraint": "Restrict",
-      "name": "fk_participantsPrivate_nationalityId_nationalitys",
-      "id": "pKSlkNU25zYR09LHP5n7K"
-    },
-    {
       "startTableId": "nA55olDGIhkbs_Tbz0fx7",
       "startFieldId": "bCnuzb0QLusq9eqPPLYBG",
       "endTableId": "CRHJZ36-GnXuhky0CCZnt",
@@ -1294,6 +1118,28 @@
       "deleteConstraint": "Restrict",
       "name": "fk_staff_personId_person",
       "id": "vilCBvVYOXXyw9v2UDPkD"
+    },
+    {
+      "startTableId": "pE222eck9HWy8GMfxz6Vg",
+      "startFieldId": "ZEAmYXw5Y1tfouyogn7ld",
+      "endTableId": "CRHJZ36-GnXuhky0CCZnt",
+      "endFieldId": "OWJ4lWsOXyPjVm0DoUwY1",
+      "cardinality": "many_to_one",
+      "updateConstraint": "Cascade",
+      "deleteConstraint": "Cascade",
+      "name": "fk_contactInfo_personID_person",
+      "id": "XCHGrFURAiku0hw72liOR"
+    },
+    {
+      "startTableId": "ORsEWh0l2SUMZDtLTOtsX",
+      "startFieldId": "X70BkvFUSOdk1tCgdG5LL",
+      "endTableId": "CRHJZ36-GnXuhky0CCZnt",
+      "endFieldId": "OWJ4lWsOXyPjVm0DoUwY1",
+      "cardinality": "many_to_one",
+      "updateConstraint": "Cascade",
+      "deleteConstraint": "Cascade",
+      "name": "fk_addresses_personId_person",
+      "id": "wj74m1IWg3esKTq3iQgJv"
     }
   ],
   "notes": [

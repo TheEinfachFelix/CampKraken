@@ -10,14 +10,6 @@ die DB für alles
 [x] DB Data
 [ ] Test Data
 [ ] DB Mirror
-[ ] Nationalitäten Daten handling
-[ ] Fill Federal States
-[ ] für Kontaktdaten: wer ist da erreichbar
-[ ] Rabattcode eingabe
-Unverträglichkeiten
-needsMeds
-healthInfo
-hausarzt doctor
 
-nationalitäten
-Bundeslänmder
+update Tags
+Camp Config file
