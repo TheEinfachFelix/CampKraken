@@ -1,0 +1,480 @@
+{
+  "locale": "de",
+  "title": "Anmeldung zum Sommercamp 2026",
+  "pages": [
+    {
+      "name": "page2",
+      "title": {
+        "de": "Daten der teilnehmenden Person"
+      },
+      "elements": [
+        {
+          "type": "text",
+          "name": "lastName",
+          "title": {
+            "de": "Nachname"
+          },
+          "isRequired": true,
+          "autocomplete": "family-name"
+        },
+        {
+          "type": "text",
+          "name": "firstName",
+          "title": {
+            "de": "Vorname"
+          },
+          "isRequired": true,
+          "autocomplete": "given-name"
+        },
+        {
+          "type": "text",
+          "name": "dateOfBirth",
+          "title": {
+            "de": "Geburtsdatum"
+          },
+          "isRequired": true,
+          "inputType": "date",
+          "autocomplete": "bday"
+        },
+        {
+          "type": "radiogroup",
+          "name": "gender",
+          "title": {
+            "de": "Geschlecht"
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "1",
+              "text": {
+                "de": "m"
+              }
+            },
+            {
+              "value": "2",
+              "text": {
+                "de": "w"
+              }
+            },
+            {
+              "value": "3",
+              "text": {
+                "de": "d"
+              }
+            }
+          ],
+          "choicesOrder": "asc",
+          "separateSpecialChoices": true
+        },
+        {
+          "type": "text",
+          "name": "streetAndNumber",
+          "title": {
+            "de": "Straße und Hausnummer"
+          },
+          "isRequired": true,
+          "autocomplete": "street-address"
+        },
+        {
+          "type": "text",
+          "name": "zipCode",
+          "title": {
+            "de": "PLZ"
+          },
+          "isRequired": true
+        },
+        {
+          "type": "text",
+          "name": "city",
+          "title": {
+            "de": "Ort"
+          },
+          "isRequired": true
+        },
+        {
+          "type": "text",
+          "name": "coverName",
+          "title": {
+            "de": "Gegebenenfalls Name Organisation/Firma/Wohngruppe o.ä., die anmeldet, für Anschreiben"
+          }
+        }
+      ]
+    },
+    {
+      "name": "page3",
+      "title": {
+        "de": "Kontaktdaten der Erziehungsberechtigten"
+      },
+      "elements": [
+        {
+          "type": "text",
+          "name": "email",
+          "title": {
+            "de": "Email"
+          },
+          "description": {
+            "de": "An diese E-Mail-Adresse wird deine Anmeldebestätigung gesendet."
+          },
+          "isRequired": true,
+          "inputType": "email",
+          "autocomplete": "email"
+        },
+        {
+          "type": "paneldynamic",
+          "name": "contacts",
+          "title": {
+            "de": "Telefonnummern"
+          },
+          "isRequired": true,
+          "templateElements": [
+            {
+              "type": "text",
+              "name": "number",
+              "title": {
+                "de": "Telefonnummer"
+              },
+              "isRequired": true,
+              "inputType": "tel",
+              "autocomplete": "tel"
+            },
+            {
+              "type": "text",
+              "name": "who",
+              "title": {
+                "de": "Wer ist unter der Nummer erreichbar?"
+              }
+            }
+          ],
+          "panelCount": 1
+        }
+      ]
+    },
+    {
+      "name": "private",
+      "title": {
+        "default": "Da",
+        "de": "Weitere Angaben"
+      },
+      "elements": [
+        {
+          "type": "dropdown",
+          "name": "schoolType",
+          "title": {
+            "de": "Welche Schulform besucht der/die Jugendliche"
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "1",
+              "text": {
+                "de": "Grundschule"
+              }
+            },
+            {
+              "value": "2",
+              "text": {
+                "de": "Ausbildung"
+              }
+            },
+            {
+              "value": "3",
+              "text": {
+                "de": "Weitere"
+              }
+            }
+          ],
+          "showOtherItem": true
+        },
+        {
+          "type": "dropdown",
+          "name": "shirtSize",
+          "title": {
+            "de": "Größe für ein kostenloses Camp T-Shirt "
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "1",
+              "text": {
+                "de": "m"
+              }
+            },
+            {
+              "value": "2",
+              "text": {
+                "de": "l"
+              }
+            },
+            {
+              "value": "3",
+              "text": {
+                "de": "s"
+              }
+            }
+          ]
+        },
+        {
+          "type": "boolean",
+          "name": "hasLiabilityInsurance",
+          "title": {
+            "de": "Besteht für der/die Jugendliche eine Haftpflichtversicherung?"
+          },
+          "isRequired": true
+        },
+        {
+          "type": "radiogroup",
+          "name": "perms",
+          "title": {
+            "de": "Der/Die Jugendliche darf..."
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "Item 1",
+              "text": {
+                "de": "...alleine das Lager verlassen."
+              }
+            },
+            {
+              "value": "Item 2",
+              "text": {
+                "de": "...in kleinen Gruppen, ohne Betreuer, das Lager verlassen."
+              }
+            },
+            {
+              "value": "Item 3",
+              "text": {
+                "de": "...nur mit Betreuer das Lager verlassen."
+              }
+            }
+          ]
+        },
+        {
+          "type": "boolean",
+          "name": "swimmer",
+          "title": {
+            "de": "Der/Die Judendlich kann..."
+          },
+          "isRequired": true,
+          "labelTrue": {
+            "de": "... schwimmen"
+          },
+          "labelFalse": {
+            "de": "... nicht schwimmen"
+          }
+        }
+      ]
+    },
+    {
+      "name": "page1",
+      "title": {
+        "de": "Zeitraum"
+      },
+      "elements": [
+        {
+          "type": "dropdown",
+          "name": "timeSlot",
+          "title": {
+            "de": "Zeitraum der Teilnahme "
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "D1",
+              "text": {
+                "de": "D1: 13.07.-26.07.2025 (14 Tage)"
+              }
+            },
+            {
+              "value": "D2",
+              "text": {
+                "de": "D1: 27.07.-09.08.2025 (14 Tage)"
+              }
+            },
+            {
+              "value": "Special",
+              "text": {
+                "de": "Wunschzeitraum"
+              }
+            }
+          ]
+        },
+        {
+          "type": "panel",
+          "name": "panel1",
+          "visibleIf": "{timeSlot} = 'Special'",
+          "elements": [
+            {
+              "type": "text",
+              "name": "start-date",
+              "title": {
+                "de": "Wunschzeitraum von"
+              },
+              "isRequired": true,
+              "inputType": "date"
+            },
+            {
+              "type": "text",
+              "name": "end-date",
+              "title": {
+                "de": "Wunschzeitraum bis"
+              },
+              "isRequired": true,
+              "inputType": "date",
+              "minValueExpression": "{start-date}"
+            },
+            {
+              "type": "expression",
+              "name": "daysInCamp",
+              "title": {
+                "de": "Tage im Camp"
+              },
+              "validators": [
+                {
+                  "type": "expression",
+                  "text": {
+                    "de": "Mindestens 7 Tage"
+                  },
+                  "expression": "{daysInCamp} >= 7"
+                }
+              ],
+              "expression": "dateDiff({start-date}, {end-date}, \"days\")"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "discountCode",
+          "title": {
+            "de": "Rabattcode"
+          }
+        }
+      ]
+    },
+    {
+      "name": "page4",
+      "title": {
+        "de": "Gesundheitsdaten"
+      },
+      "elements": [
+        {
+          "type": "checkbox",
+          "name": "nutrition",
+          "title": {
+            "de": "Ernährung "
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "0",
+              "text": {
+                "de": "normal"
+              }
+            },
+            {
+              "value": "1",
+              "text": {
+                "de": "vegan"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "intolerances",
+          "title": {
+            "de": "Unverträglichkeiten "
+          }
+        },
+        {
+          "type": "boolean",
+          "name": "isHealthy",
+          "title": {
+            "de": "Ist der/die Jugendliche gesund und frei von ansteckenden Krankheiten"
+          },
+          "isRequired": true
+        },
+        {
+          "type": "boolean",
+          "name": "needsMedication",
+          "title": {
+            "de": "Muss der/die Jugendliche ständig Medikamente nehmen? * "
+          },
+          "isRequired": true
+        },
+        {
+          "type": "text",
+          "name": "healthInfo",
+          "title": {
+            "de": "Gesundheitsinfos und Informationen zu Medikamenten"
+          },
+          "requiredIf": "{needsMedication} = true"
+        },
+        {
+          "type": "text",
+          "name": "doctor",
+          "title": {
+            "de": "Zuständige(r) Arzt (Hausarzt) / Ärztin (Hausärztin) "
+          }
+        },
+        {
+          "type": "text",
+          "name": "healthInsuranceName",
+          "title": {
+            "de": "Wo ist der/die Jugendliche Krankenversichert (Krankenkasse) "
+          }
+        },
+        {
+          "type": "text",
+          "name": "insuredBy",
+          "title": {
+            "de": "Über wen ist der/die Jugendliche krankenversichert (Mutter/Vater) Name/Vorname/Geburtsdatum "
+          }
+        }
+      ]
+    },
+    {
+      "name": "page5",
+      "title": {
+        "de": "Abschluss"
+      },
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "PicturesAllowed",
+          "title": {
+            "de": "Dürfen von der teilnehmenden Person während der Veranstaltung Foto- und Videoaufnahme gemacht werden?"
+          },
+          "description": {
+            "de": "Diese Aufnahmen können vom Veranstalter für Zwecke der Öffentlichkeitsarbeit (z. B. auf der Website, in sozialen Medien oder in Pressemitteilungen) genutzt werden.Genaueres in den Vertragsbedingungen. Diese finden sie hier: ferienfuerkinder.com/app…424"
+          },
+          "isRequired": true
+        },
+        {
+          "type": "checkbox",
+          "name": "question1",
+          "title": {
+            "de": "Einwilligung"
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "Item 1",
+              "text": {
+                "de": "Hiermit bestätige ich, dass ich die allgemeinen Vertragsbedingungen und Datenschutzerklärung für unser Sommercamp 2025 gelesen, verstanden haben und damit einverstanden sind. Die Vertragsbedingungen finden sie hier: https://www.ferienfuerkinder.com/app/download/5582557375/avb+2025.pdf?t=1740231699 Diese Anmeldung wird erst mit dem Eingang der Anzahlung gültig."
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "specialInfos",
+          "title": {
+            "de": "Besondere Hinweise"
+          }
+        }
+      ]
+    }
+  ],
+  "headerView": "advanced"
+}

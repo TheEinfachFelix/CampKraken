@@ -1,18 +1,16 @@
 # CampKraken
 This is the IT Backbone of our Camp
 
-# TODO
+## TODO
 
-[x] DB Spawning
-[x] DB Schema Auto
-[ ] DB Perms
-[ ] DB Data
-[ ] DB Mirror
-Online Form
-Webserver
-API
+[ ] Rumpf
+[ ] Ausguck
 
+### later:
 
-grep -E "(DROP TABLE|DROP DATABASE)" schema.sql && echo "❌ Drop detected!" && exit 1
-
-ALTER TABLE users ADD COLUMN IF NOT EXISTS nickname TEXT;
+[ ] Secures hosting
+[ ] Playbooks
+    [ ] Dev Prod Var difference
+    [ ] Secure secret storage
+[ ] Schatzkiste (Taschengeld)
+[ ] Brücke (NOCODB)

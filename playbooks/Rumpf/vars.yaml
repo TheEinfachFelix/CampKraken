@@ -4,7 +4,9 @@ pg_user: postgres
 sql_conf_files_path: /home/ansible/myAnsible/submoduls/CampKraken/Moduls/Rumpf/
 sql_conf_files: 
   - schema.sql
+  - updates.sql
   - data.sql
+  - user.sql
 
   # Install
 pg_allowed_subnet: 192.168.178.0/24 #
