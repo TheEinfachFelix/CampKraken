@@ -11,5 +11,6 @@ die DB für alles
 [ ] Test Data
 [ ] DB Mirror
 
-update Tags
+update Tag default data
 Camp Config file
+Python script that scannes whether dhe updates are idempotent

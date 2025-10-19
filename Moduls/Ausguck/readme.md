@@ -4,9 +4,9 @@ Die Online Anmeldung des Camps
 
 ## Todos
 
-[ ] Projektstruktur
+[x] Projektstruktur
 [ ] Form Erstellen
-[ ] Form automatisch befüllen
+[x] Form automatisch befüllen
     [ ] Playbook
 [ ] Webserver
     [ ] Displaying the Form
@@ -18,3 +18,7 @@ Die Online Anmeldung des Camps
     [ ] DB insert
     [ ] Trap
     [ ] Playbook
+
+### minis
+
+diferent other Contact info
