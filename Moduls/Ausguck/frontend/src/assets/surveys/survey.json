@@ -81,7 +81,8 @@
           "title": {
             "de": "PLZ"
           },
-          "isRequired": true
+          "isRequired": true,
+          "inputType": "number"
         },
         {
           "type": "text",
@@ -273,7 +274,7 @@
       "elements": [
         {
           "type": "dropdown",
-          "name": "timeSlot",
+          "name": "selectedSlot",
           "title": {
             "de": "Zeitraum der Teilnahme "
           },
@@ -302,7 +303,7 @@
         {
           "type": "panel",
           "name": "panel1",
-          "visibleIf": "{timeSlot} = 'Special'",
+          "visibleIf": "{selectedSlot} = 'Special'",
           "elements": [
             {
               "type": "text",
@@ -344,7 +345,7 @@
         },
         {
           "type": "text",
-          "name": "discountCode",
+          "name": "userDiscountCode",
           "title": {
             "de": "Rabattcode"
           }
