@@ -22,3 +22,6 @@ Die Online Anmeldung des Camps
 ### minis
 
 diferent other Contact info
+
+sudo apt install npm
+npx create-react-app my-app --template typescript
