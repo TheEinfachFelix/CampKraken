@@ -1,0 +1,41 @@
+---
+- name: Benutzer anlegen
+  community.postgresql.postgresql_user:
+    name: "{{ item.name }}"
+    password: "{{ item.password }}"
+    login_host: 127.0.0.1
+    login_user: "{{ pg_user }}"
+    login_password: "{{ pg_password }}"
+    login_db: "{{ rumpf_db_name }}"
+    state: present
+  loop: "{{ users }}"
+
+- name: Rechte auf Datenbank vergeben
+  community.postgresql.postgresql_privs:
+    type: database
+    roles: "{{ item.name }}"
+    privs: CONNECT
+    login_host: 127.0.0.1
+    login_user: "{{ pg_user }}"
+    login_password: "{{ pg_password }}"
+    login_db: "{{ rumpf_db_name }}"
+    state: present
+  loop: "{{ users }}"
+
+- name: Rechte auf Schema vergeben
+  community.postgresql.postgresql_privs:
+    type: schema
+    objs: public
+    roles: "{{ item.name }}"
+    privs: USAGE
+    login_host: 127.0.0.1
+    login_user: "{{ pg_user }}"
+    login_password: "{{ pg_password }}"
+    login_db: "{{ rumpf_db_name }}"
+    state: present
+  loop: "{{ users }}"
+
+- name: Setup User
+  include_tasks: "user/{{ item.file }}"
+  loop: "{{ users }}"
+

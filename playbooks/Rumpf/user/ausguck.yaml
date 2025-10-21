@@ -1,0 +1,14 @@
+---
+- name: Rechte auf Tabellen vergeben
+  community.postgresql.postgresql_privs:
+    type: table
+    objs: person
+    roles: "{{ user_dropdown_name }}"
+    privs: INSERT
+    schema: public
+
+    login_host: 127.0.0.1
+    login_user: "{{ pg_user }}"
+    login_password: "{{ pg_password }}"
+    login_db: "{{ rumpf_db_name }}"
+    state: present

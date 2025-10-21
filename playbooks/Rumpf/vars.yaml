@@ -6,10 +6,26 @@ sql_conf_files:
   - schema.sql
   - updates.sql
   - data.sql
-  - user.sql
 
   # Install
 pg_allowed_subnet: 192.168.178.0/24 #
 pg_user: postgres
 pg_password: "secure_password"  #
 pg_admin_db: postgres #
+
+user_dropdown_name: "dropdownFiller"
+user_dorpdown_pw: "Geheim"
+user_dorpdown_file: dropdown.yaml
+
+user_ausguck_name: "AusguckInserter"
+name_ausguck_pw: "Geheim"
+name_ausguck_file: ausguck.yaml
+
+users:
+  - name: "{{user_dropdown_name}}"
+    password: "{{user_dorpdown_pw}}"
+    file: "{{user_dorpdown_file}}"
+  - name: "{{user_ausguck_name}}"
+    password: "{{name_ausguck_pw}}"
+    file: "{{name_ausguck_file}}"
+

@@ -10,10 +10,13 @@ INSERT INTO "contactInfoTypes" ("contactInfoTypeId", "name") VALUES (2, 'Mobil')
 INSERT INTO "contactInfoTypes" ("contactInfoTypeId", "name") VALUES (3, 'E-Mail') ON CONFLICT ON CONSTRAINT "contactInfoTypes_pkey" DO UPDATE SET "name" = EXCLUDED."name";
 
 -- Perms
-INSERT INTO "permissions" ("permissionId", "name") VALUES (0, 'swimmer') ON CONFLICT ON CONSTRAINT "permissions_pkey" DO UPDATE SET "name" = EXCLUDED."name";
-INSERT INTO "permissions" ("permissionId", "name") VALUES (1, 'alone') ON CONFLICT ON CONSTRAINT "permissions_pkey" DO UPDATE SET "name" = EXCLUDED."name";
-INSERT INTO "permissions" ("permissionId", "name") VALUES (2, 'Small group') ON CONFLICT ON CONSTRAINT "permissions_pkey" DO UPDATE SET "name" = EXCLUDED."name";
-INSERT INTO "permissions" ("permissionId", "name") VALUES (3, 'Bilder erlaubt') ON CONFLICT ON CONSTRAINT "permissions_pkey" DO UPDATE SET "name" = EXCLUDED."name";
+INSERT INTO "tags" ("tagId", "name") VALUES (0, 'swimmer') ON CONFLICT ON CONSTRAINT "tags_pkey" DO UPDATE SET "name" = EXCLUDED."name";
+INSERT INTO "tags" ("tagId", "name") VALUES (1, 'alone') ON CONFLICT ON CONSTRAINT "tags_pkey" DO UPDATE SET "name" = EXCLUDED."name";
+INSERT INTO "tags" ("tagId", "name") VALUES (2, 'Small group') ON CONFLICT ON CONSTRAINT "tags_pkey" DO UPDATE SET "name" = EXCLUDED."name";
+INSERT INTO "tags" ("tagId", "name") VALUES (3, 'picturesAllowed') ON CONFLICT ON CONSTRAINT "tags_pkey" DO UPDATE SET "name" = EXCLUDED."name";
+INSERT INTO "tags" ("tagId", "name") VALUES (4, 'isHealthy') ON CONFLICT ON CONSTRAINT "tags_pkey" DO UPDATE SET "name" = EXCLUDED."name";
+INSERT INTO "tags" ("tagId", "name") VALUES (5, 'hasLiabilityInsurance') ON CONFLICT ON CONSTRAINT "tags_pkey" DO UPDATE SET "name" = EXCLUDED."name";
+INSERT INTO "tags" ("tagId", "name") VALUES (6, 'needsMeds') ON CONFLICT ON CONSTRAINT "tags_pkey" DO UPDATE SET "name" = EXCLUDED."name";
 
 -- Discount Codes
 INSERT INTO "discountCodes" ("discountCodeId", "name") VALUES (0, 'none')              ON CONFLICT ON CONSTRAINT "discountCodes_pkey" DO UPDATE SET "name" = EXCLUDED."name";
@@ -45,7 +48,7 @@ INSERT INTO "shirtSizes" ("shirtSizeId", "name") VALUES (9, 'XXXL') ON CONFLICT 
 
 -- Nutrition
 INSERT INTO "nutritions" ("nutritionId", "name") VALUES (0, 'normal') ON CONFLICT ON CONSTRAINT "nutritions_pkey" DO UPDATE SET "name" = EXCLUDED."name";
-INSERT INTO "nutritions" ("nutritionId", "name") VALUES (1, 'vegetarian') ON CONFLICT ON CONSTRAINT "nutritions_pkey" DO UPDATE SET "name" = EXCLUDED."name";
+INSERT INTO "nutritions" ("nutritionId", "name") VALUES (1, 'vegitarisch') ON CONFLICT ON CONSTRAINT "nutritions_pkey" DO UPDATE SET "name" = EXCLUDED."name";
 INSERT INTO "nutritions" ("nutritionId", "name") VALUES (2, 'vegan') ON CONFLICT ON CONSTRAINT "nutritions_pkey" DO UPDATE SET "name" = EXCLUDED."name";
 INSERT INTO "nutritions" ("nutritionId", "name") VALUES (3, 'halal') ON CONFLICT ON CONSTRAINT "nutritions_pkey" DO UPDATE SET "name" = EXCLUDED."name";
 
@@ -58,6 +61,3 @@ INSERT INTO "schoolTypes" ("schoolTypeId", "name") VALUES (4, 'Gymnasium') ON CO
 INSERT INTO "schoolTypes" ("schoolTypeId", "name") VALUES (5, 'Gesamtschule') ON CONFLICT ON CONSTRAINT "schoolTypes_pkey" DO UPDATE SET "name" = EXCLUDED."name";
 INSERT INTO "schoolTypes" ("schoolTypeId", "name") VALUES (6, 'Waldorfschule') ON CONFLICT ON CONSTRAINT "schoolTypes_pkey" DO UPDATE SET "name" = EXCLUDED."name";
 INSERT INTO "schoolTypes" ("schoolTypeId", "name") VALUES (7, 'Andere Schulen') ON CONFLICT ON CONSTRAINT "schoolTypes_pkey" DO UPDATE SET "name" = EXCLUDED."name";
-
--- Nationalitäten
-INSERT INTO "nationalitys" ("nationalityId", "name") VALUES (0, 'TODO') ON CONFLICT ON CONSTRAINT "nationalitys_pkey" DO UPDATE SET "name" = EXCLUDED."name";

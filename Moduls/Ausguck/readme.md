@@ -9,10 +9,11 @@ Die Online Anmeldung des Camps
 [x] Form automatisch befüllen
     [ ] Playbook
 [ ] Webserver
-    [ ] Displaying the Form
+    [x] Displaying the Form
     [ ] Calling the API
-    [ ] opt Reloading the data
+    [ ] (opt) Reloading the data
     [ ] Playbooks
+    [ ] integration test
 [ ] API
     [ ] DB User
     [ ] DB insert
@@ -22,6 +23,3 @@ Die Online Anmeldung des Camps
 ### minis
 
 diferent other Contact info
-
-sudo apt install npm
-npx create-react-app my-app --template typescript

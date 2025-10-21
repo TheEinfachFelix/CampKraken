@@ -10,3 +10,4 @@
       vars:
         db_name: "{{ rumpf_db_name }}"
         postgres_user: "{{ pg_user }}"
+        userList: "{{users}}"
