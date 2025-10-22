@@ -5,6 +5,8 @@ VisualStudioVersion = 17.14.36518.9 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AusguckBackend", "AusguckBackend\AusguckBackend.csproj", "{C571A2D6-C9DA-4CA4-83D9-BC3BA88322FF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendTest", "BackendTest\BackendTest.csproj", "{5C0F663C-9391-4513-98D4-7FC1D2B8AD52}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{C571A2D6-C9DA-4CA4-83D9-BC3BA88322FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C571A2D6-C9DA-4CA4-83D9-BC3BA88322FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C571A2D6-C9DA-4CA4-83D9-BC3BA88322FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C0F663C-9391-4513-98D4-7FC1D2B8AD52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C0F663C-9391-4513-98D4-7FC1D2B8AD52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C0F663C-9391-4513-98D4-7FC1D2B8AD52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C0F663C-9391-4513-98D4-7FC1D2B8AD52}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
