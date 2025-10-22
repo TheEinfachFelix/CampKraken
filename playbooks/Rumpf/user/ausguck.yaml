@@ -2,7 +2,7 @@
 - name: Rechte auf Tabellen vergeben
   community.postgresql.postgresql_privs:
     type: table
-    objs: person
+    objs: person,participants,participantsPrivate,permissionsToParticipants,addresses,contactInfo #,presences
     roles: "{{ user_dropdown_name }}"
     privs: INSERT
     schema: public

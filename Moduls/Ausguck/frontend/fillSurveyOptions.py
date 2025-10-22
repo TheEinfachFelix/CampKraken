@@ -36,7 +36,7 @@ def genChoices(name: str, conn) -> list[dict]:
 
 if __name__ == "__main__":
     path = "/home/ansible/myAnsible/submoduls/CampKraken/Moduls/Ausguck/frontend/src/assets/surveys/survey.json"
-    conStr = f"host=192.168.178.143 port=5432 dbname=Rumpf user=postgres password=secure_password"
+    conStr = f"host=192.168.178.143 port=5432 dbname=Rumpf user=dropdownFiller password=Geheim"
 
     ## init data
     file = open(path,"r")

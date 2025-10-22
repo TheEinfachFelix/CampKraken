@@ -15,7 +15,7 @@ Die Online Anmeldung des Camps
     [ ] Playbooks
     [ ] integration test
 [ ] API
-    [ ] DB User
+    [X] DB User
     [ ] DB insert
     [ ] Trap
     [ ] Playbook
