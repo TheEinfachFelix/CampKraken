@@ -19,6 +19,7 @@ Die Online Anmeldung des Camps
     [ ] DB insert
     [ ] Trap
     [ ] Playbook
+    [ ] Creds handeling
 
 ### minis
 
