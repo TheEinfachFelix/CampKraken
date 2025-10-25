@@ -2,9 +2,23 @@
 - name: Rechte auf Tabellen vergeben
   community.postgresql.postgresql_privs:
     type: table
-    objs: person,participants,participantsPrivate,permissionsToParticipants,addresses,contactInfo #,presences
+    objs: person,participants,participantsPrivate,tagToParticipant,addresses,contactInfo #,presences
     roles: "{{ user_dropdown_name }}"
     privs: INSERT
+    schema: public
+
+    login_host: 127.0.0.1
+    login_user: "{{ pg_user }}"
+    login_password: "{{ pg_password }}"
+    login_db: "{{ rumpf_db_name }}"
+    state: present
+
+- name: Rechte auf Tabellen vergeben
+  community.postgresql.postgresql_privs:
+    type: table
+    objs: genders,nutritions,shirtSizes,schoolTypes,tags,days
+    roles: "{{ user_dropdown_name }}"
+    privs: SELECT
     schema: public
 
     login_host: 127.0.0.1

@@ -9,7 +9,7 @@ INSERT INTO "contactInfoTypes" ("contactInfoTypeId", "name") VALUES (1, 'Fax') O
 INSERT INTO "contactInfoTypes" ("contactInfoTypeId", "name") VALUES (2, 'Mobil') ON CONFLICT ON CONSTRAINT "contactInfoTypes_pkey" DO UPDATE SET "name" = EXCLUDED."name";
 INSERT INTO "contactInfoTypes" ("contactInfoTypeId", "name") VALUES (3, 'E-Mail') ON CONFLICT ON CONSTRAINT "contactInfoTypes_pkey" DO UPDATE SET "name" = EXCLUDED."name";
 
--- Perms
+-- Tags
 INSERT INTO "tags" ("tagId", "name") VALUES (0, 'swimmer') ON CONFLICT ON CONSTRAINT "tags_pkey" DO UPDATE SET "name" = EXCLUDED."name";
 INSERT INTO "tags" ("tagId", "name") VALUES (1, 'alone') ON CONFLICT ON CONSTRAINT "tags_pkey" DO UPDATE SET "name" = EXCLUDED."name";
 INSERT INTO "tags" ("tagId", "name") VALUES (2, 'Small group') ON CONFLICT ON CONSTRAINT "tags_pkey" DO UPDATE SET "name" = EXCLUDED."name";
