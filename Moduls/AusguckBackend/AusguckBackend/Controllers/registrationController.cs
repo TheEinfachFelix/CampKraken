@@ -16,7 +16,7 @@ namespace AusguckBackend.Controllers
         }
 
         [HttpGet(Name = "PostRegistration")]
-        public async Task<IActionResult> Post([FromBody] JsonElement data)
+        public async Task<IActionResult> Post([FromBody] Services.Participant data)
         {
             await _service.ProcessIncomingDataAsync(data);
             return Ok();
