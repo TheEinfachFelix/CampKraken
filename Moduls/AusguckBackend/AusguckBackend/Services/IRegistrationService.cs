@@ -4,6 +4,6 @@ namespace AusguckBackend.Services
 {
     public interface IRegistrationService
     {
-        Task ProcessIncomingDataAsync(JsonElement data);
+        Task ProcessIncomingDataAsync(Participant data);
     }
 }
