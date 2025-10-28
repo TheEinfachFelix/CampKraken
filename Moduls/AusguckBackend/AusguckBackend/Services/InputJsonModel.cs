@@ -27,13 +27,13 @@ namespace AusguckBackend.Services
         public bool? swimmer { get; set; }
 
         [JsonPropertyName("selectedSlot")]
-        public string? SelectedSlot { get; set; }
+        public string? selectedSlot { get; set; }
 
         [JsonPropertyName("start-date")]
-        public DateOnly? StartDate { get; set; }
+        public DateOnly? startDate { get; set; }
 
         [JsonPropertyName("end-date")]
-        public DateOnly? EndDate { get; set; }
+        public DateOnly? endDate { get; set; }
 
         public int? daysInCamp { get; set; }
         public string? userDiscountCode { get; set; }

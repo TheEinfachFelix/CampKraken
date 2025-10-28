@@ -5,7 +5,7 @@ namespace AusguckBackend.Services
 {
     public class RegistrationService : IRegistrationService
     {
-        private static readonly List<string> mandatoryNames = ["lastName", "firstName", "dateOfBirth", "gender", "zipCode", "city", "streetAndNumber", "email", "schoolType", "shirtSize", "hasLiabilityInsurance", "perms", "swimmer", "selectedSlot", "nutrition", "isHealthy", "needsMedication", "picturesAllowed", "question1"]
+        public static readonly List<string> mandatoryNames = ["lastName", "firstName", "dateOfBirth", "gender", "zipCode", "city", "streetAndNumber", "email", "schoolType", "shirtSize", "hasLiabilityInsurance", "perms", "swimmer", "selectedSlot", "nutrition", "isHealthy", "needsMedication", "picturesAllowed", "question1"];
 
         public Task ProcessIncomingDataAsync(Participant data)
         {
@@ -16,11 +16,54 @@ namespace AusguckBackend.Services
         {
             // veryfiy mandatory fields
             if (input == null) return "input is null";
+            Type type = input.GetType();
             foreach (var item in mandatoryNames)
             {
-                
+                var prop = type.GetProperty(item);
+                if (prop?.GetValue(input, null) == null)
+                {
+                    return item + " is null";
+                }
+                if (prop?.PropertyType == typeof(string) && (string)prop?.GetValue(input) == "")
+                {
+                    return item + " is empty";
+                }
             }
-            if (input.lastName == null || input.lastName == "") return "lastName is null or empty";
+
+            // DateofBirth check
+            if (input.dateOfBirth is null)
+                return "dateOfBirth is null";
+
+            DateOnly birthDate = input.dateOfBirth.Value;
+            DateOnly today = Globals.CampStart;
+
+            int age = today.Year - birthDate.Year;
+            if (today < birthDate.AddYears(age))
+                age--;
+            
+            if (age < Globals.MinAge || age > Globals.MaxAge)
+                return "age not in range";
+
+            // selectedSlot check
+            if (string.IsNullOrEmpty(input.selectedSlot) || !Globals.ValideSlots.Contains(input.selectedSlot))
+            {
+                return "selectedSlot is invalid";
+            }
+
+            // special slot date check
+            if (input.selectedSlot == "Special")
+            {
+                if (input.startDate is null || input.endDate is null)
+                {
+                    return "startDate or endDate is null for Special slot";
+                }
+                if (input.startDate < Globals.CampStart || input.endDate > Globals.CampEnd || input.startDate > input.endDate)
+                {
+                    return "startDate or endDate is out of range for Special slot";
+                }
+            }
+
+
             return "";
         }
 
@@ -77,7 +120,7 @@ namespace AusguckBackend.Services
                 DiscountCodeId = -1,
                 UserDiscountCode = input.userDiscountCode,
                 ShirtSizeId = input.shirtSize != null ? int.Parse(input.shirtSize) : 0,
-                SelectedSlot = input.SelectedSlot,
+                SelectedSlot = input.selectedSlot,
                 ParticipantsPrivate = new ParticipantsPrivate
                 {
                     SchoolTypeId = input.schoolType != null ? int.Parse(input.schoolType) : 0,
@@ -90,7 +133,7 @@ namespace AusguckBackend.Services
                 },
                 Tags = new List<Tag>()
             };
-            if (input.SelectedSlot == "Special") { efParticipant.SelectedSlot += "$" + input.StartDate.ToString() + "$" + input.EndDate.ToString(); }
+            if (input.selectedSlot == "Special") { efParticipant.SelectedSlot += "$" + input.startDate.ToString() + "$" + input.endDate.ToString(); }
 
             // 5. Tags // TODO: keinneune Tag und alone und small grupe fehlt
             if (input.swimmer == true) efParticipant.Tags.Add(new Tag { TagId = 0, Name = "swimmer" });

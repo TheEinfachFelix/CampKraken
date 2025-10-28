@@ -11,9 +11,14 @@ namespace BackendTest.Services
 {
     internal static class SampleData
     {
-        public static string SampleJson { get; } = "{\r\n    \"lastName\": \"ertw\",\r\n   \"firstName\": \"dfsg\",\r\n   \"dateOfBirth\": \"2025-10-24\",\r\n   \"gender\": \"0\",\r\n   \"streetAndNumber\": \"dsfgsdfg\",\r\n   \"zipCode\": 34555,\r\n   \"city\": \"sdfgdfsg\",\r\n   \"contacts\": [\r\n      {\r\n        \"number\": \"345543\",\r\n         \"who\": \"dfgfg\"\r\n      }\r\n   ],\r\n   \"email\": \"dfsgdfsg@d.de\",\r\n   \"schoolType\": \"1\",\r\n   \"shirtSize\": \"7\",\r\n   \"hasLiabilityInsurance\": true,\r\n   \"perms\": \"Item 2\",\r\n   \"swimmer\": true,\r\n   \"selectedSlot\": \"D2\",\r\n   \"nutrition\": [\r\n      \"1\"\r\n   ],\r\n   \"isHealthy\": true,\r\n   \"needsMedication\": false,\r\n   \"picturesAllowed\": false,\r\n   \"question1\": [\r\n      \"Item 1\"\r\n   ]\r\n}";
-        public static string FullJson { get; } = "{\r\n    \"lastName\": \"dsaf\",\r\n   \"firstName\": \"sdaf\",\r\n   \"dateOfBirth\": \"2025-10-22\",\r\n   \"gender\": \"0\",\r\n   \"streetAndNumber\": \"dfsaf\",\r\n   \"zipCode\": 23233,\r\n   \"city\": \"dafsdf\",\r\n   \"coverName\": \"sdfasdf\",\r\n   \"contacts\": [\r\n      {\r\n        \"number\": \"2233332\",\r\n         \"who\": \"dsfdsf\"\r\n      },\r\n      {\r\n        \"number\": \"3434343\",\r\n         \"who\": \"dsfadfdsfadf\"\r\n      }\r\n   ],\r\n   \"email\": \"dsaf@de.de\",\r\n   \"schoolType\": \"2\",\r\n   \"shirtSize\": \"7\",\r\n   \"hasLiabilityInsurance\": false,\r\n   \"perms\": \"Item 1\",\r\n   \"swimmer\": true,\r\n   \"selectedSlot\": \"Special\",\r\n   \"start-date\": \"2025-10-14\",\r\n   \"end-date\": \"2025-10-31\",\r\n   \"daysInCamp\": 18,\r\n   \"userDiscountCode\": \"3434343\",\r\n   \"nutrition\": [\r\n      \"0\"\r\n   ],\r\n   \"intolerances\": \"dsaff\",\r\n   \"isHealthy\": true,\r\n   \"needsMedication\": true,\r\n   \"healthInfo\": \"dsafsdf\",\r\n   \"doctor\": \"dfsfdfsdf\",\r\n   \"healthInsuranceName\": \"saff\",\r\n   \"insuredBy\": \"dasfasdfasdf\",\r\n   \"picturesAllowed\": true,\r\n   \"question1\": [\r\n      \"Item 1\"\r\n   ],\r\n   \"specialInfos\": \"sadasdfadsf\"\r\n}";
-        public static string MinJson { get; } = "{\r\n    \"lastName\": \"fdsg\",\r\n   \"firstName\": \"dsfgdfsg\",\r\n   \"dateOfBirth\": \"2025-10-29\",\r\n   \"gender\": \"0\",\r\n   \"zipCode\": 343434,\r\n   \"city\": \"dsfgdsfg\",\r\n   \"streetAndNumber\": \"fdfdsgdfg\",\r\n   \"contacts\": [\r\n      {\r\n        \"number\": \"2323223\"\r\n      }\r\n   ],\r\n   \"email\": \"dfdsg@de.dd\",\r\n   \"schoolType\": \"1\",\r\n   \"shirtSize\": \"8\",\r\n   \"hasLiabilityInsurance\": true,\r\n   \"perms\": \"Item 1\",\r\n   \"swimmer\": true,\r\n   \"selectedSlot\": \"D2\",\r\n   \"nutrition\": [\r\n      \"0\"\r\n   ],\r\n   \"isHealthy\": true,\r\n   \"needsMedication\": false,\r\n   \"picturesAllowed\": true,\r\n   \"question1\": [\r\n      \"Item 1\"\r\n   ]\r\n}";
+        public static T DeepCopy<T>(this T obj)
+        {
+            var json = JsonSerializer.Serialize(obj);
+            return JsonSerializer.Deserialize<T>(json)!;
+        }
+        public static string SampleJson { get; } = "{\r\n    \"lastName\": \"ertw\",\r\n   \"firstName\": \"dfsg\",\r\n   \"dateOfBirth\": \"2015-10-24\",\r\n   \"gender\": \"0\",\r\n   \"streetAndNumber\": \"dsfgsdfg\",\r\n   \"zipCode\": 34555,\r\n   \"city\": \"sdfgdfsg\",\r\n   \"contacts\": [\r\n      {\r\n        \"number\": \"345543\",\r\n         \"who\": \"dfgfg\"\r\n      }\r\n   ],\r\n   \"email\": \"dfsgdfsg@d.de\",\r\n   \"schoolType\": \"1\",\r\n   \"shirtSize\": \"7\",\r\n   \"hasLiabilityInsurance\": true,\r\n   \"perms\": \"Item 2\",\r\n   \"swimmer\": true,\r\n   \"selectedSlot\": \"D2\",\r\n   \"nutrition\": [\r\n      \"1\"\r\n   ],\r\n   \"isHealthy\": true,\r\n   \"needsMedication\": false,\r\n   \"picturesAllowed\": false,\r\n   \"question1\": [\r\n      \"Item 1\"\r\n   ]\r\n}";
+        public static string FullJson { get; } = "{\r\n    \"lastName\": \"dsaf\",\r\n   \"firstName\": \"sdaf\",\r\n   \"dateOfBirth\": \"2015-10-22\",\r\n   \"gender\": \"0\",\r\n   \"streetAndNumber\": \"dfsaf\",\r\n   \"zipCode\": 23233,\r\n   \"city\": \"dafsdf\",\r\n   \"coverName\": \"sdfasdf\",\r\n   \"contacts\": [\r\n      {\r\n        \"number\": \"2233332\",\r\n         \"who\": \"dsfdsf\"\r\n      },\r\n      {\r\n        \"number\": \"3434343\",\r\n         \"who\": \"dsfadfdsfadf\"\r\n      }\r\n   ],\r\n   \"email\": \"dsaf@de.de\",\r\n   \"schoolType\": \"2\",\r\n   \"shirtSize\": \"7\",\r\n   \"hasLiabilityInsurance\": false,\r\n   \"perms\": \"Item 1\",\r\n   \"swimmer\": true,\r\n   \"selectedSlot\": \"Special\",\r\n   \"start-date\": \"2026-07-20\",\r\n   \"end-date\": \"2026-08-01\",\r\n   \"daysInCamp\": 18,\r\n   \"userDiscountCode\": \"3434343\",\r\n   \"nutrition\": [\r\n      \"0\"\r\n   ],\r\n   \"intolerances\": \"dsaff\",\r\n   \"isHealthy\": true,\r\n   \"needsMedication\": true,\r\n   \"healthInfo\": \"dsafsdf\",\r\n   \"doctor\": \"dfsfdfsdf\",\r\n   \"healthInsuranceName\": \"saff\",\r\n   \"insuredBy\": \"dasfasdfasdf\",\r\n   \"picturesAllowed\": true,\r\n   \"question1\": [\r\n      \"Item 1\"\r\n   ],\r\n   \"specialInfos\": \"sadasdfadsf\"\r\n}";
+        public static string MinJson { get; } = "{\r\n    \"lastName\": \"fdsg\",\r\n   \"firstName\": \"dsfgdfsg\",\r\n   \"dateOfBirth\": \"2015-10-29\",\r\n   \"gender\": \"0\",\r\n   \"zipCode\": 343434,\r\n   \"city\": \"dsfgdsfg\",\r\n   \"streetAndNumber\": \"fdfdsgdfg\",\r\n   \"contacts\": [\r\n      {\r\n        \"number\": \"2323223\"\r\n      }\r\n   ],\r\n   \"email\": \"dfdsg@de.dd\",\r\n   \"schoolType\": \"1\",\r\n   \"shirtSize\": \"8\",\r\n   \"hasLiabilityInsurance\": true,\r\n   \"perms\": \"Item 1\",\r\n   \"swimmer\": true,\r\n   \"selectedSlot\": \"D2\",\r\n   \"nutrition\": [\r\n      \"0\"\r\n   ],\r\n   \"isHealthy\": true,\r\n   \"needsMedication\": false,\r\n   \"picturesAllowed\": true,\r\n   \"question1\": [\r\n      \"Item 1\"\r\n   ]\r\n}";
 
         public static AusguckBackend.Services.Participant SampleJsonDes { get; } = JsonSerializer.Deserialize<AusguckBackend.Services.Participant>(SampleJson)!;
         public static AusguckBackend.Services.Participant FullJsonDes { get; } = JsonSerializer.Deserialize<AusguckBackend.Services.Participant>(FullJson)!;
@@ -23,7 +28,7 @@ namespace BackendTest.Services
         {
             LastName = "ertw",
             FirstName = "dfsg",
-            DateOfBirth = new DateOnly(2025, 10, 24),
+            DateOfBirth = new DateOnly(2015, 10, 24),
             GenderId = 0,
 
             Addresses = new List<Address>
@@ -78,7 +83,7 @@ namespace BackendTest.Services
         {
             LastName = "dsaf",
             FirstName = "sdaf",
-            DateOfBirth = new DateOnly(2025, 10, 22),
+            DateOfBirth = new DateOnly(2015, 10, 22),
             GenderId = 0,
 
             Addresses = new List<Address>
@@ -120,7 +125,7 @@ namespace BackendTest.Services
                     DiscountCodeId = -1,
                     UserDiscountCode = "3434343",
                     ShirtSizeId = 7,
-                    SelectedSlot = "Special$14.10.2025$31.10.2025",
+                    SelectedSlot = "Special$20.07.2026$01.08.2026",
                     Person = null!,
                     ParticipantsPrivate = new ParticipantsPrivate
                     {
@@ -147,7 +152,7 @@ namespace BackendTest.Services
         {
             LastName = "fdsg",
             FirstName = "dsfgdfsg",
-            DateOfBirth = new DateOnly(2025, 10, 29),
+            DateOfBirth = new DateOnly(2015, 10, 29),
             GenderId = 0,
 
             Addresses = new List<Address>
