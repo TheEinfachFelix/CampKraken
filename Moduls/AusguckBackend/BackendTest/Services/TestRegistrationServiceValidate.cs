@@ -47,7 +47,7 @@ namespace BackendTest.Services
         [Test]
         public void FailCases()
         {
-            List<string> specials = ["startDate","endDate"];
+            List<string> specials = ["startDate", "endDate", "contacts"];
             Type type = SampleData.FullJsonDes.GetType();
             foreach (var item in type.GetProperties())
             {
@@ -188,6 +188,52 @@ namespace BackendTest.Services
                 {
                     Assert.That(output, Is.Not.EqualTo(""), $"Failed special slot test for '{StartDates[i]} - {EndDates[i]}'");
                 }
+            }
+        }
+
+        [Test]
+        public void TestContactInfos()
+        {
+            // Test null contacts
+            {
+                var data = SampleData.DeepCopy<Participant>(SampleData.FullJsonDes);
+                data.contacts = null;
+                var output = RegistrationService.Verify(data);
+                Assert.That(output, Is.Not.EqualTo(""), "Failed contacts null test");
+            }
+            // Test empty contacts
+            {
+                var data = SampleData.DeepCopy<Participant>(SampleData.FullJsonDes);
+                data.contacts = [];
+                var output = RegistrationService.Verify(data);
+                Assert.That(output, Is.Not.EqualTo(""), "Failed contacts empty test");
+            }
+            // Test first contact number null
+            {
+                var data = SampleData.DeepCopy<Participant>(SampleData.FullJsonDes);
+                data.contacts = [];
+                data.contacts.Add(new Contact());
+                data.contacts[0].number = null;
+                var output = RegistrationService.Verify(data);
+                Assert.That(output, Is.Not.EqualTo(""), "Failed first contact number null test");
+            }
+            // Test first contact number empty
+            {
+                var data = SampleData.DeepCopy<Participant>(SampleData.FullJsonDes);
+                data.contacts = [];
+                data.contacts.Add(new Contact());
+                data.contacts[0].number = "";
+                var output = RegistrationService.Verify(data);
+                Assert.That(output, Is.Not.EqualTo(""), "Failed first contact number empty test");
+            }
+            // Test first contact number valid
+            {
+                var data = SampleData.DeepCopy<Participant>(SampleData.FullJsonDes);
+                data.contacts = [];
+                data.contacts.Add(new Contact());
+                data.contacts[0].number = "1234567890";
+                var output = RegistrationService.Verify(data);
+                Assert.That(output, Is.EqualTo(""), "Failed first contact number valid test");
             }
         }
     }

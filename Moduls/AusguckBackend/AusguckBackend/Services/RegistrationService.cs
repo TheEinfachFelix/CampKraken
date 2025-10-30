@@ -9,7 +9,20 @@ namespace AusguckBackend.Services
 
         public Task ProcessIncomingDataAsync(Participant data)
         {
-            throw new NotImplementedException();
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data), "Input data cannot be null");
+            }
+            string verificationResult = Verify(data);
+            if (verificationResult != "")
+            {
+                throw new ArgumentException("Input data verification failed: " + verificationResult);
+            }
+            Person person = MapToPerson(data);
+
+            InsertParticipant(person);
+
+            return Task.CompletedTask;
         }
 
         public static string Verify(Participant input)
@@ -30,6 +43,12 @@ namespace AusguckBackend.Services
                 }
             }
 
+            // ContactInfos check
+            if (input.contacts == null || input.contacts.Count == 0)
+                return "contacts is null or empty";
+            if (input.contacts[0].number == null || input.contacts[0].number == "")
+                return "first contact number is null or empty";
+
             // DateofBirth check
             if (input.dateOfBirth is null)
                 return "dateOfBirth is null";
@@ -40,7 +59,7 @@ namespace AusguckBackend.Services
             int age = today.Year - birthDate.Year;
             if (today < birthDate.AddYears(age))
                 age--;
-            
+
             if (age < Globals.MinAge || age > Globals.MaxAge)
                 return "age not in range";
 
@@ -146,8 +165,11 @@ namespace AusguckBackend.Services
 
             return person;
         }
+
+        public static void InsertParticipant(Person person)
+        {
+
+            throw new NotImplementedException();
+        }
     }
 }
-
-    //"contacts": ["number" ]
-    
