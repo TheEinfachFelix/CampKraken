@@ -3,7 +3,7 @@
   community.postgresql.postgresql_privs:
     type: table
     objs: person,participants,participantsPrivate,tagToParticipant,addresses,contactInfo #,presences
-    roles: "{{ user_dropdown_name }}"
+    roles: "{{ user_ausguck_name }}"
     privs: INSERT
     schema: public
 
@@ -17,7 +17,7 @@
   community.postgresql.postgresql_privs:
     type: table
     objs: genders,nutritions,shirtSizes,schoolTypes,tags,days
-    roles: "{{ user_dropdown_name }}"
+    roles: "{{ user_ausguck_name }}"
     privs: SELECT
     schema: public
 
