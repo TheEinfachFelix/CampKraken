@@ -4,49 +4,50 @@ namespace AusguckBackend.Services
 {
     public class Contact
     {
-        public string? Number { get; set; }
-        public string? Who { get; set; }
+        public string? number { get; set; }
+        public string? who { get; set; }
     }
 
     public class Participant
     {
-        public string? LastName { get; set; }
-        public string? FirstName { get; set; }
-        public DateTime? DateOfBirth { get; set; }
-        public string? Gender { get; set; }
-        public string? StreetAndNumber { get; set; }
-        public int? ZipCode { get; set; }
-        public string? City { get; set; }
-        public string? CoverName { get; set; }
-        public List<Contact>? Contacts { get; set; }
-        public string? Email { get; set; }
-        public string? SchoolType { get; set; }
-        public string? ShirtSize { get; set; }
-        public bool? HasLiabilityInsurance { get; set; }
-        public string? Perms { get; set; }
-        public bool? Swimmer { get; set; }
+        public string? lastName { get; set; }
+        public string? firstName { get; set; }
+        public DateOnly? dateOfBirth { get; set; }
+        public string? gender { get; set; }
+        public string? streetAndNumber { get; set; }
+        public int? zipCode { get; set; }
+        public string? city { get; set; }
+        public string? coverName { get; set; }
+        public List<Contact>? contacts { get; set; }
+        public string? email { get; set; }
+        public string? schoolType { get; set; }
+        public string? shirtSize { get; set; }
+        public bool? hasLiabilityInsurance { get; set; }
+        public string? perms { get; set; }
+        public bool? swimmer { get; set; }
 
         [JsonPropertyName("selectedSlot")]
-        public string? SelectedSlot { get; set; }
+        public string? selectedSlot { get; set; }
 
         [JsonPropertyName("start-date")]
-        public DateTime? StartDate { get; set; }
+        public DateOnly? startDate { get; set; }
 
         [JsonPropertyName("end-date")]
-        public DateTime? EndDate { get; set; }
+        public DateOnly? endDate { get; set; }
 
-        public int? DaysInCamp { get; set; }
-        public string? UserDiscountCode { get; set; }
-        public List<string>? Nutrition { get; set; }
-        public string? Intolerances { get; set; }
-        public bool? IsHealthy { get; set; }
-        public bool? NeedsMedication { get; set; }
-        public string? HealthInfo { get; set; }
-        public string? Doctor { get; set; }
-        public string? HealthInsuranceName { get; set; }
-        public string? InsuredBy { get; set; }
-        public bool? PicturesAllowed { get; set; }
-        public List<string>? Question1 { get; set; }
-        public string? SpecialInfos { get; set; }
+        public int? daysInCamp { get; set; }
+        public string? userDiscountCode { get; set; }
+        public List<string>? nutrition { get; set; }
+        public string? intolerances { get; set; }
+        public bool? isHealthy { get; set; }
+        public bool? needsMedication { get; set; }
+        public string? healthInfo { get; set; }
+        public string? doctor { get; set; }
+        public string? healthInsuranceName { get; set; }
+        public string? insuredBy { get; set; }
+        public bool? picturesAllowed { get; set; }
+        public List<string>? question1 { get; set; }
+        public string? specialInfos { get; set; }
     }
 }
+
