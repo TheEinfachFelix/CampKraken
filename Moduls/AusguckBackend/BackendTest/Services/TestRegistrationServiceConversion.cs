@@ -13,9 +13,11 @@ namespace BackendTest.Services
 {
     internal class TestRegistrationServiceConversion
     {
+        RegistrationService RegistrationService;
         [SetUp]
         public void Setup()
         {
+            RegistrationService = new RegistrationService();
         }
 
         [Test]

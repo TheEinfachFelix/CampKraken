@@ -13,5 +13,8 @@
             "D2",
             "Special"
         };
+        public static readonly string ConnectionString = "Host=192.168.178.143;Database=Rumpf;Username=AusguckInserter;Password=Geheim";
+
+        
     }
 }

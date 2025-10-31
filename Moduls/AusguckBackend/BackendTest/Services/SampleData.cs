@@ -1,5 +1,4 @@
-﻿using AusguckBackend.Services;
-using AusguckBackend.Models;
+﻿using AusguckBackend.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +19,9 @@ namespace BackendTest.Services
         public static string FullJson { get; } = "{\r\n    \"lastName\": \"dsaf\",\r\n   \"firstName\": \"sdaf\",\r\n   \"dateOfBirth\": \"2015-10-22\",\r\n   \"gender\": \"0\",\r\n   \"streetAndNumber\": \"dfsaf\",\r\n   \"zipCode\": 23233,\r\n   \"city\": \"dafsdf\",\r\n   \"coverName\": \"sdfasdf\",\r\n   \"contacts\": [\r\n      {\r\n        \"number\": \"2233332\",\r\n         \"who\": \"dsfdsf\"\r\n      },\r\n      {\r\n        \"number\": \"3434343\",\r\n         \"who\": \"dsfadfdsfadf\"\r\n      }\r\n   ],\r\n   \"email\": \"dsaf@de.de\",\r\n   \"schoolType\": \"2\",\r\n   \"shirtSize\": \"7\",\r\n   \"hasLiabilityInsurance\": false,\r\n   \"perms\": \"Item 1\",\r\n   \"swimmer\": true,\r\n   \"selectedSlot\": \"Special\",\r\n   \"start-date\": \"2026-07-20\",\r\n   \"end-date\": \"2026-08-01\",\r\n   \"daysInCamp\": 18,\r\n   \"userDiscountCode\": \"3434343\",\r\n   \"nutrition\": [\r\n      \"0\"\r\n   ],\r\n   \"intolerances\": \"dsaff\",\r\n   \"isHealthy\": true,\r\n   \"needsMedication\": true,\r\n   \"healthInfo\": \"dsafsdf\",\r\n   \"doctor\": \"dfsfdfsdf\",\r\n   \"healthInsuranceName\": \"saff\",\r\n   \"insuredBy\": \"dasfasdfasdf\",\r\n   \"picturesAllowed\": true,\r\n   \"question1\": [\r\n      \"Item 1\"\r\n   ],\r\n   \"specialInfos\": \"sadasdfadsf\"\r\n}";
         public static string MinJson { get; } = "{\r\n    \"lastName\": \"fdsg\",\r\n   \"firstName\": \"dsfgdfsg\",\r\n   \"dateOfBirth\": \"2015-10-29\",\r\n   \"gender\": \"0\",\r\n   \"zipCode\": 343434,\r\n   \"city\": \"dsfgdsfg\",\r\n   \"streetAndNumber\": \"fdfdsgdfg\",\r\n   \"contacts\": [\r\n      {\r\n        \"number\": \"2323223\"\r\n      }\r\n   ],\r\n   \"email\": \"dfdsg@de.dd\",\r\n   \"schoolType\": \"1\",\r\n   \"shirtSize\": \"8\",\r\n   \"hasLiabilityInsurance\": true,\r\n   \"perms\": \"Item 1\",\r\n   \"swimmer\": true,\r\n   \"selectedSlot\": \"D2\",\r\n   \"nutrition\": [\r\n      \"0\"\r\n   ],\r\n   \"isHealthy\": true,\r\n   \"needsMedication\": false,\r\n   \"picturesAllowed\": true,\r\n   \"question1\": [\r\n      \"Item 1\"\r\n   ]\r\n}";
 
-        public static AusguckBackend.Services.Participant SampleJsonDes { get; } = JsonSerializer.Deserialize<AusguckBackend.Services.Participant>(SampleJson)!;
-        public static AusguckBackend.Services.Participant FullJsonDes { get; } = JsonSerializer.Deserialize<AusguckBackend.Services.Participant>(FullJson)!;
-        public static AusguckBackend.Services.Participant MinJsonDes { get; } = JsonSerializer.Deserialize<AusguckBackend.Services.Participant>(MinJson)!;
+        public static InParticipant SampleJsonDes { get; } = JsonSerializer.Deserialize<InParticipant>(SampleJson)!;
+        public static InParticipant FullJsonDes { get; } = JsonSerializer.Deserialize<InParticipant>(FullJson)!;
+        public static InParticipant MinJsonDes { get; } = JsonSerializer.Deserialize<InParticipant>(MinJson)!;
         
         public static Person samplePerson = new Person
         {

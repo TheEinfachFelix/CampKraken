@@ -1,4 +1,5 @@
 ﻿using AusguckBackend.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 
 namespace AusguckBackend.Services
@@ -6,8 +7,9 @@ namespace AusguckBackend.Services
     public class RegistrationService : IRegistrationService
     {
         public static readonly List<string> mandatoryNames = ["lastName", "firstName", "dateOfBirth", "gender", "zipCode", "city", "streetAndNumber", "email", "schoolType", "shirtSize", "hasLiabilityInsurance", "perms", "swimmer", "selectedSlot", "nutrition", "isHealthy", "needsMedication", "picturesAllowed", "question1"];
+        RumpfContext _context = new RumpfContext();
 
-        public Task ProcessIncomingDataAsync(Participant data)
+        public Task ProcessIncomingDataAsync(InParticipant data)
         {
             if (data == null)
             {
@@ -25,7 +27,7 @@ namespace AusguckBackend.Services
             return Task.CompletedTask;
         }
 
-        public static string Verify(Participant input)
+        public string Verify(InParticipant input)
         {
             // veryfiy mandatory fields
             if (input == null) return "input is null";
@@ -86,7 +88,7 @@ namespace AusguckBackend.Services
             return "";
         }
 
-        public static Person MapToPerson(Participant input)
+        public Person MapToPerson(InParticipant input)
         {
             // 1. Person
             var person = new Person
@@ -154,12 +156,22 @@ namespace AusguckBackend.Services
             };
             if (input.selectedSlot == "Special") { efParticipant.SelectedSlot += "$" + input.startDate.ToString() + "$" + input.endDate.ToString(); }
 
-            // 5. Tags // TODO: keinneune Tag und alone und small grupe fehlt
-            if (input.swimmer == true) efParticipant.Tags.Add(new Tag { TagId = 0, Name = "swimmer" });
-            if (input.picturesAllowed == true) efParticipant.Tags.Add(new Tag { TagId = 3, Name = "picturesAllowed" });
-            if (input.isHealthy == true) efParticipant.Tags.Add(new Tag { TagId = 4, Name = "isHealthy" });
-            if (input.hasLiabilityInsurance == true) efParticipant.Tags.Add(new Tag { TagId = 5, Name = "hasLiabilityInsurance" });
-            if (input.needsMedication == true) efParticipant.Tags.Add(new Tag { TagId = 6, Name = "needsMeds" });
+            // Tags zuordnen
+            var tagNames = new List<string>();
+            if (input.swimmer == true) tagNames.Add("swimmer");
+            if (input.picturesAllowed == true) tagNames.Add("picturesAllowed");
+            if (input.isHealthy == true) tagNames.Add("isHealthy");
+            if (input.hasLiabilityInsurance == true) tagNames.Add("hasLiabilityInsurance");
+            if (input.needsMedication == true) tagNames.Add("needsMeds");
+
+            var existingTags = _context.Tags
+                .Where(t => tagNames.Contains(t.Name))
+                .ToList();
+
+            foreach (var tag in existingTags)
+            {
+                efParticipant.Tags.Add(tag);
+            }
 
             person.Participants.Add(efParticipant);
 

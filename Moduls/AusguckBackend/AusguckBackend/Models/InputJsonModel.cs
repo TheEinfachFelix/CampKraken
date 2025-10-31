@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace AusguckBackend.Services
+namespace AusguckBackend.Models
 {
     public class Contact
     {
@@ -8,7 +8,7 @@ namespace AusguckBackend.Services
         public string? who { get; set; }
     }
 
-    public class Participant
+    public class InParticipant
     {
         public string? lastName { get; set; }
         public string? firstName { get; set; }

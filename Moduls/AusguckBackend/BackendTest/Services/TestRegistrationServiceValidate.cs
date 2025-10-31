@@ -1,4 +1,5 @@
-﻿using AusguckBackend.Services;
+﻿using AusguckBackend.Models;
+using AusguckBackend.Services;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Query.Expressions.Internal;
 using NUnit.Framework.Legacy;
 using System;
@@ -15,9 +16,11 @@ namespace BackendTest.Services
 {
     internal class TestRegistrationServiceValidate
     {
+        RegistrationService RegistrationService;
         [SetUp]
         public void Setup()
         {
+            RegistrationService = new RegistrationService();
         }
 
         [Test]
@@ -51,7 +54,7 @@ namespace BackendTest.Services
             Type type = SampleData.FullJsonDes.GetType();
             foreach (var item in type.GetProperties())
             {
-                var copy = SampleData.DeepCopy<Participant>(SampleData.FullJsonDes);
+                var copy = SampleData.DeepCopy<InParticipant>(SampleData.FullJsonDes);
                 // set to null
                 item.SetValue(copy, null);
                 var output = RegistrationService.Verify(copy);
@@ -62,7 +65,7 @@ namespace BackendTest.Services
                 // set to empty string if string
                 if (item.PropertyType == typeof(string))
                 {
-                    copy = SampleData.DeepCopy<Participant>(SampleData.FullJsonDes);
+                    copy = SampleData.DeepCopy<InParticipant>(SampleData.FullJsonDes);
                     item.SetValue(copy, "");
                     output = RegistrationService.Verify(copy);
                     if (RegistrationService.mandatoryNames.Contains(item.Name))
@@ -98,7 +101,7 @@ namespace BackendTest.Services
             };
             for (int i = 0; i < dates.Count; i++)
             {
-                var data = SampleData.DeepCopy<Participant>(SampleData.FullJsonDes);
+                var data = SampleData.DeepCopy<InParticipant>(SampleData.FullJsonDes);
                 data.dateOfBirth = dates[i];
                 var output = RegistrationService.Verify(data);
                 if (result[i])
@@ -135,7 +138,7 @@ namespace BackendTest.Services
             };
             for (int i = 0; i < slots.Count; i++)
             {
-                var data = SampleData.DeepCopy<Participant>(SampleData.FullJsonDes);
+                var data = SampleData.DeepCopy<InParticipant>(SampleData.FullJsonDes);
                 data.selectedSlot = slots[i];
                 var output = RegistrationService.Verify(data);
                 if (result[i])
@@ -175,7 +178,7 @@ namespace BackendTest.Services
             };
             for (int i = 0; i < StartDates.Count; i++)
             {
-                var data = SampleData.DeepCopy<Participant>(SampleData.FullJsonDes);
+                var data = SampleData.DeepCopy<InParticipant>(SampleData.FullJsonDes);
                 data.selectedSlot = "Special";
                 data.startDate = StartDates[i];
                 data.endDate = EndDates[i];
@@ -196,21 +199,21 @@ namespace BackendTest.Services
         {
             // Test null contacts
             {
-                var data = SampleData.DeepCopy<Participant>(SampleData.FullJsonDes);
+                var data = SampleData.DeepCopy<InParticipant>(SampleData.FullJsonDes);
                 data.contacts = null;
                 var output = RegistrationService.Verify(data);
                 Assert.That(output, Is.Not.EqualTo(""), "Failed contacts null test");
             }
             // Test empty contacts
             {
-                var data = SampleData.DeepCopy<Participant>(SampleData.FullJsonDes);
+                var data = SampleData.DeepCopy<InParticipant>(SampleData.FullJsonDes);
                 data.contacts = [];
                 var output = RegistrationService.Verify(data);
                 Assert.That(output, Is.Not.EqualTo(""), "Failed contacts empty test");
             }
             // Test first contact number null
             {
-                var data = SampleData.DeepCopy<Participant>(SampleData.FullJsonDes);
+                var data = SampleData.DeepCopy<InParticipant>(SampleData.FullJsonDes);
                 data.contacts = [];
                 data.contacts.Add(new Contact());
                 data.contacts[0].number = null;
@@ -219,7 +222,7 @@ namespace BackendTest.Services
             }
             // Test first contact number empty
             {
-                var data = SampleData.DeepCopy<Participant>(SampleData.FullJsonDes);
+                var data = SampleData.DeepCopy<InParticipant>(SampleData.FullJsonDes);
                 data.contacts = [];
                 data.contacts.Add(new Contact());
                 data.contacts[0].number = "";
@@ -228,7 +231,7 @@ namespace BackendTest.Services
             }
             // Test first contact number valid
             {
-                var data = SampleData.DeepCopy<Participant>(SampleData.FullJsonDes);
+                var data = SampleData.DeepCopy<InParticipant>(SampleData.FullJsonDes);
                 data.contacts = [];
                 data.contacts.Add(new Contact());
                 data.contacts[0].number = "1234567890";

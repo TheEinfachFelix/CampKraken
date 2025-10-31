@@ -1,4 +1,5 @@
-﻿using AusguckBackend.Services;
+﻿using AusguckBackend.Models;
+using AusguckBackend.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 
@@ -16,7 +17,7 @@ namespace AusguckBackend.Controllers
         }
 
         [HttpGet(Name = "PostRegistration")]
-        public async Task<IActionResult> Post([FromBody] Services.Participant data)
+        public async Task<IActionResult> Post([FromBody] InParticipant data)
         {
             await _service.ProcessIncomingDataAsync(data);
             return Ok();
