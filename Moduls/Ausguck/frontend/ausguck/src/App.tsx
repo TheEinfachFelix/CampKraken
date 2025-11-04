@@ -29,37 +29,3 @@ function App() {
 }
 
 export default App
-/*
-
-{
-   "lastName": "ertw",
-   "firstName": "dfsg",
-   "dateOfBirth": "2025-10-24",
-   "gender": "0",
-   "streetAndNumber": "dsfgsdfg",
-   "zipCode": 34555,
-   "city": "sdfgdfsg",
-   "contacts": [
-      {
-         "number": "345543",
-         "who": "dfgfg"
-      }
-   ],
-   "email": "dfsgdfsg@d.de",
-   "schoolType": "1",
-   "shirtSize": "7",
-   "hasLiabilityInsurance": true,
-   "perms": "Item 2",
-   "swimmer": true,
-   "selectedSlot": "D2",
-   "nutrition": [
-      "1"
-   ],
-   "isHealthy": true,
-   "needsMedication": false,
-   "PicturesAllowed": false,
-   "question1": [
-      "Item 1"
-   ]
-}
-   */

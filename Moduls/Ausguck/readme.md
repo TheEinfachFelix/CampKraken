@@ -14,6 +14,7 @@ Die Online Anmeldung des Camps
     [ ] (opt) Reloading the data
     [ ] Playbooks
     [ ] integration test
+    [x] Translation
 [ ] API
     [X] DB User
     [ ] DB insert
