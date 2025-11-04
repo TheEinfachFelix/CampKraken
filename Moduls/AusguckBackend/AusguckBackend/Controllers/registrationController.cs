@@ -16,7 +16,7 @@ namespace AusguckBackend.Controllers
             _service = service;
         }
 
-        [HttpGet(Name = "PostRegistration")]
+        [HttpPost(Name = "Registration")]
         public async Task<IActionResult> Post([FromBody] InParticipant data)
         {
             await _service.ProcessIncomingDataAsync(data);
