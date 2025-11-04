@@ -178,10 +178,11 @@ namespace AusguckBackend.Services
             return person;
         }
 
-        public static void InsertParticipant(Person person)
+        public void InsertParticipant(Person person)
         {
 
-            throw new NotImplementedException();
+            _context.People.Add(person);
+            _context.SaveChanges();
         }
     }
 }
