@@ -28,8 +28,6 @@ services:
   frontend:
     build: ./frontend
     container_name: frontend
-    environment:
-      VITE_API_URL: "https://einfachfelix.ydns.eu/api/registration"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.frontend.rule=Host(`einfachfelix.ydns.eu`)"
@@ -57,6 +55,8 @@ services:
       - "traefik.http.routers.backend.middlewares=backend-strip"
     networks:
       - web
+    environment:
+      - ASPNETCORE_URLS=http://+:8080
     restart: unless-stopped
 
 networks:
