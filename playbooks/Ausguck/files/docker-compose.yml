@@ -17,6 +17,7 @@ services:
     ports:
       - "80:80"
       - "443:443"
+      - "8080:8080"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - "./data/letsencrypt:/letsencrypt"
@@ -34,7 +35,7 @@ services:
       - "traefik.http.routers.frontend.rule=Host(`einfachfelix.ydns.eu`)"
       - "traefik.http.routers.frontend.entrypoints=websecure"
       - "traefik.http.routers.frontend.tls.certresolver=letsencrypt"
-      - "traefik.http.services.frontend.loadbalancer.server.port=5173"
+      - "traefik.http.services.frontend.loadbalancer.server.port=80"
     networks:
       - web
     depends_on:
