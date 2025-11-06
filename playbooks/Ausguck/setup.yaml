@@ -1,0 +1,69 @@
+---
+- name: Deploy einfachfelix stack
+  hosts: camp
+  gather_facts: false
+  vars_files:
+    - vars.yaml
+  become: true
+  roles:
+    - common
+    - docker
+    - dockerComposeV2
+
+  tasks:
+    - name: Create project directory structure
+      file:
+        path: "{{ item }}"
+        state: directory
+        mode: "0755"
+      loop:
+        - "{{ project_dir }}"
+        - "{{ project_dir }}/frontend"
+        - "{{ project_dir }}/backend"
+        - "{{ project_dir }}/data/letsencrypt"
+
+    - name: Set ownership of project directory to deploy user
+      file:
+        path: "{{ project_dir }}"
+        state: directory
+        recurse: true
+        owner: campnode
+        group: campnode
+
+    - name: Copy docker-compose.yml
+      copy:
+        src: docker-compose.yml
+        dest: "{{ project_dir }}/docker-compose.yml"
+        mode: "0644"
+
+    # --- FRONTEND ---
+    - name: Copy frontend source code
+      synchronize:
+        src: "{{ frontend_dir }}/"
+        dest: "{{ project_dir }}/frontend/"
+        delete: true
+        recursive: true
+      become: false
+
+    # --- BACKEND ---
+    - name: Copy backend source code
+      synchronize:
+        src: "{{ backend_dir }}/"
+        dest: "{{ project_dir }}/backend/"
+        delete: true
+        recursive: true
+      become: false
+
+    - name: Ensure letsencrypt directory permissions
+      file:
+        path: "{{ project_dir }}/data/letsencrypt"
+        state: directory
+        owner: root
+        group: root
+        mode: "0700"
+
+    - name: Start Docker Compose stack
+      community.docker.docker_compose_v2:
+        project_src: "{{ project_dir }}"
+        state: present
+        build: always
