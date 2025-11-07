@@ -45,19 +45,19 @@
           "isRequired": true,
           "choices": [
             {
-              "value": "0",
+              "value": 0,
               "text": {
                 "de": "männlich"
               }
             },
             {
-              "value": "1",
+              "value": 1,
               "text": {
                 "de": "weiblich"
               }
             },
             {
-              "value": "2",
+              "value": 2,
               "text": {
                 "de": "divers"
               }
@@ -166,49 +166,49 @@
           "isRequired": true,
           "choices": [
             {
-              "value": "0",
+              "value": 0,
               "text": {
                 "de": "Grundschule"
               }
             },
             {
-              "value": "1",
+              "value": 1,
               "text": {
                 "de": "Sekundarschule"
               }
             },
             {
-              "value": "2",
+              "value": 2,
               "text": {
                 "de": "Förderschule"
               }
             },
             {
-              "value": "3",
+              "value": 3,
               "text": {
                 "de": "Realschule"
               }
             },
             {
-              "value": "4",
+              "value": 4,
               "text": {
                 "de": "Gymnasium"
               }
             },
             {
-              "value": "5",
+              "value": 5,
               "text": {
                 "de": "Gesamtschule"
               }
             },
             {
-              "value": "6",
+              "value": 6,
               "text": {
                 "de": "Waldorfschule"
               }
             },
             {
-              "value": "7",
+              "value": 7,
               "text": {
                 "de": "Andere Schulen"
               }
@@ -231,55 +231,55 @@
               }
             },
             {
-              "value": "1",
+              "value": 1,
               "text": {
                 "de": "130-140"
               }
             },
             {
-              "value": "2",
+              "value": 2,
               "text": {
                 "de": "142-152"
               }
             },
             {
-              "value": "3",
+              "value": 3,
               "text": {
                 "de": "XS"
               }
             },
             {
-              "value": "4",
+              "value": 4,
               "text": {
                 "de": "S"
               }
             },
             {
-              "value": "5",
+              "value": 5,
               "text": {
                 "de": "M"
               }
             },
             {
-              "value": "6",
+              "value": 6,
               "text": {
                 "de": "L"
               }
             },
             {
-              "value": "7",
+              "value": 7,
               "text": {
                 "de": "XL"
               }
             },
             {
-              "value": "8",
+              "value": 8,
               "text": {
                 "de": "XXL"
               }
             },
             {
-              "value": "9",
+              "value": 9,
               "text": {
                 "de": "XXXL"
               }
@@ -433,7 +433,6 @@
         {
           "type": "checkbox",
           "name": "nutrition",
-          "showOtherItem": true,
           "title": {
             "de": "Ernährung "
           },
@@ -451,7 +450,8 @@
                 "de": "vegan"
               }
             }
-          ]
+          ],
+          "showOtherItem": true
         },
         {
           "type": "text",
@@ -515,7 +515,7 @@
       "elements": [
         {
           "type": "boolean",
-          "name": "PicturesAllowed",
+          "name": "picturesAllowed",
           "title": {
             "de": "Dürfen von der teilnehmenden Person während der Veranstaltung Foto- und Videoaufnahme gemacht werden?"
           },
@@ -550,5 +550,12 @@
       ]
     }
   ],
+  "showCompletePage": false,
+  "showProgressBar": true,
+  "progressBarLocation": "topbottom",
+  "progressBarType": "requiredQuestions",
+  "completeText": {
+    "de": "Verbindlich Anmelden"
+  },
   "headerView": "advanced"
 }

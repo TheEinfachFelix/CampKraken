@@ -6,6 +6,12 @@ This is the IT Backbone of our Camp
 [ ] Rumpf
 [ ] Ausguck
 
+- Global einstellungen speichern
+- Ausguck layout
+- Ausguck validation
+- Ausguck retry
+- 
+
 ### later:
 
 [ ] Secures hosting
