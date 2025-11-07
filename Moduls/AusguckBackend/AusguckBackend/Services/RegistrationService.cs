@@ -20,7 +20,7 @@ namespace AusguckBackend.Services
             {
                 throw new ArgumentException("Input data verification failed: " + verificationResult);
             }
-            InsertParticipant(person);
+            InsertParticipant(data);
 
             return Task.CompletedTask;
         }
@@ -86,6 +86,15 @@ namespace AusguckBackend.Services
             return "";
         }
 
+        public Person MapToPerson(InParticipant data)
+        {
+            return new Person
+            {
+                LastName = data.lastName,
+                FirstName = data.firstName,
+                DateOfBirth = data.dateOfBirth.Value,
+            };
+        }
         public void InsertParticipant(InParticipant input)
         {
             // 1️⃣ Person anlegen
@@ -94,7 +103,7 @@ namespace AusguckBackend.Services
                 LastName = input.lastName,
                 FirstName = input.firstName,
                 DateOfBirth = input.dateOfBirth.Value,
-                GenderId = int.TryParse(input.gender, out int g) ? g : null,
+                GenderId = input.gender ?? null,
                 Addresses = new List<Address>(),
                 ContactInfos = new List<ContactInfo>()
             };
@@ -131,11 +140,11 @@ namespace AusguckBackend.Services
             {
                 DiscountCodeId = Globals.NotCheckedDiscountCodeId,
                 UserDiscountCode = input.userDiscountCode,
-                ShirtSizeId = int.TryParse(input.shirtSize, out int s) ? s : 1,
+                ShirtSizeId = input.shirtSize ?? 1,
                 SelectedSlot = input.selectedSlot,
                 ParticipantsPrivate = new ParticipantsPrivate
                 {
-                    SchoolTypeId = int.TryParse(input.schoolType, out int school) ? school : 1,
+                    SchoolTypeId = input.schoolType ?? 1,
                     NutritionId = (input.nutrition != null && input.nutrition.Count > 0)
                         ? int.Parse(input.nutrition[0])
                         : 1,
