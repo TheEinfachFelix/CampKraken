@@ -9,11 +9,11 @@ namespace AusguckBackend.Controllers
     [Route("api/[controller]")]
     public class registrationController : ControllerBase // Fix: inherit from ControllerBase to access Ok()
     {
-        private readonly IRegistrationService _service;
+        private readonly RegistrationService _service;
 
-        public registrationController(IRegistrationService service)
+        public registrationController()
         {
-            _service = service;
+            _service = new();
         }
 
         [HttpPost(Name = "Registration")]
