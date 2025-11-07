@@ -10,7 +10,11 @@ This is the IT Backbone of our Camp
 - Ausguck layout
 - Ausguck validation
 - Ausguck retry
-- 
+- Api Perms 
+- Traefik dashboard
+- popups
+- telefonnummer
+- .enf / globale config verwalteung
 
 ### later:
 
