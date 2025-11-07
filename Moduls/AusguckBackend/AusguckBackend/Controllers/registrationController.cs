@@ -19,7 +19,7 @@ namespace AusguckBackend.Controllers
         [HttpPost(Name = "Registration")]
         public async Task<IActionResult> Post([FromBody] InParticipant data)
         {
-            await _service.ProcessIncomingDataAsync(data);
+            await new RegistrationService().ProcessIncomingDataAsync(data);
             return Ok();
         }
     }

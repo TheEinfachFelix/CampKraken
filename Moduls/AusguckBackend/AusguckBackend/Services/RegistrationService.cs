@@ -7,8 +7,6 @@ namespace AusguckBackend.Services
     public class RegistrationService : IRegistrationService
     {
         public static readonly List<string> mandatoryNames = ["lastName", "firstName", "dateOfBirth", "gender", "zipCode", "city", "streetAndNumber", "email", "schoolType", "shirtSize", "hasLiabilityInsurance", "perms", "swimmer", "selectedSlot", "nutrition", "isHealthy", "needsMedication", "picturesAllowed", "question1"];
-        RumpfContext _context = new RumpfContext();
-
         public Task ProcessIncomingDataAsync(InParticipant data)
         {
             if (data == null)
@@ -97,34 +95,32 @@ namespace AusguckBackend.Services
         }
         public void InsertParticipant(InParticipant input)
         {
-            // 1️⃣ Person anlegen
+            using var _context = new RumpfContext();
+
+            // 1️⃣ Person mit allen abhängigen Entities erstellen
             var person = new Person
             {
                 LastName = input.lastName,
                 FirstName = input.firstName,
                 DateOfBirth = input.dateOfBirth.Value,
-                GenderId = input.gender ?? null,
-                Addresses = new List<Address>(),
-                ContactInfos = new List<ContactInfo>()
-            };
-
-            person.Addresses.Add(new Address
+                GenderId = input.gender,
+                Addresses = new List<Address>
+        {
+            new Address
             {
                 City = input.city,
                 StreetAndNumber = input.streetAndNumber,
                 ZipCode = input.zipCode,
                 CoverName = input.coverName
-            });
-
-            foreach (var c in input.contacts)
-            {
-                person.ContactInfos.Add(new ContactInfo
+            }
+        },
+                ContactInfos = input.contacts.Select(c => new ContactInfo
                 {
                     ContactInfoTypeId = 0,
                     Info = c.number ?? string.Empty,
                     Details = c.who
-                });
-            }
+                }).ToList()
+            };
 
             if (!string.IsNullOrEmpty(input.email))
             {
@@ -135,9 +131,10 @@ namespace AusguckBackend.Services
                 });
             }
 
-            // 2️⃣ Teilnehmer erzeugen
+            // 2️⃣ Participant erzeugen und direkt mit Person verknüpfen
             var participant = new Participant
             {
+                Person = person, // 🔑 EF setzt die PersonId automatisch
                 DiscountCodeId = Globals.NotCheckedDiscountCodeId,
                 UserDiscountCode = input.userDiscountCode,
                 ShirtSizeId = input.shirtSize ?? 1,
@@ -156,38 +153,22 @@ namespace AusguckBackend.Services
                 }
             };
 
-            // 3️⃣ Speichern (Person + Participant)
-            _context.People.Add(person);
-            _context.SaveChanges();
+            // 3️⃣ Tags optional hinzufügen
+            //var tags = new List<Tag>();
+            //if (input.swimmer == true) tags.Add(_context.Tags.FirstOrDefault(t => t.Name == "swimmer"));
+            //if (input.picturesAllowed == true) tags.Add(_context.Tags.FirstOrDefault(t => t.Name == "picturesAllowed"));
+            //if (input.isHealthy == true) tags.Add(_context.Tags.FirstOrDefault(t => t.Name == "isHealthy"));
+            //if (input.hasLiabilityInsurance == true) tags.Add(_context.Tags.FirstOrDefault(t => t.Name == "hasLiabilityInsurance"));
+            //if (input.needsMedication == true) tags.Add(_context.Tags.FirstOrDefault(t => t.Name == "needsMeds"));
 
-            participant.PersonId = person.PersonId;
+            //foreach (var tag in tags.Where(t => t != null))
+            //{
+            //    participant.Tags.Add(tag); // EF kümmert sich um das Mapping
+            //}
+
+            // 4️⃣ Alles auf einmal speichern
             _context.Participants.Add(participant);
-            _context.SaveChanges(); // Participant existiert jetzt mit ID
-
-            // 🧩 WICHTIG: Reload Participant, damit EF ihn tracked!
-            var trackedParticipant = _context.Participants
-                .Include(p => p.Tags)
-                .First(p => p.ParticipantId == participant.ParticipantId);
-
-            // 4️⃣ Tags laden
-            var tagNames = new List<string>();
-            if (input.swimmer == true) tagNames.Add("swimmer");
-            if (input.picturesAllowed == true) tagNames.Add("picturesAllowed");
-            if (input.isHealthy == true) tagNames.Add("isHealthy");
-            if (input.hasLiabilityInsurance == true) tagNames.Add("hasLiabilityInsurance");
-            if (input.needsMedication == true) tagNames.Add("needsMeds");
-
-            var existingTags = _context.Tags
-                .Where(t => tagNames.Contains(t.Name))
-                .ToList();
-
-            // 5️⃣ Tags zuordnen
-            foreach (var tag in existingTags)
-            {
-                trackedParticipant.Tags.Add(tag);
-            }
-
             _context.SaveChanges();
+            }
         }
-    }
 }
