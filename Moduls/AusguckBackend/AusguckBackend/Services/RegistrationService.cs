@@ -96,7 +96,7 @@ namespace AusguckBackend.Services
                 LastName = input.lastName,
                 FirstName = input.firstName,
                 DateOfBirth = input.dateOfBirth.HasValue ? input.dateOfBirth.Value : null,
-                GenderId = input.gender != null ? int.Parse(input.gender) : null,
+                GenderId = input.gender != null ? input.gender : null,
                 Addresses = new List<Address>(),
                 ContactInfos = new List<ContactInfo>(),
                 Participants = new List<Models.Participant>(),
@@ -140,11 +140,11 @@ namespace AusguckBackend.Services
             {
                 DiscountCodeId = -1,
                 UserDiscountCode = input.userDiscountCode,
-                ShirtSizeId = input.shirtSize != null ? int.Parse(input.shirtSize) : 0,
+                ShirtSizeId = (int)(input.shirtSize != null ? input.shirtSize : 0),
                 SelectedSlot = input.selectedSlot,
                 ParticipantsPrivate = new ParticipantsPrivate
                 {
-                    SchoolTypeId = input.schoolType != null ? int.Parse(input.schoolType) : 0,
+                    SchoolTypeId = (int)(input.schoolType != null ? input.schoolType : 0),
                     NutritionId = input.nutrition != null && input.nutrition.Count > 0 ? int.Parse(input.nutrition[0]) : 0,
                     HealthInfo = input.healthInfo,
                     Doctor = input.doctor,
