@@ -16,7 +16,7 @@
 - name: Rechte auf Tabellen vergeben
   community.postgresql.postgresql_privs:
     type: table
-    objs: tags
+    objs: tags,person,participants,participantsPrivate,tagToParticipant,addresses,contactInfo
     roles: "{{ user_ausguck_name }}"
     privs: SELECT
     schema: public

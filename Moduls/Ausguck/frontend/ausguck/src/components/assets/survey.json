@@ -34,7 +34,9 @@
           },
           "isRequired": true,
           "inputType": "date",
-          "autocomplete": "bday"
+          "autocomplete": "bday",
+          "min": "2006-01-01",
+          "max": "2021-01-01"
         },
         {
           "type": "radiogroup",
@@ -384,7 +386,9 @@
                 "de": "Wunschzeitraum von"
               },
               "isRequired": true,
-              "inputType": "date"
+              "inputType": "date",
+              "min": "2026-07-19",
+              "max": "2026-08-15"
             },
             {
               "type": "text",
@@ -394,6 +398,8 @@
               },
               "isRequired": true,
               "inputType": "date",
+              "min": "2026-07-19",
+              "max": "2026-08-15",
               "minValueExpression": "{start-date}"
             },
             {

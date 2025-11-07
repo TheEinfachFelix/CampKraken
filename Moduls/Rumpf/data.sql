@@ -33,6 +33,8 @@ INSERT INTO "discountCodes" ("discountCodeId", "name") VALUES (10, 'Member')    
 INSERT INTO "discountCodes" ("discountCodeId", "name") VALUES (11, 'Member early')     ON CONFLICT ON CONSTRAINT "discountCodes_pkey" DO UPDATE SET "name" = EXCLUDED."name";
 INSERT INTO "discountCodes" ("discountCodeId", "name") VALUES (12, 'Special Discount') ON CONFLICT ON CONSTRAINT "discountCodes_pkey" DO UPDATE SET "name" = EXCLUDED."name";
 INSERT INTO "discountCodes" ("discountCodeId", "name") VALUES (13, 'refugee')          ON CONFLICT ON CONSTRAINT "discountCodes_pkey" DO UPDATE SET "name" = EXCLUDED."name";
+INSERT INTO "discountCodes" ("discountCodeId", "name") VALUES (999, 'NotChecked')          ON CONFLICT ON CONSTRAINT "discountCodes_pkey" DO UPDATE SET "name" = EXCLUDED."name";
+
 
 -- Shirt Sizes
 INSERT INTO "shirtSizes" ("shirtSizeId", "name") VALUES (0, '118-128') ON CONFLICT ON CONSTRAINT "shirtSizes_pkey" DO UPDATE SET "name" = EXCLUDED."name";
