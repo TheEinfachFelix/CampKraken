@@ -138,7 +138,7 @@ namespace AusguckBackend.Services
             // 4. Participant (EF)
             var efParticipant = new Models.Participant
             {
-                DiscountCodeId = -1,
+                DiscountCodeId = Globals.NotCheckedDiscountCodeId,
                 UserDiscountCode = input.userDiscountCode,
                 ShirtSizeId = (int)(input.shirtSize != null ? input.shirtSize : 0),
                 SelectedSlot = input.selectedSlot,
