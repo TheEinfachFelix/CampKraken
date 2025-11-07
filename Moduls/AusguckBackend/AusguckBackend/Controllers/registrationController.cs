@@ -6,7 +6,7 @@ using System.Text.Json;
 namespace AusguckBackend.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class registrationController : ControllerBase // Fix: inherit from ControllerBase to access Ok()
     {
         private readonly IRegistrationService _service;
