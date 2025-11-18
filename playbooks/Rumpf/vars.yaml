@@ -7,6 +7,10 @@ sql_conf_files:
   - updates.sql
   - data.sql
 
+
+sql_conf_files_Check_Bypass: 
+  - func.sql
+
   # Install
 pg_allowed_subnet: 192.168.178.0/24 #
 pg_user: postgres

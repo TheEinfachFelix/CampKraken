@@ -729,20 +729,6 @@
           "id": "RIyymXojvqtMlgSP0ebI8"
         },
         {
-          "id": "q2delQDN3GwZr5w580sHI",
-          "name": "nutritionId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": true,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        },
-        {
           "id": "vMCNoF6tSl6c6qHQuquZV",
           "name": "schoolTypeId",
           "type": "INTEGER",
@@ -825,6 +811,20 @@
           "comment": "",
           "size": "",
           "values": []
+        },
+        {
+          "id": "5z2W5xW9xej7ZJ5nrpyCl",
+          "name": "healthInsuranceName",
+          "type": "TEXT",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "size": "",
+          "values": []
         }
       ],
       "comment": "",
@@ -834,8 +834,8 @@
     {
       "id": "HabqdL8JudkK4_ucHoS8r",
       "name": "nutritions",
-      "x": -633.9926347492467,
-      "y": 691.8487814368176,
+      "x": -930.1537713273717,
+      "y": 728.0313637336925,
       "locked": false,
       "fields": [
         {
@@ -972,6 +972,44 @@
       "comment": "",
       "indices": [],
       "color": "#175e7a"
+    },
+    {
+      "id": "NrDM8ZB5c8fS8oVth2_YF",
+      "name": "nutritionsToPrivate",
+      "x": -581.4872343352278,
+      "y": 692.1552989564743,
+      "locked": false,
+      "fields": [
+        {
+          "name": "nutritionId",
+          "type": "INTEGER",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "increment": true,
+          "comment": "",
+          "id": "eqciS6So0UmajEe0ioczX"
+        },
+        {
+          "id": "cs_jnN_Gizm4J6a6ClmnG",
+          "name": "participantId",
+          "type": "INTEGER",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "size": "",
+          "values": []
+        }
+      ],
+      "comment": "",
+      "indices": [],
+      "color": "#175e7a"
     }
   ],
   "relationships": [
@@ -1088,17 +1126,6 @@
     },
     {
       "startTableId": "rNwBAAm9mcLdBfkZH5oFk",
-      "startFieldId": "q2delQDN3GwZr5w580sHI",
-      "endTableId": "HabqdL8JudkK4_ucHoS8r",
-      "endFieldId": "0g9uX8tZhRro9PEwtxvTN",
-      "cardinality": "many_to_one",
-      "updateConstraint": "Cascade",
-      "deleteConstraint": "Restrict",
-      "name": "fk_participantsPrivate_nutritionId_nutritions",
-      "id": "TqHEFWAHeD31Oy7mI8aa1"
-    },
-    {
-      "startTableId": "rNwBAAm9mcLdBfkZH5oFk",
       "startFieldId": "vMCNoF6tSl6c6qHQuquZV",
       "endTableId": "BmDuSPbHnuGAdekav_mo4",
       "endFieldId": "PhmNrL1n72cI9Qw26A6FO",
@@ -1140,6 +1167,28 @@
       "deleteConstraint": "Cascade",
       "name": "fk_addresses_personId_person",
       "id": "wj74m1IWg3esKTq3iQgJv"
+    },
+    {
+      "startTableId": "rNwBAAm9mcLdBfkZH5oFk",
+      "startFieldId": "RIyymXojvqtMlgSP0ebI8",
+      "endTableId": "NrDM8ZB5c8fS8oVth2_YF",
+      "endFieldId": "cs_jnN_Gizm4J6a6ClmnG",
+      "cardinality": "one_to_many",
+      "updateConstraint": "Cascade",
+      "deleteConstraint": "Cascade",
+      "name": "fk_participantsPrivate_participantId_nutritionsToPrivate",
+      "id": "WegzgeWIsfZp_0MLjLMfj"
+    },
+    {
+      "startTableId": "HabqdL8JudkK4_ucHoS8r",
+      "startFieldId": "0g9uX8tZhRro9PEwtxvTN",
+      "endTableId": "NrDM8ZB5c8fS8oVth2_YF",
+      "endFieldId": "eqciS6So0UmajEe0ioczX",
+      "cardinality": "one_to_many",
+      "updateConstraint": "Cascade",
+      "deleteConstraint": "Restrict",
+      "name": "fk_nutritions_nutritionId_nutritionsToPrivate",
+      "id": "kADYo4M94LE-53qCiRNnq"
     }
   ],
   "notes": [
@@ -1151,7 +1200,7 @@
       "content": "",
       "locked": false,
       "color": "#fcf7ac",
-      "height": 88,
+      "height": 66,
       "width": 180
     }
   ],
@@ -1169,7 +1218,7 @@
     {
       "id": 1,
       "name": "Participant",
-      "x": -1438.0051632005566,
+      "x": -1435.3249719193066,
       "y": 230.85916588963278,
       "width": 1543.4644184484378,
       "height": 921.2002014817699,
