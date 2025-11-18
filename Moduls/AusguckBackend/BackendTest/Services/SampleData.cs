@@ -59,7 +59,7 @@ namespace BackendTest.Services
             {
                 new AusguckBackend.Models.Participant
                 {
-                    DiscountCodeId = -1,
+                    DiscountCodeId = 999,
                     ShirtSizeId = 7,
                     SelectedSlot = "D2",
                     Person = null!, // EF füllt das nachträglich automatisch
@@ -121,7 +121,7 @@ namespace BackendTest.Services
             {
                 new AusguckBackend.Models.Participant
                 {
-                    DiscountCodeId = -1,
+                    DiscountCodeId = 999,
                     UserDiscountCode = "3434343",
                     ShirtSizeId = 7,
                     SelectedSlot = "Special$20.07.2026$01.08.2026",
@@ -182,7 +182,7 @@ namespace BackendTest.Services
             {
                 new AusguckBackend.Models.Participant
                 {
-                    DiscountCodeId = -1,
+                    DiscountCodeId = 999,
                     ShirtSizeId = 8,
                     SelectedSlot = "D2",
                     ParticipantsPrivate = new ParticipantsPrivate

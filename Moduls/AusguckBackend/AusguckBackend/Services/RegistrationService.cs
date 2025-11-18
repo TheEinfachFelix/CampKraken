@@ -1,5 +1,7 @@
 ﻿using AusguckBackend.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Npgsql;
 using System.Text.Json;
 
 namespace AusguckBackend.Services
@@ -18,7 +20,7 @@ namespace AusguckBackend.Services
             {
                 throw new ArgumentException("Input data verification failed: " + verificationResult);
             }
-            InsertParticipant(data);
+            //InsertParticipant(data);
 
             return Task.CompletedTask;
         }
@@ -84,91 +86,34 @@ namespace AusguckBackend.Services
             return "";
         }
 
-        public Person MapToPerson(InParticipant data)
+        public int InsertParticipant(InParticipant input)
         {
-            return new Person
-            {
-                LastName = data.lastName,
-                FirstName = data.firstName,
-                DateOfBirth = data.dateOfBirth.Value,
-            };
+            var tags = new List<string>();
+            //if (input.perms == "on") tags.Add("perms");
+            if (input.swimmer == true) tags.Add("swimmer");
+            if (input.picturesAllowed == true) tags.Add("picturesAllowed");
+            if (input.isHealthy == true) tags.Add("isHealthy");
+            if (input.hasLiabilityInsurance == true) tags.Add("hasLiabilityInsurance");
+            if (input.needsMedication == true) tags.Add("needsMeds");
+
+
+            var json = JsonSerializer.Serialize(input);
+            var tagList = tags; // List<string>
+
+            using var conn = new NpgsqlConnection(Globals.ConnectionString);
+            using var cmd = new NpgsqlCommand(
+                "SELECT insert_participant(@data, @tags)", conn);
+
+            cmd.Parameters.AddWithValue("data",
+                NpgsqlTypes.NpgsqlDbType.Jsonb, json);
+
+            cmd.Parameters.AddWithValue("tags",
+                NpgsqlTypes.NpgsqlDbType.Array | NpgsqlTypes.NpgsqlDbType.Text,
+                tagList.ToArray());
+
+            var participantId = (int)cmd.ExecuteScalarAsync().Result;
+
+            return participantId;
         }
-        public void InsertParticipant(InParticipant input)
-        {
-            using var _context = new RumpfContext();
-
-            // 1️⃣ Person mit allen abhängigen Entities erstellen
-            var person = new Person
-            {
-                LastName = input.lastName,
-                FirstName = input.firstName,
-                DateOfBirth = input.dateOfBirth.Value,
-                GenderId = input.gender,
-                Addresses = new List<Address>
-        {
-            new Address
-            {
-                City = input.city,
-                StreetAndNumber = input.streetAndNumber,
-                ZipCode = input.zipCode,
-                CoverName = input.coverName
-            }
-        },
-                ContactInfos = input.contacts.Select(c => new ContactInfo
-                {
-                    ContactInfoTypeId = 0,
-                    Info = c.number ?? string.Empty,
-                    Details = c.who
-                }).ToList()
-            };
-
-            if (!string.IsNullOrEmpty(input.email))
-            {
-                person.ContactInfos.Add(new ContactInfo
-                {
-                    ContactInfoTypeId = 3,
-                    Info = input.email
-                });
-            }
-
-            // 2️⃣ Participant erzeugen und direkt mit Person verknüpfen
-            var participant = new Participant
-            {
-                Person = person, // 🔑 EF setzt die PersonId automatisch
-                DiscountCodeId = Globals.NotCheckedDiscountCodeId,
-                UserDiscountCode = input.userDiscountCode,
-                ShirtSizeId = input.shirtSize ?? 1,
-                SelectedSlot = input.selectedSlot,
-                ParticipantsPrivate = new ParticipantsPrivate
-                {
-                    SchoolTypeId = input.schoolType ?? 1,
-                    NutritionId = (input.nutrition != null && input.nutrition.Count > 0)
-                        ? int.Parse(input.nutrition[0])
-                        : 1,
-                    HealthInfo = input.healthInfo,
-                    Doctor = input.doctor,
-                    InsuredBy = input.insuredBy,
-                    Intolerances = input.intolerances,
-                    SpecialInfos = input.specialInfos
-                }
-            };
-
-            // 3️⃣ Tags optional hinzufügen
-            //var tags = new List<Tag>();
-            //if (input.swimmer == true) tags.Add(_context.Tags.FirstOrDefault(t => t.Name == "swimmer"));
-            //if (input.picturesAllowed == true) tags.Add(_context.Tags.FirstOrDefault(t => t.Name == "picturesAllowed"));
-            //if (input.isHealthy == true) tags.Add(_context.Tags.FirstOrDefault(t => t.Name == "isHealthy"));
-            //if (input.hasLiabilityInsurance == true) tags.Add(_context.Tags.FirstOrDefault(t => t.Name == "hasLiabilityInsurance"));
-            //if (input.needsMedication == true) tags.Add(_context.Tags.FirstOrDefault(t => t.Name == "needsMeds"));
-
-            //foreach (var tag in tags.Where(t => t != null))
-            //{
-            //    participant.Tags.Add(tag); // EF kümmert sich um das Mapping
-            //}
-
-            // 4️⃣ Alles auf einmal speichern
-            _context.Participants.Add(participant);
-            _context.SaveChanges();
-            }
-        }
+    }
 }
