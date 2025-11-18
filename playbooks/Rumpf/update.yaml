@@ -12,3 +12,4 @@
         sql_files: "{{ sql_conf_files }}"
         postgres_user: "{{ pg_user }}"
         sql_files_path: "{{sql_conf_files_path}}"
+        sql_files_Check_Bypass: "{{ sql_conf_files_Check_Bypass }}"

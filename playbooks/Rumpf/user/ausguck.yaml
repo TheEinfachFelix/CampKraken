@@ -2,23 +2,23 @@
 - name: Rechte auf Tabellen vergeben
   community.postgresql.postgresql_privs:
     type: table
-    objs: person,participants,participantsPrivate,tagToParticipant,addresses,contactInfo #,presences
+    objs: ALL_IN_SCHEMA
     roles: "{{ user_ausguck_name }}"
-    privs: INSERT
+    privs: ALL
     schema: public
 
     login_host: 127.0.0.1
     login_user: "{{ pg_user }}"
     login_password: "{{ pg_password }}"
     login_db: "{{ rumpf_db_name }}"
-    state: present
+    state: absent #present
 
 - name: Rechte auf Tabellen vergeben
   community.postgresql.postgresql_privs:
-    type: table
-    objs: tags,person,participants,participantsPrivate,tagToParticipant,addresses,contactInfo
+    type: function
+    obj: insert_participant(JSONB:TEXT[])
     roles: "{{ user_ausguck_name }}"
-    privs: SELECT
+    privs: EXECUTE
     schema: public
 
     login_host: 127.0.0.1

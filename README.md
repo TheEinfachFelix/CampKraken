@@ -16,6 +16,10 @@ This is the IT Backbone of our Camp
 - telefonnummer
 - .enf / globale config verwalteung
 
+- Tags Fixen
+- Ernährungen fehlen noch
+- Perms werden nich behandelt
+
 ### later:
 
 [ ] Secures hosting
