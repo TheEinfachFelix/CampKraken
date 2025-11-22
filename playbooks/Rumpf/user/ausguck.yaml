@@ -13,7 +13,7 @@
     login_db: "{{ rumpf_db_name }}"
     state: absent #present
 
-- name: Rechte auf Tabellen vergeben
+- name: Rechte auf Funktion vergeben
   community.postgresql.postgresql_privs:
     type: function
     obj: insert_participant(JSONB:TEXT[])

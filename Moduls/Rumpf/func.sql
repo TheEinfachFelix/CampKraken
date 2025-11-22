@@ -1,127 +1,155 @@
-
 CREATE OR REPLACE FUNCTION insert_participant(
     _data JSONB,
     _tags TEXT[]
 )
 RETURNS INT AS $$
 DECLARE
-    pid INT;            -- personId
-    partid INT;         -- participantId
+    pid INT;                -- personId
+    partid INT;             -- participantId
     contact JSONB;
     tagname TEXT;
     tagid INT;
-    n TEXT;
+    nut TEXT;
     day RECORD;
+    discount_fixed CONSTANT INT := 999; -- immer 999
+    shirt_size_id INT;
+    school_type_id INT;
 BEGIN
+    SET search_path = pg_catalog, public, pg_temp;
+    -- Defaults für NOT NULL-Felder
+    shirt_size_id := COALESCE(NULLIF((_data->>'shirtSize')::int, 0), 1);
+    school_type_id := COALESCE(NULLIF((_data->>'schoolType')::int, 0), 1);
+
+    -------------------------------------------------------------------
     -- 1️⃣ Person anlegen
-    INSERT INTO person (firstName, lastName, dateOfBirth, genderId)
+    -------------------------------------------------------------------
+    INSERT INTO "person" ("firstName", "lastName", "dateOfBirth", "genderId")
     VALUES (
         _data->>'firstName',
         _data->>'lastName',
-        (_data->>'dateOfBirth')::date,
-        (_data->>'gender')::int
+        CASE WHEN (_data ? 'dateOfBirth') AND _data->>'dateOfBirth' <> '' THEN (_data->>'dateOfBirth')::date ELSE NULL END,
+        CASE WHEN (_data ? 'gender') AND _data->>'gender' <> '' THEN (_data->>'gender')::int ELSE NULL END
     )
-    RETURNING personId INTO pid;
+    RETURNING "personId" INTO pid;
 
+    -------------------------------------------------------------------
     -- 2️⃣ Adresse anlegen
-    INSERT INTO addresses (personId, streetAndNumber, zipCode, city, coverName)
+    -------------------------------------------------------------------
+    INSERT INTO "addresses" ("personId", "streetAndNumber", "zipCode", "city", "coverName")
     VALUES (
         pid,
         _data->>'streetAndNumber',
-        (_data->>'zipCode')::int,
+        CASE WHEN (_data ? 'zipCode') AND _data->>'zipCode' <> '' THEN (_data->>'zipCode')::bigint ELSE NULL END,
         _data->>'city',
         _data->>'coverName'
     );
 
-    -- 3️⃣ Contacts aus JSON (Telefonnummern)
-    FOR contact IN SELECT * FROM jsonb_array_elements(_data->'contacts')
-    LOOP
-        INSERT INTO contactInfo (personId, contactInfoTypeId, info, details)
-        VALUES (
-            pid,
-            0,                                      -- Telefon Type
-            contact->>'number',
-            contact->>'who'
-        );
-    END LOOP;
-
-    -- 4️⃣ Email (falls vorhanden)
-    IF (_data ? 'email') AND _data->>'email' <> '' THEN
-        INSERT INTO contactInfo (personId, contactInfoTypeId, info)
-        VALUES (
-            pid,
-            3,                                      -- E-Mail Type
-            _data->>'email'
-        );
+    -------------------------------------------------------------------
+    -- 3️⃣ Kontakte / Telefon
+    -------------------------------------------------------------------
+    IF _data ? 'contacts' THEN
+        FOR contact IN SELECT * FROM jsonb_array_elements(_data->'contacts')
+        LOOP
+            INSERT INTO "contactInfo" ("personId", "contactInfoTypeId", "info", "details")
+            VALUES (
+                pid,
+                0, -- Telefon Type
+                NULLIF(contact->>'number',''),
+                NULLIF(contact->>'who','')
+            );
+        END LOOP;
     END IF;
 
+    -------------------------------------------------------------------
+    -- 4️⃣ E-Mail
+    -------------------------------------------------------------------
+    IF (_data ? 'email') AND _data->>'email' <> '' THEN
+        INSERT INTO "contactInfo" ("personId", "contactInfoTypeId", "info")
+        VALUES (pid, 3, _data->>'email');  -- 3 = E-Mail Type
+    END IF;
+
+    -------------------------------------------------------------------
     -- 5️⃣ Participant erzeugen
-    INSERT INTO participants (
-        personId,
-        discountCodeId,
-        userDiscountCode,
-        shirtSizeId,
-        selectedSlot
+    -------------------------------------------------------------------
+    INSERT INTO "participants" (
+        "personId",
+        "discountCodeId",
+        "userDiscountCode",
+        "shirtSizeId",
+        "selectedSlot"
     )
     VALUES (
         pid,
-        (SELECT "discountCodeId" FROM discountCodes WHERE name = 'NotChecked' LIMIT 1),
-        _data->>'userDiscountCode',
-        (_data->>'shirtSize')::int,
-        _data->>'selectedSlot'
+        discount_fixed,
+        NULLIF(_data->>'userDiscountCode',''),
+        shirt_size_id,
+        NULLIF(_data->>'selectedSlot','')
     )
-    RETURNING participantId INTO partid;
+    RETURNING "participantId" INTO partid;
 
-    -- 6️⃣ ParticipantsPrivate anlegen
-    INSERT INTO participantsPrivate (
-        participantId,
-        schoolTypeId,
-        doctor,
-        insuredBy,
-        intolerances,
-        healthInfo,
-        specialInfos,
-        healthInsuranceName 
+    -------------------------------------------------------------------
+    -- 6️⃣ participantsPrivate anlegen
+    -------------------------------------------------------------------
+    INSERT INTO "participantsPrivate" (
+        "participantId",
+        "schoolTypeId",
+        "doctor",
+        "insuredBy",
+        "intolerances",
+        "healthInfo",
+        "specialInfos",
+        "healthInsuranceName"
     )
     VALUES (
         partid,
-        (_data->>'schoolType')::int,
-        _data->>'doctor',
-        _data->>'insuredBy',
-        _data->>'intolerances',
-        _data->>'healthInfo',
-        _data->>'specialInfos',
-        _data->>'healthInsuranceName'
+        school_type_id,
+        NULLIF(_data->>'doctor',''),
+        NULLIF(_data->>'insuredBy',''),
+        NULLIF(_data->>'intolerances',''),
+        NULLIF(_data->>'healthInfo',''),
+        NULLIF(_data->>'specialInfos',''),
+        NULLIF(_data->>'healthInsuranceName','')
     );
 
+    -------------------------------------------------------------------
+    -- 7️⃣ Nutrition
+    -------------------------------------------------------------------
     IF _data ? 'nutrition' THEN
-        FOREACH n IN ARRAY (SELECT jsonb_array_elements_text(_data->'nutrition'))
+        FOR nut IN SELECT jsonb_array_elements_text(_data->'nutrition')
         LOOP
-            INSERT INTO nutritionsToPrivate (participantId, nutritionId)
-            VALUES (partid, n::int)
+            IF nut IS NOT NULL AND nut <> '' THEN
+                INSERT INTO "nutritionsToPrivate" ("nutritionId", "participantId")
+                VALUES (nut::int, partid)
+                ON CONFLICT DO NOTHING;
+            END IF;
+        END LOOP;
+    END IF;
+
+    -------------------------------------------------------------------
+    -- 8️⃣ Presences
+    -------------------------------------------------------------------
+    IF (_data ? 'start-date') AND (_data ? 'end-date') THEN
+        FOR day IN
+            SELECT "dayId"
+            FROM "days"
+            WHERE "date" BETWEEN (_data->>'start-date')::date
+                             AND (_data->>'end-date')::date
+        LOOP
+            INSERT INTO "presences" ("personId", "dayId")
+            VALUES (pid, day."dayId")
             ON CONFLICT DO NOTHING;
         END LOOP;
     END IF;
 
-    -- presences automatisch anlegen
-    FOR day IN
-        SELECT dayId
-        FROM days
-        WHERE date BETWEEN (_data->>'start-date')::date
-                    AND (_data->>'end-date')::date
-    LOOP
-        INSERT INTO presences (personId, dayId)
-        VALUES (pid, day.dayId)
-        ON CONFLICT DO NOTHING;
-    END LOOP;
-
-    -- 7️⃣ Tags aus dem Array _tags
+    -------------------------------------------------------------------
+    -- 9️⃣ Tags
+    -------------------------------------------------------------------
     IF _tags IS NOT NULL THEN
         FOREACH tagname IN ARRAY _tags
         LOOP
-            SELECT tagId INTO tagid FROM tags WHERE name = tagname;
+            SELECT "tagId" INTO tagid FROM "tags" WHERE "name" = tagname;
             IF tagid IS NOT NULL THEN
-                INSERT INTO tagToParticipant (participantId, tagId)
+                INSERT INTO "tagToParticipant" ("participantId", "tagId")
                 VALUES (partid, tagid)
                 ON CONFLICT DO NOTHING;
             END IF;
@@ -130,4 +158,5 @@ BEGIN
 
     RETURN partid;
 END;
-$$ LANGUAGE plpgsql;
+$$ LANGUAGE plpgsql
+SECURITY DEFINER;

@@ -11,3 +11,10 @@
         db_name: "{{ rumpf_db_name }}"
         postgres_user: "{{ pg_user }}"
         userList: "{{users}}"
+    - name: Init DB
+      ansible.builtin.import_role:
+        name: postgres.clean
+      vars:
+        db_name: "{{ rumpf_db_name }}"
+        postgres_user: "{{ pg_user }}"
+        userList: "{{users}}"
