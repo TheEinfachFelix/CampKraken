@@ -101,6 +101,7 @@ namespace AusguckBackend.Services
             var tagList = tags; // List<string>
 
             using var conn = new NpgsqlConnection(Globals.ConnectionString);
+            conn.Open();
             using var cmd = new NpgsqlCommand(
                 "SELECT insert_participant(@data, @tags)", conn);
 
