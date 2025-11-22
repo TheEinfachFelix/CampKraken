@@ -35,7 +35,7 @@ def genChoices(name: str, conn) -> list[dict]:
     return out
 
 if __name__ == "__main__":
-    path = "/home/ansible/myAnsible/submoduls/CampKraken/Moduls/Ausguck/frontend/src/assets/surveys/survey.json"
+    path = "/home/ansible/myAnsible/submoduls/CampKraken/Moduls/Ausguck/frontend/ausguck/src/components/assets/survey.json"
     conStr = f"host=192.168.178.143 port=5432 dbname=Rumpf user=dropdownFiller password=Geheim"
 
     ## init data
@@ -50,7 +50,7 @@ if __name__ == "__main__":
         #print (page)
 
         for element in page["elements"]:
-            if (element["type"] in["radiogroup","dropdown"]):
+            if (element["type"] in["radiogroup","dropdown","checkbox"]):
                 new = genChoices(element["name"], conn)
                 if new:
                     element["choices"] = new
