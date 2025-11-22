@@ -1,0 +1,54 @@
+---
+- name: Rechte auf Tabellen vergeben
+  community.postgresql.postgresql_privs:
+    type: table
+    objs: ALL_IN_SCHEMA
+    roles: "{{ user_ausguck_func_owner_name }}"
+    privs: ALL
+    schema: public
+
+    login_host: 127.0.0.1
+    login_user: "{{ pg_user }}"
+    login_password: "{{ pg_password }}"
+    login_db: "{{ rumpf_db_name }}"
+    state: absent
+
+
+- name: Rechte auf Tabellen vergeben
+  community.postgresql.postgresql_privs:
+    type: table
+    objs: person,addresses,contactInfo,participants,participantsPrivate,nutritionsToPrivate,presences,tagToParticipant
+    roles: "{{ user_ausguck_func_owner_name }}"
+    privs: INSERT
+    schema: public
+
+    login_host: 127.0.0.1
+    login_user: "{{ pg_user }}"
+    login_password: "{{ pg_password }}"
+    login_db: "{{ rumpf_db_name }}"
+    state: present
+
+- name: Rechte auf Tabellen vergeben
+  community.postgresql.postgresql_privs:
+    type: table
+    objs: days,tags,person,participants
+    roles: "{{ user_ausguck_func_owner_name }}"
+    privs: SELECT
+    schema: public
+
+    login_host: 127.0.0.1
+    login_user: "{{ pg_user }}"
+    login_password: "{{ pg_password }}"
+    login_db: "{{ rumpf_db_name }}"
+    state: present
+
+
+- name: Set PostgreSQL function owner
+  community.postgresql.postgresql_query:
+    query: |
+      ALTER FUNCTION insert_participant(jsonb, text[])
+      OWNER TO "{{ user_ausguck_func_owner_name }}";
+    login_host: 127.0.0.1
+    login_user: "{{ pg_user }}"
+    login_password: "{{ pg_password }}"
+    login_db: "{{ rumpf_db_name }}"

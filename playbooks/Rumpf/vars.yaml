@@ -25,6 +25,10 @@ user_ausguck_name: "AusguckInserter"
 name_ausguck_pw: "Geheim"
 name_ausguck_file: ausguck.yaml
 
+user_ausguck_func_owner_name: "AusguckFuncOwner"
+name_ausguck_func_owner_pw: "sadfiu329hib3w089ruioasbdf09kbnibh32oldjnvw3eljxyewr"
+name_ausguck_func_owner_file: ausguckFuncOwner.yaml
+
 users:
   - name: "{{user_dropdown_name}}"
     password: "{{user_dorpdown_pw}}"
@@ -32,4 +36,7 @@ users:
   - name: "{{user_ausguck_name}}"
     password: "{{name_ausguck_pw}}"
     file: "{{name_ausguck_file}}"
+  - name: "{{user_ausguck_func_owner_name}}"
+    password: "{{name_ausguck_func_owner_pw}}"
+    file: "{{name_ausguck_func_owner_file}}"
 
