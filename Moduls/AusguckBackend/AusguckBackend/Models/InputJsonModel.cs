@@ -13,15 +13,15 @@ namespace AusguckBackend.Models
         public string? lastName { get; set; }
         public string? firstName { get; set; }
         public DateOnly? dateOfBirth { get; set; }
-        public int? gender { get; set; }
+        public string? gender { get; set; }
         public string? streetAndNumber { get; set; }
         public int? zipCode { get; set; }
         public string? city { get; set; }
         public string? coverName { get; set; }
         public List<Contact>? contacts { get; set; }
         public string? email { get; set; }
-        public int? schoolType { get; set; }
-        public int? shirtSize { get; set; }
+        public string? schoolType { get; set; }
+        public string? shirtSize { get; set; }
         public bool? hasLiabilityInsurance { get; set; }
         public string? perms { get; set; }
         public bool? swimmer { get; set; }

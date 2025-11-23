@@ -153,6 +153,43 @@ namespace BackendTest.Services
         }
 
         [Test]
+        public void TestSelectedPerm()
+        {
+            List<string> slots = new List<string>
+            {
+                "alone",
+                "Small group",
+                "supervised",
+                "Invalid",
+                "",
+                null
+            };
+            List<bool> result = new List<bool>
+            {
+                true,
+                true,
+                true,
+                false,
+                false,
+                false
+            };
+            for (int i = 0; i < slots.Count; i++)
+            {
+                var data = SampleData.DeepCopy<InParticipant>(SampleData.FullJsonDes);
+                data.perms = slots[i];
+                var output = RegistrationService.Verify(data);
+                if (result[i])
+                {
+                    Assert.That(output, Is.EqualTo(""), $"Failed selectedSlot test for '{slots[i]}'");
+                }
+                else
+                {
+                    Assert.That(output, Is.Not.EqualTo(""), $"Failed selectedSlot test for '{slots[i]}'");
+                }
+            }
+        }
+
+        [Test]
         public void TestSpecialSlot()
         {
             List<DateOnly> StartDates = new List<DateOnly>

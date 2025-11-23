@@ -14,6 +14,13 @@
             "Special"
         };
 
+        public static readonly List<string> ValidePerms = new List<string>
+        {
+            "alone",
+            "Small group",
+            "supervised"
+        };
+
         public static readonly string ConnectionString = "Host=192.168.178.143;Database=Rumpf;Username=AusguckInserter;Password=Geheim";
         public static readonly string TestConnectionString = "Host=192.168.178.143;Database=Rumpf;Username=AusguckTester;Password=dsafadsfef25ojnkoajn9oiujbasounsaejlkwsxx";
         public static readonly int NotCheckedDiscountCodeId = 999;

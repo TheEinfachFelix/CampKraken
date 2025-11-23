@@ -90,6 +90,11 @@ namespace AusguckBackend.Services
                 }
             }
 
+            // perms check
+            if (string.IsNullOrEmpty(input.perms) || !Globals.ValidePerms.Contains(input.perms))
+            {
+                return "perms is invalid";
+            }
 
             return "";
         }
@@ -97,13 +102,12 @@ namespace AusguckBackend.Services
         public int InsertParticipant(InParticipant input)
         {
             var tags = new List<string>();
-            //if (input.perms == "on") tags.Add("perms");
             if (input.swimmer == true) tags.Add("swimmer");
             if (input.picturesAllowed == true) tags.Add("picturesAllowed");
             if (input.isHealthy == true) tags.Add("isHealthy");
             if (input.hasLiabilityInsurance == true) tags.Add("hasLiabilityInsurance");
             if (input.needsMedication == true) tags.Add("needsMeds");
-
+            tags.Add(input.perms);
 
             var json = JsonSerializer.Serialize(input);
             var tagList = tags; // List<string>
