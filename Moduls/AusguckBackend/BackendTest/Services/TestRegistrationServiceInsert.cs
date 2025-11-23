@@ -27,27 +27,7 @@ namespace BackendTest.Services
         [TearDown]
         public void TearDown()
         {
-            //var personsToDelete = _context.people
-            //    .Include(p => p.participants)
-            //    .ThenInclude(pa => pa.participantsPrivate)
-            //    .Include(p => p.participants)
-            //    .ThenInclude(pa => pa.tags)
-            //    .Include(p => p.contactInfos)
-            //    .Include(p => p.addresses)
-            //    .Where(p => p.lastName == SampleData.fullPerson.lastName &&
-            //                p.firstName == SampleData.fullPerson.firstName)
-            //    .ToList();
-
-            //foreach (var person in personsToDelete)
-            //{
-            //    _context.participants.RemoveRange(person.participants);
-            //    _context.contactInfos.RemoveRange(person.contactInfos);
-            //    _context.addresses.RemoveRange(person.addresses);
-            //    _context.people.Remove(person);
-            //}
-
-            //_context.SaveChanges();
-
+            CleanupTestData();
             _context.Dispose();
         }
 
@@ -89,6 +69,43 @@ namespace BackendTest.Services
             }
 
             Assert.That(actualJson, Is.EqualTo(expectedJson));
+        }
+
+        private void CleanupTestData()
+        {
+            var allSamplePersons = new List<person> { SampleData.fullPerson, SampleData.minPerson, SampleData.sampleperson };
+
+            foreach (var sample in allSamplePersons)
+            {
+                var personsToRemove = _context.people
+                    .Include(p => p.participants)
+                        .ThenInclude(pa => pa.participantsPrivate)
+                    .Include(p => p.participants)
+                        .ThenInclude(pa => pa.tags)
+                    .Include(p => p.participants)
+                    .Include(p => p.addresses)
+                    .Include(p => p.contactInfos)
+                    .Where(p => p.firstName == sample.firstName && p.lastName == sample.lastName)
+                    .ToList();
+
+                foreach (var p in personsToRemove)
+                {
+                    foreach (var part in p.participants.ToList())
+                    {
+                        _context.participantsPrivates.RemoveRange(part.participantsPrivate);
+
+                        part.tags.Clear(); // M2M relation
+                        _context.participants.Remove(part);
+                    }
+
+                    _context.addresses.RemoveRange(p.addresses);
+                    _context.contactInfos.RemoveRange(p.contactInfos);
+
+                    _context.people.Remove(p);
+                }
+            }
+
+            _context.SaveChanges();
         }
 
         [Test]
