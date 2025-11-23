@@ -77,13 +77,21 @@ BEGIN
         "userDiscountCode",
         "shirtSizeId",
         "selectedSlot"
-    )
-    VALUES (
+    ) VALUES (
         pid,
         discount_fixed,
         NULLIF(_data->>'userDiscountCode',''),
         shirt_size_id,
-        NULLIF(_data->>'selectedSlot','')
+        CASE
+            WHEN (_data->>'start-date' IS NOT NULL)
+            AND (_data->>'end-date' IS NOT NULL)
+            THEN CONCAT(
+                COALESCE(_data->>'selectedSlot',''), '$', 
+                COALESCE(_data->>'start-date',''), '$', 
+                COALESCE(_data->>'end-date','')
+            )
+            ELSE COALESCE(_data->>'selectedSlot','')
+        END
     )
     RETURNING "participantId" INTO partid;
 
@@ -156,7 +164,7 @@ BEGIN
         END LOOP;
     END IF;
 
-    RETURN partid;
+    RETURN pid;
 END;
 $$ LANGUAGE plpgsql
 SECURITY DEFINER;
