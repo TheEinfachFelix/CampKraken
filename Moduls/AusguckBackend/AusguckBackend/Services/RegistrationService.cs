@@ -10,13 +10,6 @@ namespace AusguckBackend.Services
     {
         public static readonly List<string> mandatoryNames = ["lastName", "firstName", "dateOfBirth", "gender", "zipCode", "city", "streetAndNumber", "email", "schoolType", "shirtSize", "hasLiabilityInsurance", "perms", "swimmer", "selectedSlot", "nutrition", "isHealthy", "needsMedication", "picturesAllowed", "question1"];
 
-        NpgsqlConnection conn = new (Globals.ConnectionString);
-        
-        public RegistrationService()
-        {
-            conn.Open();
-        }
-
         public Task ProcessIncomingDataAsync(InParticipant data)
         {
             if (data == null)
@@ -112,6 +105,8 @@ namespace AusguckBackend.Services
             var json = JsonSerializer.Serialize(input);
             var tagList = tags; // List<string>
 
+            using var conn = new NpgsqlConnection(Globals.ConnectionString);
+            conn.Open();
 
             using var cmd = new NpgsqlCommand(
                 "SELECT insert_participant(@data, @tags)", conn);
