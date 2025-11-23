@@ -29,6 +29,10 @@ user_ausguck_func_owner_name: "AusguckFuncOwner"
 name_ausguck_func_owner_pw: "sadfiu329hib3w089ruioasbdf09kbnibh32oldjnvw3eljxyewr"
 name_ausguck_func_owner_file: ausguckFuncOwner.yaml
 
+user_ausguck_tester_name: "AusguckTester"
+name_ausguck_tester_pw: "dsafadsfef25ojnkoajn9oiujbasounsaejlkwsxx"
+name_ausguck_tester_file: ausguckTester.yaml
+
 users:
   - name: "{{user_dropdown_name}}"
     password: "{{user_dorpdown_pw}}"
@@ -39,4 +43,7 @@ users:
   - name: "{{user_ausguck_func_owner_name}}"
     password: "{{name_ausguck_func_owner_pw}}"
     file: "{{name_ausguck_func_owner_file}}"
+  - name: "{{user_ausguck_tester_name}}"
+    password: "{{name_ausguck_tester_pw}}"
+    file: "{{name_ausguck_tester_file}}"
 
