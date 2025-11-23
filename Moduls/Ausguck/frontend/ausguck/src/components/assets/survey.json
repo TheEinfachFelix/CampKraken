@@ -1,1253 +1,579 @@
 {
-  "tables": [
+  "locale": "de",
+  "title": "Anmeldung zum Sommercamp 2026",
+  "pages": [
     {
-      "id": "CRHJZ36-GnXuhky0CCZnt",
-      "name": "person",
-      "x": -192.93913923437503,
-      "y": -90.31980871874998,
-      "locked": false,
-      "fields": [
+      "name": "page2",
+      "title": {
+        "de": "Daten der teilnehmenden Person"
+      },
+      "elements": [
         {
-          "name": "personId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": true,
-          "unique": true,
-          "notNull": true,
-          "increment": true,
-          "comment": "",
-          "id": "OWJ4lWsOXyPjVm0DoUwY1"
-        },
-        {
-          "id": "MLIp6wJPS2echDZP_5FdZ",
+          "type": "text",
           "name": "lastName",
-          "type": "TEXT",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
+          "title": {
+            "de": "Nachname"
+          },
+          "isRequired": true,
+          "autocomplete": "family-name"
         },
         {
-          "id": "4i0hQ-MGEw5KagXK-TO_X",
+          "type": "text",
           "name": "firstName",
-          "type": "TEXT",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
+          "title": {
+            "de": "Vorname"
+          },
+          "isRequired": true,
+          "autocomplete": "given-name"
         },
         {
-          "id": "htKsfbb2U8GGqdprkqY_I",
+          "type": "text",
           "name": "dateOfBirth",
-          "type": "DATE",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
+          "title": {
+            "de": "Geburtsdatum"
+          },
+          "isRequired": true,
+          "inputType": "date",
+          "autocomplete": "bday",
+          "min": "2006-01-01",
+          "max": "2021-01-01"
         },
         {
-          "id": "xU1ak_6tk_G_esVVM6abU",
-          "name": "genderId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        }
-      ],
-      "comment": "",
-      "indices": [],
-      "color": "#175e7a",
-      "inherits": []
-    },
-    {
-      "id": "SaiINUgzytBqjxDIcL4k3",
-      "name": "genders",
-      "x": -588,
-      "y": 50,
-      "locked": false,
-      "fields": [
-        {
-          "name": "genderId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": true,
-          "unique": true,
-          "notNull": true,
-          "increment": true,
-          "comment": "",
-          "id": "n-rXOfPL-CG3L-77op_2I"
+          "type": "radiogroup",
+          "name": "gender",
+          "title": {
+            "de": "Geschlecht"
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "0",
+              "text": {
+                "de": "männlich"
+              }
+            },
+            {
+              "value": "1",
+              "text": {
+                "de": "weiblich"
+              }
+            },
+            {
+              "value": "2",
+              "text": {
+                "de": "divers"
+              }
+            }
+          ],
+          "choicesOrder": "asc",
+          "separateSpecialChoices": true
         },
         {
-          "id": "56Wb4hmbPFF6SS7Yohbgm",
-          "name": "name",
-          "type": "TEXT",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": true,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        }
-      ],
-      "comment": "",
-      "indices": [],
-      "color": "#175e7a"
-    },
-    {
-      "id": "ORsEWh0l2SUMZDtLTOtsX",
-      "name": "addresses",
-      "x": -963.9999999999999,
-      "y": -68.73627001562511,
-      "locked": false,
-      "fields": [
-        {
-          "name": "addressId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": true,
-          "unique": true,
-          "notNull": true,
-          "increment": true,
-          "comment": "",
-          "id": "IkBP6wbfNeoSBUg-TNc7i"
-        },
-        {
-          "id": "X70BkvFUSOdk1tCgdG5LL",
-          "name": "personId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": true,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        },
-        {
-          "id": "7539jfHpdwPfQyU-mB2aF",
-          "name": "zipCode",
-          "type": "BIGINT",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        },
-        {
-          "id": "99tBKn5KqX2iq60U_rNPo",
-          "name": "city",
-          "type": "TEXT",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        },
-        {
-          "id": "d8Rblg3ZHn9E_ClpmG0NX",
+          "type": "text",
           "name": "streetAndNumber",
-          "type": "TEXT",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
+          "title": {
+            "de": "Straße und Hausnummer"
+          },
+          "isRequired": true,
+          "autocomplete": "street-address"
         },
         {
-          "id": "CvjbsMybQKWyUPfXJn7zi",
+          "type": "text",
+          "name": "zipCode",
+          "title": {
+            "de": "PLZ"
+          },
+          "isRequired": true,
+          "inputType": "number"
+        },
+        {
+          "type": "text",
+          "name": "city",
+          "title": {
+            "de": "Ort"
+          },
+          "isRequired": true
+        },
+        {
+          "type": "text",
           "name": "coverName",
-          "type": "TEXT",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
+          "title": {
+            "de": "Gegebenenfalls Name Organisation/Firma/Wohngruppe o.ä., die anmeldet, für Anschreiben"
+          }
         }
-      ],
-      "comment": "",
-      "indices": [],
-      "color": "#175e7a"
+      ]
     },
     {
-      "id": "pE222eck9HWy8GMfxz6Vg",
-      "name": "contactInfo",
-      "x": -962.7609838782324,
-      "y": -306.49024421562126,
-      "locked": false,
-      "fields": [
+      "name": "page3",
+      "title": {
+        "de": "Kontaktdaten der Erziehungsberechtigten"
+      },
+      "elements": [
         {
-          "name": "contactInfoId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": true,
-          "unique": true,
-          "notNull": true,
-          "increment": true,
-          "comment": "",
-          "id": "TuB6-qDTizHqCOGsheNQF"
+          "type": "text",
+          "name": "email",
+          "title": {
+            "de": "Email"
+          },
+          "description": {
+            "de": "An diese E-Mail-Adresse wird deine Anmeldebestätigung gesendet."
+          },
+          "isRequired": true,
+          "inputType": "email",
+          "autocomplete": "email"
         },
         {
-          "id": "ZEAmYXw5Y1tfouyogn7ld",
-          "name": "personId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": true,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        },
-        {
-          "id": "_vtXCS0Uj0hT3xNQ2RUYp",
-          "name": "contactInfoTypeId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": true,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        },
-        {
-          "id": "f8hdBbDaGxJGbdCwnEBEF",
-          "name": "info",
-          "type": "TEXT",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": true,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        },
-        {
-          "id": "jcx_rMiuqmj7Rxyv2aG12",
-          "name": "details",
-          "type": "TEXT",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
+          "type": "paneldynamic",
+          "name": "contacts",
+          "title": {
+            "de": "Telefonnummern"
+          },
+          "isRequired": true,
+          "templateElements": [
+            {
+              "type": "text",
+              "name": "number",
+              "title": {
+                "de": "Telefonnummer"
+              },
+              "isRequired": true,
+              "inputType": "tel",
+              "autocomplete": "tel"
+            },
+            {
+              "type": "text",
+              "name": "who",
+              "title": {
+                "de": "Wer ist unter der Nummer erreichbar?"
+              }
+            }
+          ],
+          "panelCount": 1
         }
-      ],
-      "comment": "",
-      "indices": [],
-      "color": "#175e7a"
+      ]
     },
     {
-      "id": "RmT2f7jOImZnmYF2PaEf6",
-      "name": "contactInfoTypes",
-      "x": -1258.6429555392112,
-      "y": -301.0458166996615,
-      "locked": false,
-      "fields": [
+      "name": "private",
+      "title": {
+        "default": "Da",
+        "de": "Weitere Angaben"
+      },
+      "elements": [
         {
-          "name": "contactInfoTypeId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": true,
-          "unique": true,
-          "notNull": true,
-          "increment": true,
-          "comment": "",
-          "id": "qImYos1rQF9M5rYrY63or"
+          "type": "dropdown",
+          "name": "schoolType",
+          "title": {
+            "de": "Welche Schulform besucht der/die Jugendliche"
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "0",
+              "text": {
+                "de": "Grundschule"
+              }
+            },
+            {
+              "value": "1",
+              "text": {
+                "de": "Sekundarschule"
+              }
+            },
+            {
+              "value": "2",
+              "text": {
+                "de": "Förderschule"
+              }
+            },
+            {
+              "value": "3",
+              "text": {
+                "de": "Realschule"
+              }
+            },
+            {
+              "value": "4",
+              "text": {
+                "de": "Gymnasium"
+              }
+            },
+            {
+              "value": "5",
+              "text": {
+                "de": "Gesamtschule"
+              }
+            },
+            {
+              "value": "6",
+              "text": {
+                "de": "Waldorfschule"
+              }
+            },
+            {
+              "value": "7",
+              "text": {
+                "de": "Andere Schulen"
+              }
+            }
+          ],
+          "showOtherItem": true
         },
         {
-          "id": "9qsggyOj6QnqIlrpeX5UC",
-          "name": "name",
-          "type": "TEXT",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": true,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
+          "type": "dropdown",
+          "name": "shirtSize",
+          "title": {
+            "de": "Größe für ein kostenloses Camp T-Shirt "
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "0",
+              "text": {
+                "de": "118-128"
+              }
+            },
+            {
+              "value": "1",
+              "text": {
+                "de": "130-140"
+              }
+            },
+            {
+              "value": "2",
+              "text": {
+                "de": "142-152"
+              }
+            },
+            {
+              "value": "3",
+              "text": {
+                "de": "XS"
+              }
+            },
+            {
+              "value": "4",
+              "text": {
+                "de": "S"
+              }
+            },
+            {
+              "value": "5",
+              "text": {
+                "de": "M"
+              }
+            },
+            {
+              "value": "6",
+              "text": {
+                "de": "L"
+              }
+            },
+            {
+              "value": "7",
+              "text": {
+                "de": "XL"
+              }
+            },
+            {
+              "value": "8",
+              "text": {
+                "de": "XXL"
+              }
+            },
+            {
+              "value": "9",
+              "text": {
+                "de": "XXXL"
+              }
+            }
+          ]
+        },
+        {
+          "type": "boolean",
+          "name": "hasLiabilityInsurance",
+          "title": {
+            "de": "Besteht für der/die Jugendliche eine Haftpflichtversicherung?"
+          },
+          "isRequired": true
+        },
+        {
+          "type": "radiogroup",
+          "name": "perms",
+          "title": {
+            "de": "Der/Die Jugendliche darf..."
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "Item 1",
+              "text": {
+                "de": "...alleine das Lager verlassen."
+              }
+            },
+            {
+              "value": "Item 2",
+              "text": {
+                "de": "...in kleinen Gruppen, ohne Betreuer, das Lager verlassen."
+              }
+            },
+            {
+              "value": "Item 3",
+              "text": {
+                "de": "...nur mit Betreuer das Lager verlassen."
+              }
+            }
+          ]
+        },
+        {
+          "type": "boolean",
+          "name": "swimmer",
+          "title": {
+            "de": "Der/Die Judendlich kann..."
+          },
+          "isRequired": true,
+          "labelTrue": {
+            "de": "... schwimmen"
+          },
+          "labelFalse": {
+            "de": "... nicht schwimmen"
+          }
         }
-      ],
-      "comment": "",
-      "indices": [],
-      "color": "#175e7a"
+      ]
     },
     {
-      "id": "A3NLHWqbs5TFqTXcW_CKU",
-      "name": "presences",
-      "x": -576.2029097019688,
-      "y": -374.3736133392577,
-      "locked": false,
-      "fields": [
+      "name": "page1",
+      "title": {
+        "de": "Zeitraum"
+      },
+      "elements": [
         {
-          "name": "personId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": true,
-          "unique": false,
-          "notNull": true,
-          "increment": false,
-          "comment": "",
-          "id": "cUb7c54DzEQ39oOr__Ifn"
-        },
-        {
-          "id": "czPags8-d-7j9vvJytEXQ",
-          "name": "dayId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": true,
-          "unique": false,
-          "notNull": true,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        }
-      ],
-      "comment": "",
-      "indices": [],
-      "color": "#175e7a"
-    },
-    {
-      "id": "tzmKwR0Hz49b0rkeRdW_K",
-      "name": "days",
-      "x": -979.7318261591417,
-      "y": -464.88477217077326,
-      "locked": false,
-      "fields": [
-        {
-          "name": "dayId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": true,
-          "unique": true,
-          "notNull": true,
-          "increment": true,
-          "comment": "",
-          "id": "s8qcVnoeAHJyqLkRMHfeE"
-        },
-        {
-          "id": "u0VvlsvcEzyeRmOvFnKew",
-          "name": "date",
-          "type": "DATE",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": true,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        }
-      ],
-      "comment": "",
-      "indices": [],
-      "color": "#175e7a"
-    },
-    {
-      "id": "GsFOnTajzhpxmmNv2bqAc",
-      "name": "participants",
-      "x": -175.2415384002539,
-      "y": 263.69597180286024,
-      "locked": false,
-      "fields": [
-        {
-          "name": "participantId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": true,
-          "unique": true,
-          "notNull": true,
-          "increment": true,
-          "comment": "",
-          "id": "gs5Kq1MWjEND8bMX-zQCY"
-        },
-        {
-          "id": "g9yOXb5QITzeg350eA6_T",
-          "name": "personId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": true,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        },
-        {
-          "id": "8pRMIKq3GCCEvi265QRmC",
-          "name": "discountCodeId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": true,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        },
-        {
-          "id": "tHex_5DuuzN9rhC8uN16N",
-          "name": "userDiscountCode",
-          "type": "TEXT",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        },
-        {
-          "id": "P28ug3kOIRW9A5gfov6SE",
-          "name": "shirtSizeId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": true,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        },
-        {
-          "id": "gla6uIzIICHPUWWpU9Rgr",
+          "type": "dropdown",
           "name": "selectedSlot",
-          "type": "TEXT",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
+          "title": {
+            "de": "Zeitraum der Teilnahme "
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "D1",
+              "text": {
+                "de": "D1: 13.07.-26.07.2025 (14 Tage)"
+              }
+            },
+            {
+              "value": "D2",
+              "text": {
+                "de": "D1: 27.07.-09.08.2025 (14 Tage)"
+              }
+            },
+            {
+              "value": "Special",
+              "text": {
+                "de": "Wunschzeitraum"
+              }
+            }
+          ]
         },
         {
-          "id": "toq66URO39ydDw2Tk1JSU",
-          "name": "registrationDate",
-          "type": "TIMESTAMP",
-          "default": "NOW()",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": true,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
+          "type": "panel",
+          "name": "panel1",
+          "visibleIf": "{selectedSlot} = 'Special'",
+          "elements": [
+            {
+              "type": "text",
+              "name": "start-date",
+              "title": {
+                "de": "Wunschzeitraum von"
+              },
+              "isRequired": true,
+              "inputType": "date",
+              "min": "2026-07-19",
+              "max": "2026-08-15"
+            },
+            {
+              "type": "text",
+              "name": "end-date",
+              "title": {
+                "de": "Wunschzeitraum bis"
+              },
+              "isRequired": true,
+              "inputType": "date",
+              "min": "2026-07-19",
+              "max": "2026-08-15",
+              "minValueExpression": "{start-date}"
+            },
+            {
+              "type": "expression",
+              "name": "daysInCamp",
+              "title": {
+                "de": "Tage im Camp"
+              },
+              "validators": [
+                {
+                  "type": "expression",
+                  "text": {
+                    "de": "Mindestens 7 Tage"
+                  },
+                  "expression": "{daysInCamp} >= 7"
+                }
+              ],
+              "expression": "dateDiff({start-date}, {end-date}, \"days\")"
+            }
+          ]
         },
         {
-          "id": "q8tObxGFg9cXawVRfBekn",
-          "name": "confirmationDate",
-          "type": "TIMESTAMP",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        },
-        {
-          "id": "OKNDLZhluVG72x_spnEQp",
-          "name": "reminderDate",
-          "type": "TIMESTAMP",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        },
-        {
-          "id": "TL2I3eJH8QHo3eMN5wkwF",
-          "name": "cancelationDate",
-          "type": "TIMESTAMP",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
+          "type": "text",
+          "name": "userDiscountCode",
+          "title": {
+            "de": "Rabattcode"
+          }
         }
-      ],
-      "comment": "",
-      "indices": [],
-      "color": "#175e7a"
+      ]
     },
     {
-      "id": "2x5xceuZHB6C1meY7wmRN",
-      "name": "tagToParticipant",
-      "x": -583.286972433824,
-      "y": 256.53188962246486,
-      "locked": false,
-      "fields": [
+      "name": "page4",
+      "title": {
+        "de": "Gesundheitsdaten"
+      },
+      "elements": [
         {
-          "name": "participantId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": true,
-          "unique": false,
-          "notNull": true,
-          "increment": false,
-          "comment": "",
-          "id": "FvoE_Ee3xkzYkHYye9O-X"
+          "type": "radiogroup",
+          "name": "nutrition",
+          "title": {
+            "de": "Ernährung "
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "0",
+              "text": {
+                "de": "normal"
+              }
+            },
+            {
+              "value": "1",
+              "text": {
+                "de": "vegitarisch"
+              }
+            },
+            {
+              "value": "2",
+              "text": {
+                "de": "vegan"
+              }
+            },
+            {
+              "value": "3",
+              "text": {
+                "de": "halal"
+              }
+            }
+          ],
+          "showOtherItem": true
         },
         {
-          "id": "eByJZjFf7PgUp_Nu0K4jg",
-          "name": "tagId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": true,
-          "unique": false,
-          "notNull": true,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        }
-      ],
-      "comment": "",
-      "indices": [],
-      "color": "#175e7a"
-    },
-    {
-      "id": "HOe2JOCba52nU0LxBNRSw",
-      "name": "tags",
-      "x": -936.6819736798691,
-      "y": 252.8406107863587,
-      "locked": false,
-      "fields": [
-        {
-          "name": "tagId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": true,
-          "unique": true,
-          "notNull": true,
-          "increment": true,
-          "comment": "",
-          "id": "WLYild6A_MbPLtUDLS8Pc"
-        },
-        {
-          "id": "vRIzqbuaPj0FUWHrTQdpj",
-          "name": "name",
-          "type": "TEXT",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": true,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        }
-      ],
-      "comment": "",
-      "indices": [],
-      "color": "#175e7a"
-    },
-    {
-      "id": "MOeXYEZohRy_9ebygsJQp",
-      "name": "discountCodes",
-      "x": -594.899163706588,
-      "y": 397.0188539901005,
-      "locked": true,
-      "fields": [
-        {
-          "name": "discountCodeId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": true,
-          "unique": true,
-          "notNull": true,
-          "increment": true,
-          "comment": "",
-          "id": "IPjaeWNdY_mIGlxfMet3h"
-        },
-        {
-          "id": "TDSOIUmtXf9YpbaGGq2Os",
-          "name": "name",
-          "type": "TEXT",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": true,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        }
-      ],
-      "comment": "",
-      "indices": [],
-      "color": "#175e7a"
-    },
-    {
-      "id": "AKGxp2ZeCel_FHINr8lGn",
-      "name": "shirtSizes",
-      "x": -588.3835851994781,
-      "y": 541.990475773293,
-      "locked": false,
-      "fields": [
-        {
-          "name": "shirtSizeId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": true,
-          "unique": true,
-          "notNull": true,
-          "increment": true,
-          "comment": "",
-          "id": "ZMJlB2BnMbmf6SiT0yvY6"
-        },
-        {
-          "id": "lo34OYU-OaCNin5hOKAQa",
-          "name": "name",
-          "type": "TEXT",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": true,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        }
-      ],
-      "comment": "",
-      "indices": [],
-      "color": "#175e7a"
-    },
-    {
-      "id": "rNwBAAm9mcLdBfkZH5oFk",
-      "name": "participantsPrivate",
-      "x": -159.30280109456885,
-      "y": 730.1110581583787,
-      "locked": false,
-      "fields": [
-        {
-          "name": "participantId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": true,
-          "unique": true,
-          "notNull": true,
-          "increment": true,
-          "comment": "",
-          "id": "RIyymXojvqtMlgSP0ebI8"
-        },
-        {
-          "id": "vMCNoF6tSl6c6qHQuquZV",
-          "name": "schoolTypeId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": true,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        },
-        {
-          "id": "uDGEkIKW525zeTlDy7j3x",
-          "name": "insuredBy",
-          "type": "TEXT",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        },
-        {
-          "id": "lDl4MZlhydrKhe7LPzXli",
-          "name": "specialInfos",
-          "type": "TEXT",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        },
-        {
-          "id": "Q9T-FD6Js_AtpqFvHVX0Y",
-          "name": "healthInfo",
-          "type": "TEXT",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        },
-        {
-          "id": "cSJ1YNehfR6jFl7UZ5Bwt",
-          "name": "doctor",
-          "type": "TEXT",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        },
-        {
-          "id": "EK6Ip61TougP92n3bnk6U",
+          "type": "text",
           "name": "intolerances",
-          "type": "TEXT",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
+          "title": {
+            "de": "Unverträglichkeiten "
+          }
         },
         {
-          "id": "5z2W5xW9xej7ZJ5nrpyCl",
+          "type": "boolean",
+          "name": "isHealthy",
+          "title": {
+            "de": "Ist der/die Jugendliche gesund und frei von ansteckenden Krankheiten"
+          },
+          "isRequired": true
+        },
+        {
+          "type": "boolean",
+          "name": "needsMedication",
+          "title": {
+            "de": "Muss der/die Jugendliche ständig Medikamente nehmen? * "
+          },
+          "isRequired": true
+        },
+        {
+          "type": "text",
+          "name": "healthInfo",
+          "title": {
+            "de": "Gesundheitsinfos und Informationen zu Medikamenten"
+          },
+          "requiredIf": "{needsMedication} = true"
+        },
+        {
+          "type": "text",
+          "name": "doctor",
+          "title": {
+            "de": "Zuständige(r) Arzt (Hausarzt) / Ärztin (Hausärztin) "
+          }
+        },
+        {
+          "type": "text",
           "name": "healthInsuranceName",
-          "type": "TEXT",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
+          "title": {
+            "de": "Wo ist der/die Jugendliche Krankenversichert (Krankenkasse) "
+          }
+        },
+        {
+          "type": "text",
+          "name": "insuredBy",
+          "title": {
+            "de": "Über wen ist der/die Jugendliche krankenversichert (Mutter/Vater) Name/Vorname/Geburtsdatum "
+          }
         }
-      ],
-      "comment": "",
-      "indices": [],
-      "color": "#175e7a"
+      ]
     },
     {
-      "id": "HabqdL8JudkK4_ucHoS8r",
-      "name": "nutritions",
-      "x": -930.1537713273717,
-      "y": 728.0313637336925,
-      "locked": false,
-      "fields": [
+      "name": "page5",
+      "title": {
+        "de": "Abschluss"
+      },
+      "elements": [
         {
-          "name": "nutritionId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": true,
-          "unique": true,
-          "notNull": true,
-          "increment": true,
-          "comment": "",
-          "id": "0g9uX8tZhRro9PEwtxvTN"
+          "type": "boolean",
+          "name": "picturesAllowed",
+          "title": {
+            "de": "Dürfen von der teilnehmenden Person während der Veranstaltung Foto- und Videoaufnahme gemacht werden?"
+          },
+          "description": {
+            "de": "Diese Aufnahmen können vom Veranstalter für Zwecke der Öffentlichkeitsarbeit (z. B. auf der Website, in sozialen Medien oder in Pressemitteilungen) genutzt werden.Genaueres in den Vertragsbedingungen. Diese finden sie hier: ferienfuerkinder.com/app…424"
+          },
+          "isRequired": true
         },
         {
-          "id": "YxJZ_YIdS9khLp1zqlCzF",
-          "name": "name",
-          "type": "TEXT",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": true,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
+          "type": "checkbox",
+          "name": "question1",
+          "title": {
+            "de": "Einwilligung"
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "Item 1",
+              "text": {
+                "de": "Hiermit bestätige ich, dass ich die allgemeinen Vertragsbedingungen und Datenschutzerklärung für unser Sommercamp 2025 gelesen, verstanden haben und damit einverstanden sind. Die Vertragsbedingungen finden sie hier: https://www.ferienfuerkinder.com/app/download/5582557375/avb+2025.pdf?t=1740231699 Diese Anmeldung wird erst mit dem Eingang der Anzahlung gültig."
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "specialInfos",
+          "title": {
+            "de": "Besondere Hinweise"
+          }
         }
-      ],
-      "comment": "",
-      "indices": [],
-      "color": "#175e7a"
-    },
-    {
-      "id": "BmDuSPbHnuGAdekav_mo4",
-      "name": "schoolTypes",
-      "x": -633.9926347492466,
-      "y": 843.3359817271197,
-      "locked": false,
-      "fields": [
-        {
-          "name": "schoolTypeId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": true,
-          "unique": true,
-          "notNull": true,
-          "increment": true,
-          "comment": "",
-          "id": "PhmNrL1n72cI9Qw26A6FO"
-        },
-        {
-          "id": "VQcB7d-4wbfOq9FFjTdvs",
-          "name": "name",
-          "type": "TEXT",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": true,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        }
-      ],
-      "comment": "",
-      "indices": [],
-      "color": "#175e7a"
-    },
-    {
-      "id": "nA55olDGIhkbs_Tbz0fx7",
-      "name": "staff",
-      "x": 296.1061971406727,
-      "y": -466.2952982019437,
-      "locked": false,
-      "fields": [
-        {
-          "name": "staffId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": true,
-          "unique": true,
-          "notNull": true,
-          "increment": true,
-          "comment": "",
-          "id": "dIRHerV5wQG-lbO5GQlip"
-        },
-        {
-          "id": "bCnuzb0QLusq9eqPPLYBG",
-          "name": "personId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": true,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        },
-        {
-          "id": "IFFlS2FG_1ZRAFgPp2UiM",
-          "name": "password",
-          "type": "TEXT",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        },
-        {
-          "id": "K6HSPVR6vnbQY6gj9zREh",
-          "name": "userName",
-          "type": "TEXT",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        }
-      ],
-      "comment": "",
-      "indices": [],
-      "color": "#175e7a"
-    },
-    {
-      "id": "NrDM8ZB5c8fS8oVth2_YF",
-      "name": "nutritionsToPrivate",
-      "x": -581.4872343352278,
-      "y": 692.1552989564743,
-      "locked": false,
-      "fields": [
-        {
-          "name": "nutritionId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": true,
-          "unique": true,
-          "notNull": true,
-          "increment": true,
-          "comment": "",
-          "id": "eqciS6So0UmajEe0ioczX"
-        },
-        {
-          "id": "cs_jnN_Gizm4J6a6ClmnG",
-          "name": "participantId",
-          "type": "INTEGER",
-          "default": "",
-          "check": "",
-          "primary": true,
-          "unique": false,
-          "notNull": true,
-          "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        }
-      ],
-      "comment": "",
-      "indices": [],
-      "color": "#175e7a"
+      ]
     }
   ],
-  "relationships": [
-    {
-      "startTableId": "CRHJZ36-GnXuhky0CCZnt",
-      "startFieldId": "xU1ak_6tk_G_esVVM6abU",
-      "endTableId": "SaiINUgzytBqjxDIcL4k3",
-      "endFieldId": "n-rXOfPL-CG3L-77op_2I",
-      "cardinality": "many_to_one",
-      "updateConstraint": "Cascade",
-      "deleteConstraint": "Restrict",
-      "name": "fk_person_genderId_genders",
-      "id": "vcrRZ_qNmXOtgzjAMawTd"
-    },
-    {
-      "startTableId": "pE222eck9HWy8GMfxz6Vg",
-      "startFieldId": "_vtXCS0Uj0hT3xNQ2RUYp",
-      "endTableId": "RmT2f7jOImZnmYF2PaEf6",
-      "endFieldId": "qImYos1rQF9M5rYrY63or",
-      "cardinality": "many_to_one",
-      "updateConstraint": "Cascade",
-      "deleteConstraint": "Restrict",
-      "name": "fk_contactInfo_contactInfoTypeId_contactInfoTypes",
-      "id": "NqWps4MWwqnTnJAUwUCo2"
-    },
-    {
-      "startTableId": "A3NLHWqbs5TFqTXcW_CKU",
-      "startFieldId": "czPags8-d-7j9vvJytEXQ",
-      "endTableId": "tzmKwR0Hz49b0rkeRdW_K",
-      "endFieldId": "s8qcVnoeAHJyqLkRMHfeE",
-      "cardinality": "many_to_one",
-      "updateConstraint": "Cascade",
-      "deleteConstraint": "Restrict",
-      "name": "fk_presences_dayId_days",
-      "id": "kaxRORXh690fYNwQzpbc9"
-    },
-    {
-      "startTableId": "A3NLHWqbs5TFqTXcW_CKU",
-      "startFieldId": "cUb7c54DzEQ39oOr__Ifn",
-      "endTableId": "CRHJZ36-GnXuhky0CCZnt",
-      "endFieldId": "OWJ4lWsOXyPjVm0DoUwY1",
-      "cardinality": "many_to_one",
-      "updateConstraint": "Cascade",
-      "deleteConstraint": "Cascade",
-      "name": "fk_presences_personID_person",
-      "id": "38Dd7tZTl6VtDIUaQDqKJ",
-      "manyLabel": ""
-    },
-    {
-      "startTableId": "GsFOnTajzhpxmmNv2bqAc",
-      "startFieldId": "g9yOXb5QITzeg350eA6_T",
-      "endTableId": "CRHJZ36-GnXuhky0CCZnt",
-      "endFieldId": "OWJ4lWsOXyPjVm0DoUwY1",
-      "cardinality": "one_to_one",
-      "updateConstraint": "Cascade",
-      "deleteConstraint": "Restrict",
-      "name": "fk_participants_personID_person",
-      "id": "Rh5lLDtGNduOW4f3mlAV_"
-    },
-    {
-      "startTableId": "2x5xceuZHB6C1meY7wmRN",
-      "startFieldId": "FvoE_Ee3xkzYkHYye9O-X",
-      "endTableId": "GsFOnTajzhpxmmNv2bqAc",
-      "endFieldId": "gs5Kq1MWjEND8bMX-zQCY",
-      "cardinality": "many_to_one",
-      "updateConstraint": "Cascade",
-      "deleteConstraint": "Cascade",
-      "name": "fk_permissionToParticipant_participantid_participants",
-      "id": "_qEImdPR-eYZb0QMYSiQR"
-    },
-    {
-      "startTableId": "2x5xceuZHB6C1meY7wmRN",
-      "startFieldId": "eByJZjFf7PgUp_Nu0K4jg",
-      "endTableId": "HOe2JOCba52nU0LxBNRSw",
-      "endFieldId": "WLYild6A_MbPLtUDLS8Pc",
-      "cardinality": "many_to_one",
-      "updateConstraint": "Cascade",
-      "deleteConstraint": "Restrict",
-      "name": "fk_permissionToParticipant_permissionId_permissions",
-      "id": "h-DcjGDax8rDXHnKgJhZ-"
-    },
-    {
-      "startTableId": "GsFOnTajzhpxmmNv2bqAc",
-      "startFieldId": "8pRMIKq3GCCEvi265QRmC",
-      "endTableId": "MOeXYEZohRy_9ebygsJQp",
-      "endFieldId": "IPjaeWNdY_mIGlxfMet3h",
-      "cardinality": "many_to_one",
-      "updateConstraint": "Cascade",
-      "deleteConstraint": "Restrict",
-      "name": "fk_participants_discountCodeId_discountCodes",
-      "id": "nLw51DdTmhnd62D9pGUnT"
-    },
-    {
-      "startTableId": "GsFOnTajzhpxmmNv2bqAc",
-      "startFieldId": "P28ug3kOIRW9A5gfov6SE",
-      "endTableId": "AKGxp2ZeCel_FHINr8lGn",
-      "endFieldId": "ZMJlB2BnMbmf6SiT0yvY6",
-      "cardinality": "many_to_one",
-      "updateConstraint": "Cascade",
-      "deleteConstraint": "Restrict",
-      "name": "fk_participants_shirtSizeId_shirtSizes",
-      "id": "x82Xqh5RX7doPdemIzPxQ"
-    },
-    {
-      "startTableId": "rNwBAAm9mcLdBfkZH5oFk",
-      "startFieldId": "RIyymXojvqtMlgSP0ebI8",
-      "endTableId": "GsFOnTajzhpxmmNv2bqAc",
-      "endFieldId": "gs5Kq1MWjEND8bMX-zQCY",
-      "cardinality": "one_to_one",
-      "updateConstraint": "Cascade",
-      "deleteConstraint": "Restrict",
-      "name": "fk_participantsPrivate_participantId_participants",
-      "id": "ozNGB2rxRVOuANIDTjPke"
-    },
-    {
-      "startTableId": "rNwBAAm9mcLdBfkZH5oFk",
-      "startFieldId": "vMCNoF6tSl6c6qHQuquZV",
-      "endTableId": "BmDuSPbHnuGAdekav_mo4",
-      "endFieldId": "PhmNrL1n72cI9Qw26A6FO",
-      "cardinality": "many_to_one",
-      "updateConstraint": "Cascade",
-      "deleteConstraint": "Restrict",
-      "name": "fk_participantsPrivate_schoolTypeId_schoolTypes",
-      "id": "-2ujsgXQPatQhcyLQuMQf"
-    },
-    {
-      "startTableId": "nA55olDGIhkbs_Tbz0fx7",
-      "startFieldId": "bCnuzb0QLusq9eqPPLYBG",
-      "endTableId": "CRHJZ36-GnXuhky0CCZnt",
-      "endFieldId": "OWJ4lWsOXyPjVm0DoUwY1",
-      "cardinality": "one_to_one",
-      "updateConstraint": "Cascade",
-      "deleteConstraint": "Restrict",
-      "name": "fk_staff_personId_person",
-      "id": "vilCBvVYOXXyw9v2UDPkD"
-    },
-    {
-      "startTableId": "pE222eck9HWy8GMfxz6Vg",
-      "startFieldId": "ZEAmYXw5Y1tfouyogn7ld",
-      "endTableId": "CRHJZ36-GnXuhky0CCZnt",
-      "endFieldId": "OWJ4lWsOXyPjVm0DoUwY1",
-      "cardinality": "many_to_one",
-      "updateConstraint": "Cascade",
-      "deleteConstraint": "Cascade",
-      "name": "fk_contactInfo_personID_person",
-      "id": "XCHGrFURAiku0hw72liOR"
-    },
-    {
-      "startTableId": "ORsEWh0l2SUMZDtLTOtsX",
-      "startFieldId": "X70BkvFUSOdk1tCgdG5LL",
-      "endTableId": "CRHJZ36-GnXuhky0CCZnt",
-      "endFieldId": "OWJ4lWsOXyPjVm0DoUwY1",
-      "cardinality": "many_to_one",
-      "updateConstraint": "Cascade",
-      "deleteConstraint": "Cascade",
-      "name": "fk_addresses_personId_person",
-      "id": "wj74m1IWg3esKTq3iQgJv"
-    },
-    {
-      "startTableId": "NrDM8ZB5c8fS8oVth2_YF",
-      "startFieldId": "cs_jnN_Gizm4J6a6ClmnG",
-      "endTableId": "rNwBAAm9mcLdBfkZH5oFk",
-      "endFieldId": "RIyymXojvqtMlgSP0ebI8",
-      "cardinality": "many_to_one",
-      "updateConstraint": "Cascade",
-      "deleteConstraint": "Cascade",
-      "name": "fk_nutritionsToPrivate_participantId_participantsPrivate",
-      "id": "WegzgeWIsfZp_0MLjLMfj"
-    },
-    {
-      "startTableId": "NrDM8ZB5c8fS8oVth2_YF",
-      "startFieldId": "eqciS6So0UmajEe0ioczX",
-      "endTableId": "HabqdL8JudkK4_ucHoS8r",
-      "endFieldId": "0g9uX8tZhRro9PEwtxvTN",
-      "cardinality": "many_to_one",
-      "updateConstraint": "Cascade",
-      "deleteConstraint": "Restrict",
-      "name": "fk_nutritionsToPrivate_nutritionId_nutritions",
-      "id": "kADYo4M94LE-53qCiRNnq"
-    }
-  ],
-  "notes": [
-    {
-      "id": 0,
-      "x": 519.2647610091823,
-      "y": -383.24151731330323,
-      "title": "Hier fehlt noch viel",
-      "content": "",
-      "locked": false,
-      "color": "#fcf7ac",
-      "height": 66,
-      "width": 180
-    }
-  ],
-  "subjectAreas": [
-    {
-      "id": 0,
-      "name": "Person",
-      "x": -1439.89081234288,
-      "y": -582.7378435659755,
-      "width": 1547.2357167330845,
-      "height": 797.629587202729,
-      "color": "#7a5417",
-      "locked": false
-    },
-    {
-      "id": 1,
-      "name": "Participant",
-      "x": -1431.3046849974312,
-      "y": 225.49878332713286,
-      "width": 1543.4644184484378,
-      "height": 921.2002014817699,
-      "color": "#7a176f",
-      "locked": false
-    },
-    {
-      "id": 2,
-      "name": "Staff",
-      "x": 194.47730251389538,
-      "y": -563.0375089483889,
-      "width": 631.8340956428349,
-      "height": 379.3554284923314,
-      "color": "#237a17",
-      "locked": false
-    },
-    {
-      "id": 3,
-      "name": "Taschngeld",
-      "x": 194.47730251389555,
-      "y": -162.3294307611381,
-      "width": 633.4629902696123,
-      "height": 550.3893643039628,
-      "color": "#175e7a",
-      "locked": false
-    }
-  ],
-  "database": "postgresql",
-  "types": [],
-  "enums": [],
-  "title": "Rumpf"
+  "showCompletePage": false,
+  "showProgressBar": true,
+  "progressBarLocation": "topbottom",
+  "progressBarType": "requiredQuestions",
+  "completeText": {
+    "de": "Verbindlich Anmelden"
+  },
+  "headerView": "advanced"
 }
