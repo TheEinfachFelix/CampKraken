@@ -28,7 +28,7 @@ namespace AusguckBackend.Services
             {
                 throw new ArgumentException("Input data verification failed: " + verificationResult);
             }
-            //InsertParticipant(data);
+            InsertParticipant(data);
 
             return Task.CompletedTask;
         }
