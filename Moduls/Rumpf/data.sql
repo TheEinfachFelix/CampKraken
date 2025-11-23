@@ -17,6 +17,7 @@ INSERT INTO "tags" ("tagId", "name") VALUES (3, 'picturesAllowed') ON CONFLICT O
 INSERT INTO "tags" ("tagId", "name") VALUES (4, 'isHealthy') ON CONFLICT ON CONSTRAINT "tags_pkey" DO UPDATE SET "name" = EXCLUDED."name";
 INSERT INTO "tags" ("tagId", "name") VALUES (5, 'hasLiabilityInsurance') ON CONFLICT ON CONSTRAINT "tags_pkey" DO UPDATE SET "name" = EXCLUDED."name";
 INSERT INTO "tags" ("tagId", "name") VALUES (6, 'needsMeds') ON CONFLICT ON CONSTRAINT "tags_pkey" DO UPDATE SET "name" = EXCLUDED."name";
+INSERT INTO "tags" ("tagId", "name") VALUES (7, 'supervised') ON CONFLICT ON CONSTRAINT "tags_pkey" DO UPDATE SET "name" = EXCLUDED."name";
 
 -- Discount Codes
 INSERT INTO "discountCodes" ("discountCodeId", "name") VALUES (0, 'none')              ON CONFLICT ON CONSTRAINT "discountCodes_pkey" DO UPDATE SET "name" = EXCLUDED."name";
