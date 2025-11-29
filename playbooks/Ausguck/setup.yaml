@@ -1,12 +1,13 @@
 ---
 - name: Deploy einfachfelix stack
-  hosts: camp
+  hosts: nodes
   gather_facts: false
   vars_files:
     - vars.yaml
   become: true
   roles:
     - common
+    - ssh
     - docker
     - dockerComposeV2
 

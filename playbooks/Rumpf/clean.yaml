@@ -1,8 +1,11 @@
 ---
 - name: Remove Database
-  hosts: camp
+  hosts: nodes
   vars_files:
     - vars.yaml
+  roles:
+    - common
+    - ssh
   tasks:
     - name: Init DB
       ansible.builtin.import_role:
