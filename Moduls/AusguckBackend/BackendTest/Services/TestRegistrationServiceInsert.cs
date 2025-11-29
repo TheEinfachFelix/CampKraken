@@ -2,6 +2,7 @@
 using AusguckBackend.Services;
 using BackendTest.Data;
 using BackendTest.Models;
+using DotNetEnv;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,14 @@ namespace BackendTest.Services
 {
     public class TestRegistrationServiceInsert
     {
+        [SetUp]
+        public void Init() 
+        {
+            Env.Load("C:\\Git\\CampKraken\\Moduls\\AusguckBackend\\backend.env");
+
+        }
+
+
         RegistrationService RegistrationService = new RegistrationService();
         private RumpfDbContext _context;
 

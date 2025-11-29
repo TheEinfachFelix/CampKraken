@@ -1,4 +1,8 @@
 using AusguckBackend.Services;
+using DotNetEnv;
+
+Env.Load("\"C:\\Git\\CampKraken\\Moduls\\AusguckBackend\\backend.env\"");
+
 
 var builder = WebApplication.CreateBuilder(args);
 
