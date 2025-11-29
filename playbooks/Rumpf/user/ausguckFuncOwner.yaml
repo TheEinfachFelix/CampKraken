@@ -17,7 +17,7 @@
 - name: Rechte auf Tabellen vergeben
   community.postgresql.postgresql_privs:
     type: table
-    objs: person,addresses,contactInfo,participants,participantsPrivate,nutritionsToPrivate,presences,tagToParticipant
+    objs: person,addresses,contactInfo,participants,participantsPrivate,nutritionsToPrivate,presences,tagToParticipant,nutritions
     roles: "{{ user_ausguck_func_owner_name }}"
     privs: INSERT
     schema: public
@@ -31,7 +31,7 @@
 - name: Rechte auf Tabellen vergeben
   community.postgresql.postgresql_privs:
     type: table
-    objs: days,tags,person,participants
+    objs: days,tags,person,participants,nutritions,nutritionsToPrivate,presences,tagToParticipant
     roles: "{{ user_ausguck_func_owner_name }}"
     privs: SELECT
     schema: public

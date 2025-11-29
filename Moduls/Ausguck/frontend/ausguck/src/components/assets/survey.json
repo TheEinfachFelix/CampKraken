@@ -148,7 +148,13 @@
               }
             }
           ],
-          "panelCount": 1
+          "panelCount": 1,
+          "addPanelText": {
+            "de": "Weitere Kontakte hinzufügen"
+          },
+          "removePanelText": {
+            "de": "Kontakt entfernen"
+          }
         }
       ]
     },
@@ -305,19 +311,19 @@
           "isRequired": true,
           "choices": [
             {
-              "value": "Item 1",
+              "value": "alone",
               "text": {
                 "de": "...alleine das Lager verlassen."
               }
             },
             {
-              "value": "Item 2",
+              "value": "Small group",
               "text": {
                 "de": "...in kleinen Gruppen, ohne Betreuer, das Lager verlassen."
               }
             },
             {
-              "value": "Item 3",
+              "value": "supervised",
               "text": {
                 "de": "...nur mit Betreuer das Lager verlassen."
               }
@@ -437,7 +443,7 @@
       },
       "elements": [
         {
-          "type": "radiogroup",
+          "type": "checkbox",
           "name": "nutrition",
           "title": {
             "de": "Ernährung "
