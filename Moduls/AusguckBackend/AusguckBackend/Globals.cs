@@ -21,8 +21,8 @@
             "supervised"
         };
 
-        public static readonly string ConnectionString = "Host=192.168.178.143;Database=Rumpf;Username=AusguckInserter;Password=Geheim";
-        public static readonly string TestConnectionString = "Host=192.168.178.143;Database=Rumpf;Username=AusguckTester;Password=dsafadsfef25ojnkoajn9oiujbasounsaejlkwsxx";
+        public static readonly string ConnectionString = Environment.GetEnvironmentVariable("DB_Ausguck_Inserter_ConnectionString") ?? string.Empty;
+        public static readonly string TestConnectionString = Environment.GetEnvironmentVariable("DB_Ausguck_Tester_ConnectionString") ?? string.Empty;
         public static readonly int NotCheckedDiscountCodeId = 999;
 
     }
