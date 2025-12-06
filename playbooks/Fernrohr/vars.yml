@@ -1,0 +1,5 @@
+---
+
+source_path: "/home/ansible/myAnsible/submoduls/CampKraken/Moduls/Fernrohr/"
+dest_path: "/opt/Fernrohr/"
+compose_file: "docker-compose.yml"

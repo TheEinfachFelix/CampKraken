@@ -1,0 +1,51 @@
+---
+- name: Deploy Docker Compose Application
+  hosts: monitoring
+  roles:
+  - common
+  - ssh
+  - docker
+  - dockerComposeV2
+  vars_files:
+    - vars.yml
+
+
+  tasks:
+    - name: Stop and remove existing Docker Compose project
+      ansible.builtin.command:
+        cmd: docker compose -f "{{ dest_path }}{{ compose_file }}" down --remove-orphans
+        chdir: "{{ dest_path }}"
+      ignore_errors: yes
+      become: yes
+
+    - name: Delete content & directory
+      ansible.builtin.file:
+        state: absent
+        path: "{{ dest_path }}"
+      become: true
+
+
+    - name: Copy application files to the server
+      ansible.builtin.copy:
+        src: "{{ source_path }}"
+        dest: "{{ dest_path }}"
+        owner: root
+        group: root
+        mode: '0755'
+        remote_src: no
+      become: true
+
+    - name: Deploy Alertmanager config from template
+      ansible.builtin.template:
+        src: "{{ source_path }}alertmanager/config.yml.j2"
+        dest: "{{ dest_path }}alertmanager/config.yml"
+        owner: root
+        group: root
+        mode: "0644"
+      become: true
+
+    - name: Restart Docker Compose
+      ansible.builtin.command:
+        cmd: docker compose -f "{{ dest_path }}{{ compose_file }}" up -d --remove-orphans
+        chdir: "{{ dest_path }}"
+      become: yes
