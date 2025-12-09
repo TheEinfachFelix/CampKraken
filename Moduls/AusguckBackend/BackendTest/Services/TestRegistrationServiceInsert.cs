@@ -29,8 +29,8 @@ namespace BackendTest.Services
 
         [SetUp]
         public void Setup()
-        { 
-            _context = new RumpfDbContext();
+        {
+            _context = new();
         }
 
         [TearDown]

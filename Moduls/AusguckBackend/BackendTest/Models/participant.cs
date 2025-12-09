@@ -33,6 +33,8 @@ public partial class participant
     [Column(TypeName = "timestamp without time zone")]
     public DateTime? cancelationDate { get; set; }
 
+    public string? participantSrc { get; set; }
+
     [ForeignKey("discountCodeId")]
     [InverseProperty("participants")]
     public virtual discountCode discountCode { get; set; } = null!;

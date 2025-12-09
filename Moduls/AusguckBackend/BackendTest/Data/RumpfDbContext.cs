@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using AusguckBackend;
 using BackendTest.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -31,8 +30,6 @@ public partial class RumpfDbContext : DbContext
 
     public virtual DbSet<nutrition> nutritions { get; set; }
 
-    public virtual DbSet<nutritionsToPrivate> nutritionsToPrivates { get; set; }
-
     public virtual DbSet<participant> participants { get; set; }
 
     public virtual DbSet<participantsPrivate> participantsPrivates { get; set; }
@@ -48,7 +45,8 @@ public partial class RumpfDbContext : DbContext
     public virtual DbSet<tag> tags { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseNpgsql(Globals.TestConnectionString);
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseNpgsql("Host=192.168.178.143;Database=Rumpf;Username=AusguckTester;Password=dsafadsfef25ojnkoajn9oiujbasounsaejlkwsxx");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -93,19 +91,22 @@ public partial class RumpfDbContext : DbContext
         modelBuilder.Entity<nutrition>(entity =>
         {
             entity.HasKey(e => e.nutritionId).HasName("nutritions_pkey");
-        });
 
-        modelBuilder.Entity<nutritionsToPrivate>(entity =>
-        {
-            entity.HasKey(e => new { e.nutritionId, e.participantId }).HasName("nutritionsToPrivate_pkey");
-
-            entity.Property(e => e.nutritionId).ValueGeneratedOnAdd();
-
-            entity.HasOne(d => d.nutrition).WithOne(p => p.nutritionsToPrivate)
-                .OnDelete(DeleteBehavior.Restrict)
-                .HasConstraintName("nutritionstoprivate_nutritionid_nutritions_nutritionid_fkey");
-
-            entity.HasOne(d => d.participant).WithMany(p => p.nutritionsToPrivates).HasConstraintName("nutritionstoprivate_participantid_participantsprivate_participa");
+            entity.HasMany(d => d.participants).WithMany(p => p.nutritions)
+                .UsingEntity<Dictionary<string, object>>(
+                    "nutritionsToPrivate",
+                    r => r.HasOne<participantsPrivate>().WithMany()
+                        .HasForeignKey("participantId")
+                        .HasConstraintName("nutritionstoprivate_participantid_participantsprivate_participa"),
+                    l => l.HasOne<nutrition>().WithMany()
+                        .HasForeignKey("nutritionId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasConstraintName("nutritionstoprivate_nutritionid_nutritions_nutritionid_fkey"),
+                    j =>
+                    {
+                        j.HasKey("nutritionId", "participantId").HasName("nutritionsToPrivate_pkey");
+                        j.ToTable("nutritionsToPrivate");
+                    });
         });
 
         modelBuilder.Entity<participant>(entity =>
@@ -147,7 +148,7 @@ public partial class RumpfDbContext : DbContext
         {
             entity.HasKey(e => e.participantId).HasName("participantsPrivate_pkey");
 
-            entity.Property(e => e.participantId).ValueGeneratedOnAdd();
+            entity.Property(e => e.participantId).ValueGeneratedNever();
 
             entity.HasOne(d => d.participant).WithOne(p => p.participantsPrivate)
                 .OnDelete(DeleteBehavior.Restrict)
