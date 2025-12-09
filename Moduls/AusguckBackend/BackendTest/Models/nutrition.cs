@@ -13,6 +13,7 @@ public partial class nutrition
 
     public string name { get; set; } = null!;
 
-    [InverseProperty("nutrition")]
-    public virtual nutritionsToPrivate? nutritionsToPrivate { get; set; }
+    [ForeignKey("nutritionId")]
+    [InverseProperty("nutritions")]
+    public virtual ICollection<participantsPrivate> participants { get; set; } = new List<participantsPrivate>();
 }

@@ -48,6 +48,7 @@ namespace AusguckBackend.Models
         public bool? picturesAllowed { get; set; }
         public List<string>? question1 { get; set; }
         public string? specialInfos { get; set; }
+        public string? participantSrc { get; set; }
     }
 }
 

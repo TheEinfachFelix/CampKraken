@@ -26,9 +26,6 @@ public partial class participantsPrivate
 
     public string? healthInsuranceName { get; set; }
 
-    [InverseProperty("participant")]
-    public virtual ICollection<nutritionsToPrivate> nutritionsToPrivates { get; set; } = new List<nutritionsToPrivate>();
-
     [ForeignKey("participantId")]
     [InverseProperty("participantsPrivate")]
     public virtual participant participant { get; set; } = null!;
@@ -36,4 +33,8 @@ public partial class participantsPrivate
     [ForeignKey("schoolTypeId")]
     [InverseProperty("participantsPrivates")]
     public virtual schoolType schoolType { get; set; } = null!;
+
+    [ForeignKey("participantId")]
+    [InverseProperty("participants")]
+    public virtual ICollection<nutrition> nutritions { get; set; } = new List<nutrition>();
 }
