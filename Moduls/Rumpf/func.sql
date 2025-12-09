@@ -36,7 +36,7 @@ BEGIN
     -- -------------------------------------------------------------------
     -- 3️⃣ Participant einfügen
     -- -------------------------------------------------------------------
-    INSERT INTO "participants" ("personId", "discountCodeId", "userDiscountCode", "shirtSizeId", "selectedSlot")
+    INSERT INTO "participants" ("personId", "discountCodeId", "userDiscountCode", "shirtSizeId", "selectedSlot", "participantSrc")
     VALUES (
         pid,
         999, -- discount_fixed
@@ -46,7 +46,8 @@ BEGIN
             WHEN (_data->>'start-date' IS NOT NULL) AND (_data->>'end-date' IS NOT NULL)
             THEN CONCAT(COALESCE(_data->>'selectedSlot',''), '$', COALESCE(_data->>'start-date',''), '$', COALESCE(_data->>'end-date',''))
             ELSE COALESCE(_data->>'selectedSlot','')
-        END
+        END,
+        NULLIF(_data->>'participantSrc','')
     )
     RETURNING "participantId" INTO partid;
 

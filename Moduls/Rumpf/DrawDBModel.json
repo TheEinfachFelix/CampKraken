@@ -551,6 +551,20 @@
           "comment": "",
           "size": "",
           "values": []
+        },
+        {
+          "id": "mTautJky0k9xAIsbDrW4G",
+          "name": "participantSrc",
+          "type": "TEXT",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "size": "",
+          "values": []
         }
       ],
       "comment": "",
