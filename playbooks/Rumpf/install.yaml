@@ -1,11 +1,12 @@
 ---
 - name: Setup DB
-  hosts: camp
+  hosts: nodes
   gather_facts: false
   vars_files:
     - vars.yaml
   roles:
     - common
+    - ssh
   tasks:
     - name: Install DB
       ansible.builtin.import_role:

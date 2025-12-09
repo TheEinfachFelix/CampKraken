@@ -1,12 +1,13 @@
 ---
 - name: Deploy einfachfelix stack
-  hosts: camp
+  hosts: nodes
   gather_facts: false
   vars_files:
     - vars.yaml
   become: true
   roles:
     - common
+    - ssh
     - docker
     - dockerComposeV2
 
@@ -62,8 +63,8 @@
         group: root
         mode: "0700"
 
-    - name: Start Docker Compose stack
-      community.docker.docker_compose_v2:
-        project_src: "{{ project_dir }}"
-        state: present
-        build: always
+#    - name: Start Docker Compose stack
+#      community.docker.docker_compose_v2:
+#        project_src: "{{ project_dir }}"
+#        state: present
+#        build: always

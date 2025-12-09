@@ -55,8 +55,8 @@ services:
       - "traefik.http.routers.backend.middlewares=backend-strip"
     networks:
       - web
-    environment:
-      - ASPNETCORE_URLS=http://+:8080
+    env_file:
+    - ./backend.env
     restart: unless-stopped
 
 networks:
