@@ -35,6 +35,15 @@
         remote_src: no
       become: true
 
+    - name: Deploy Prometheus config from template
+      ansible.builtin.template:
+        src: "{{ source_path }}prometheus/prometheus.yml.j2"
+        dest: "{{ dest_path }}prometheus/prometheus.yml"
+        owner: root
+        group: root
+        mode: "0644"
+      become: true
+
     - name: Deploy Alertmanager config from template
       ansible.builtin.template:
         src: "{{ source_path }}alertmanager/config.yml.j2"

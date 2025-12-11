@@ -394,6 +394,9 @@
               "title": {
                 "de": "Wunschzeitraum von"
               },
+              "description": {
+                "de": "Mindestens ab dem 19.07.2026"
+              },
               "isRequired": true,
               "inputType": "date",
               "min": "2026-07-19",
@@ -404,6 +407,9 @@
               "name": "end-date",
               "title": {
                 "de": "Wunschzeitraum bis"
+              },
+              "description": {
+                "de": "Maximal bis zum 15.08.2026"
               },
               "isRequired": true,
               "inputType": "date",
