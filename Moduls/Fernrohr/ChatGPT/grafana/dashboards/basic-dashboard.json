@@ -1,0 +1,79 @@
+{
+"annotations": {
+"list": [
+{
+"builtIn": 1,
+"datasource": "-- Grafana --",
+"enable": true,
+"hide": true,
+"iconColor": "rgba(0, 211, 255, 1)",
+"name": "Annotations & Alerts",
+"type": "dashboard"
+}
+]
+},
+"panels": [
+{
+"type": "graph",
+"title": "CPU Usage",
+"targets": [
+{
+"expr": "100 - (avg by (instance) (irate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
+"legendFormat": "{{instance}}",
+"refId": "A"
+}
+],
+"gridPos": {"x":0,"y":0,"w":12,"h":6}
+},
+{
+"type": "graph",
+"title": "Memory Usage",
+"targets": [
+{
+"expr": "(node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100",
+"legendFormat": "{{instance}}",
+"refId": "B"
+}
+],
+"gridPos": {"x":12,"y":0,"w":12,"h":6}
+},
+{
+"type": "graph",
+"title": "Docker Container Restarts",
+"targets": [
+{
+"expr": "rate(container_start_time_seconds[5m])",
+"legendFormat": "{{container}}",
+"refId": "C"
+}
+],
+"gridPos": {"x":0,"y":6,"w":12,"h":6}
+},
+{
+"type": "graph",
+"title": "Nginx 5xx Errors",
+"targets": [
+{
+"expr": "sum(rate(nginx_http_requests_total{status=~\"5..\"}[1m])) by (instance)",
+"legendFormat": "{{instance}}",
+"refId": "D"
+}
+],
+"gridPos": {"x":12,"y":6,"w":12,"h":6}
+},
+{
+"type": "logs",
+"title": "Nginx Access Logs",
+"targets": [
+{
+"expr": "{job=\"nginx_access\"}",
+"refId": "E"
+}
+],
+"gridPos": {"x":0,"y":12,"w":24,"h":6}
+}
+],
+"schemaVersion": 30,
+"title": "Basic Monitoring Dashboard",
+"version": 1
+}

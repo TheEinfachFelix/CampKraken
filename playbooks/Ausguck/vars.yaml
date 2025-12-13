@@ -2,3 +2,4 @@ project_dir: /opt/einfachfelix/ausguck
 
 frontend_dir: /home/ansible/myAnsible/submoduls/CampKraken/Moduls/Ausguck/frontend/ausguck
 backend_dir: /home/ansible/myAnsible/submoduls/CampKraken/Moduls/AusguckBackend
+

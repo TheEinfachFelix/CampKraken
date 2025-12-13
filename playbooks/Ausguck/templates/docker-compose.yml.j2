@@ -11,7 +11,7 @@ services:
       - "--entrypoints.websecure.address=:443"
       - "--certificatesresolvers.letsencrypt.acme.httpchallenge=true"
       - "--certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=web"
-      - "--certificatesresolvers.letsencrypt.acme.email=admin@einfachfelix.ydns.eu"
+      - "--certificatesresolvers.letsencrypt.acme.email={{ app_tls_email }}"
       - "--certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json"
       - "--api.dashboard=true"
     ports:
@@ -30,7 +30,7 @@ services:
     container_name: frontend
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.frontend.rule=Host(`einfachfelix.ydns.eu`)"
+      - "traefik.http.routers.frontend.rule=Host(`{{ app_host }}`)"
       - "traefik.http.routers.frontend.entrypoints=websecure"
       - "traefik.http.routers.frontend.tls.certresolver=letsencrypt"
       - "traefik.http.services.frontend.loadbalancer.server.port=80"
@@ -47,16 +47,19 @@ services:
     container_name: backend
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.backend.rule=Host(`einfachfelix.ydns.eu`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.backend.rule=Host(`{{ app_host }}`) && PathPrefix(`/api`)"
       - "traefik.http.routers.backend.entrypoints=websecure"
       - "traefik.http.routers.backend.tls.certresolver=letsencrypt"
       - "traefik.http.services.backend.loadbalancer.server.port=8080"
+
       - "traefik.http.middlewares.backend-strip.stripprefix.prefixes=/api"
-      - "traefik.http.routers.backend.middlewares=backend-strip"
+      - "traefik.http.middlewares.backend-ratelimit.ratelimit.average=1"
+
+      - "traefik.http.routers.backend.middlewares=backend-strip,backend-ratelimit"
     networks:
       - web
     env_file:
-    - ./backend.env
+    - ./backend/backend.env
     restart: unless-stopped
 
 networks:

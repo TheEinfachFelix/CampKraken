@@ -82,6 +82,7 @@ CREATE TABLE IF NOT EXISTS "participants" (
 	"confirmationDate" TIMESTAMP,
 	"reminderDate" TIMESTAMP,
 	"cancelationDate" TIMESTAMP,
+	"participantSrc" TEXT,
 	PRIMARY KEY("participantId")
 );
 

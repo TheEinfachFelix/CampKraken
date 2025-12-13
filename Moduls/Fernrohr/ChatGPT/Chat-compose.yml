@@ -1,0 +1,168 @@
+version: '3.8'
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+    - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    - ./prometheus/rules.yml:/etc/prometheus/rules.yml:ro
+    command:
+    - '--config.file=/etc/prometheus/prometheus.yml'
+    - '--storage.tsdb.path=/prometheus'
+    - '--web.enable-lifecycle'
+    ports:
+    - 9090:9090
+    networks:
+    - monitoring
+    restart: unless-stopped
+
+
+  alertmanager:
+    image: prom/alertmanager:latest
+    container_name: alertmanager
+    volumes:
+    - ./alertmanager/config.yml:/etc/alertmanager/config.yml:ro
+    command:
+    - '--config.file=/etc/alertmanager/config.yml'
+    ports:
+    - 9093:9093
+    networks:
+    - monitoring
+    restart: unless-stopped
+
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    environment:
+    - GF_SECURITY_ADMIN_USER=${GF_SECURITY_ADMIN_USER}
+    - GF_SECURITY_ADMIN_PASSWORD=${GF_SECURITY_ADMIN_PASSWORD}
+    - TZ=${TZ}
+    volumes:
+    - grafana-storage:/var/lib/grafana
+    - ./grafana/provisioning:/etc/grafana/provisioning:ro
+    - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
+    ports:
+    - 3000:3000
+    depends_on:
+    - prometheus
+    - loki
+    networks:
+    - monitoring
+    restart: unless-stopped
+
+
+  loki:
+    image: grafana/loki:2.9.1
+    container_name: loki
+    volumes:
+    - ./loki/loki-config.yaml:/etc/loki/local-config.yaml:ro
+    command: -config.file=/etc/loki/local-config.yaml
+    ports:
+    - 3100:3100
+    networks:
+    - monitoring
+    restart: unless-stopped
+
+
+  promtail:
+    image: grafana/promtail:2.9.1
+    container_name: promtail
+    volumes:
+    - /var/log:/var/log:ro
+    - /var/lib/docker/containers:/var/lib/docker/containers:ro
+    - ./promtail/promtail-config.yaml:/etc/promtail/promtail-config.yaml:ro
+    command: -config.file=/etc/promtail/promtail-config.yaml
+    networks:
+    - monitoring
+    restart: unless-stopped
+
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: node-exporter
+    pid: "host"
+    network_mode: "host"
+    restart: unless-stopped
+
+
+
+  blackbox-exporter:
+    image: prom/blackbox-exporter:latest
+    container_name: blackbox-exporter
+    ports:
+    - 9115:9115
+    networks:
+    - monitoring
+    restart: unless-stopped
+
+
+  uptime-kuma:
+    image: louislam/uptime-kuma:1
+    container_name: uptime-kuma
+    volumes:
+    - ./uptime-kuma/data:/app/data
+    ports:
+    - 3001:3001
+    networks:
+    - monitoring
+    restart: unless-stopped
+
+
+  crowdsec:
+    image: crowdsecurity/crowdsec:latest
+    container_name: crowdsec
+    volumes:
+    - /var/log:/var/log:ro
+    - ./crowdsec/crowdsec.yaml:/etc/crowdsec/config.yaml:ro
+    - crowdsec-data:/var/lib/crowdsec/data
+    - ./crowdsec/acquis.yaml:/etc/crowdsec/acquis.yaml:ro
+    networks:
+    - monitoring
+    restart: unless-stopped
+
+  crowdsec-openresty-bouncer:
+    image: crowdsecurity/openresty:latest
+    container_name: cs-openresty-bouncer
+    environment:
+      - API_URL=http://crowdsec:8080
+      - API_KEY=CHANGEME_BOUNCER_KEY
+    volumes:
+      - ./crowdsec/crowdsec-openresty-bouncer.conf:/etc/crowdsec/bouncers/crowdsec-openresty-bouncer.conf:ro
+    networks:
+      - monitoring
+    restart: unless-stopped
+
+
+
+  crowdsec-nginx-bouncer:
+    image: crowdsecurity/lua-bouncer-plugin:latest
+    container_name: cs-nginx-bouncer
+    environment:
+    - API_URL=http://crowdsec:8080
+    networks:
+    - monitoring
+    restart: unless-stopped
+
+
+  crowdsec-cloudflare-bouncer:
+    image: crowdsecurity/cloudflare-bouncer:latest
+    container_name: cs-cloudflare-bouncer
+    environment:
+      - API_URL=http://crowdsec:8080
+      - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN}
+      - CLOUDFLARE_ACCOUNT_ID=${CLOUDFLARE_ACCOUNT_ID}
+    networks:
+      - monitoring
+    restart: unless-stopped
+
+
+volumes:
+  grafana-storage:
+  crowdsec-data:
+  prometheus-data:
+
+
+networks:
+  monitoring:
+    driver: bridge

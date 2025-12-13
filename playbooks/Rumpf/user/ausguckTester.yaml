@@ -10,5 +10,5 @@
     login_host: 127.0.0.1
     login_user: "{{ pg_user }}"
     login_password: "{{ pg_password }}"
-    login_db: "{{ rumpf_db_name }}"
+    login_db: "{{ db_name }}"
     state: present

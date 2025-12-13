@@ -32,8 +32,8 @@
         group: campnode
 
     - name: Copy docker-compose.yml
-      copy:
-        src: docker-compose.yml
+      ansible.builtin.template:
+        src: docker-compose.yml.j2
         dest: "{{ project_dir }}/docker-compose.yml"
         mode: "0644"
 
@@ -54,6 +54,12 @@
         delete: true
         recursive: true
       become: false
+    
+    - name: Copy backend.env
+      ansible.builtin.template:
+        src: backend.env.j2
+        dest: "{{ project_dir }}/backend/backend.env"
+        mode: "0644"
 
     - name: Ensure letsencrypt directory permissions
       file:
@@ -63,8 +69,8 @@
         group: root
         mode: "0700"
 
-#    - name: Start Docker Compose stack
-#      community.docker.docker_compose_v2:
-#        project_src: "{{ project_dir }}"
-#        state: present
-#        build: always
+    - name: Start Docker Compose stack
+      community.docker.docker_compose_v2:
+        project_src: "{{ project_dir }}"
+        state: present
+        build: always

@@ -126,7 +126,10 @@
           "type": "paneldynamic",
           "name": "contacts",
           "title": {
-            "de": "Telefonnummern"
+            "de": "Kontaktdaten"
+          },
+          "description": {
+            "de": "Geben sie bitte mindestens eine Telefonnummer für Notfälle an. "
           },
           "isRequired": true,
           "templateElements": [
@@ -144,7 +147,7 @@
               "type": "text",
               "name": "who",
               "title": {
-                "de": "Wer ist unter der Nummer erreichbar?"
+                "de": "Wer ist darunter erreichbar?"
               }
             }
           ],
@@ -391,6 +394,9 @@
               "title": {
                 "de": "Wunschzeitraum von"
               },
+              "description": {
+                "de": "Mindestens ab dem 19.07.2026"
+              },
               "isRequired": true,
               "inputType": "date",
               "min": "2026-07-19",
@@ -401,6 +407,9 @@
               "name": "end-date",
               "title": {
                 "de": "Wunschzeitraum bis"
+              },
+              "description": {
+                "de": "Maximal bis zum 15.08.2026"
               },
               "isRequired": true,
               "inputType": "date",
@@ -538,13 +547,30 @@
       },
       "elements": [
         {
+          "type": "dropdown",
+          "name": "ParticipantSrc",
+          "title": {
+            "de": "Wie sind sie zu uns gekommen?"
+          },
+          "choices": [
+            "Mund-zu-Mund-Empfehlung",
+            "Verantstungen, auf denen wir uns representiert haben",
+            "Suche im Internet",
+            "Instagram",
+            "TikTok",
+            "Facebook",
+            "Printmedien"
+          ],
+          "showOtherItem": true
+        },
+        {
           "type": "boolean",
           "name": "picturesAllowed",
           "title": {
             "de": "Dürfen von der teilnehmenden Person während der Veranstaltung Foto- und Videoaufnahme gemacht werden?"
           },
           "description": {
-            "de": "Diese Aufnahmen können vom Veranstalter für Zwecke der Öffentlichkeitsarbeit (z. B. auf der Website, in sozialen Medien oder in Pressemitteilungen) genutzt werden.Genaueres in den Vertragsbedingungen. Diese finden sie hier: ferienfuerkinder.com/app…424"
+            "de": "Diese Aufnahmen können vom Veranstalter für Zwecke der Öffentlichkeitsarbeit (z. B. auf der Website, in sozialen Medien oder in Pressemitteilungen) genutzt werden.Genaueres in den Vertragsbedingungen. Diese finden sie hier: https://www.ferienfuerkinder.com/app/download/5582557375/avb+2026.pdf?t=1763128093"
           },
           "isRequired": true
         },
@@ -559,7 +585,7 @@
             {
               "value": "Item 1",
               "text": {
-                "de": "Hiermit bestätige ich, dass ich die allgemeinen Vertragsbedingungen und Datenschutzerklärung für unser Sommercamp 2025 gelesen, verstanden haben und damit einverstanden sind. Die Vertragsbedingungen finden sie hier: https://www.ferienfuerkinder.com/app/download/5582557375/avb+2025.pdf?t=1740231699 Diese Anmeldung wird erst mit dem Eingang der Anzahlung gültig."
+                "de": "Hiermit bestätige ich, dass ich die allgemeinen Vertragsbedingungen und Datenschutzerklärung für unser Sommercamp 2025 gelesen, verstanden haben und damit einverstanden sind. Die Vertragsbedingungen finden sie hier: https://www.ferienfuerkinder.com/app/download/5582557375/avb+2026.pdf?t=1763128093 Diese Anmeldung wird erst mit dem Eingang der Anzahlung gültig."
               }
             }
           ]
