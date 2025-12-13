@@ -1,5 +1,4 @@
 ---
-rumpf_db_name: Rumpf
 
 sql_conf_files_path: /home/ansible/myAnsible/submoduls/CampKraken/Moduls/Rumpf/
 sql_conf_files: 

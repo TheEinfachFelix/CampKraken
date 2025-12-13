@@ -11,7 +11,6 @@
       ansible.builtin.import_role:
         name: postgres.init
       vars:
-        db_name: "{{ rumpf_db_name }}"
         sql_files: "{{ sql_conf_files }}"
         postgres_user: "{{ pg_user }}"
         sql_files_path: "{{sql_conf_files_path}}"
