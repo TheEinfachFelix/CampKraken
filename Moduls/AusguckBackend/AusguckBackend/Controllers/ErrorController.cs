@@ -16,6 +16,8 @@ namespace AusguckBackend.Controllers
             var innerMessage = exception?.InnerException?.Message;
             var details = exception?.Message;
 
+            Globals.log.Error("An error occurred: {Error}, Inner: {Inner}", details, innerMessage);
+
             // Für EF-Fehler: gib auch die InnerException mit aus
             var errorResponse = new
             {

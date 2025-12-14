@@ -12,6 +12,7 @@ namespace AusguckBackend.Services
 
         public Task ProcessIncomingDataAsync(InParticipant data)
         {
+            Globals.log.Information("Processing incoming registration data for: {FirstName} {LastName}", data.firstName, data.lastName);
             if (data == null)
             {
                 throw new ArgumentNullException(nameof(data), "Input data cannot be null");
@@ -21,8 +22,11 @@ namespace AusguckBackend.Services
             {
                 throw new ArgumentException("Input data verification failed: " + verificationResult);
             }
+            Globals.log.Debug("Input data verified successfully for: {FirstName} {LastName}", data.firstName, data.lastName);
             InsertParticipant(data);
+            Globals.log.Debug("Inserted participant into database: {FirstName} {LastName}", data.firstName, data.lastName);
 
+            Globals.log.Information("Successfully processed registration for: {FirstName} {LastName}", data.firstName, data.lastName);
             return Task.CompletedTask;
         }
 
@@ -107,6 +111,7 @@ namespace AusguckBackend.Services
 
             using var conn = new NpgsqlConnection(Globals.ConnectionString);
             conn.Open();
+            Globals.log.Debug("Database connection opened for participant: {FirstName} {LastName}", input.firstName, input.lastName);
 
             using var cmd = new NpgsqlCommand(
                 "SELECT insert_participant(@data, @tags)", conn);

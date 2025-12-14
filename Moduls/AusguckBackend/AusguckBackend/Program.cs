@@ -1,8 +1,9 @@
+using AusguckBackend;
 using AusguckBackend.Services;
 using DotNetEnv;
 
 Env.Load("\"C:\\Git\\CampKraken\\Moduls\\AusguckBackend\\backend.env\"");
-
+Globals.log.Information("Environment variables loaded");
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+Globals.log.Information("WebApplication built");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -34,3 +36,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+Globals.log.Information("AusguckBackend started");

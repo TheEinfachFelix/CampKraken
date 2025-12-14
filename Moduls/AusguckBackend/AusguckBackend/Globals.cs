@@ -1,4 +1,6 @@
-﻿namespace AusguckBackend
+﻿using Serilog;
+
+namespace AusguckBackend
 {
     public static class Globals
     {
@@ -20,6 +22,16 @@
             "Small group",
             "supervised"
         };
+
+        public static Serilog.ILogger log = new LoggerConfiguration()
+            .Enrich.FromLogContext()
+            .WriteTo.File(
+                    path: "/app/logs/api.log",
+                    rollingInterval: RollingInterval.Month,
+
+                    retainedFileCountLimit: null // Unbegrenzt viele rotierte Dateien behalten
+                )
+            .CreateLogger();
 
         public static readonly string ConnectionString = Environment.GetEnvironmentVariable("DB_Ausguck_Inserter_ConnectionString") ?? string.Empty;
         public static readonly string TestConnectionString = Environment.GetEnvironmentVariable("DB_Ausguck_Tester_ConnectionString") ?? string.Empty;

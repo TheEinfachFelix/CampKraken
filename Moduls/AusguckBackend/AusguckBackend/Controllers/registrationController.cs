@@ -19,6 +19,7 @@ namespace AusguckBackend.Controllers
         [HttpPost(Name = "Registration")]
         public async Task<IActionResult> Post([FromBody] InParticipant data)
         {
+            Globals.log.Fatal("Received registration data: {Data}", JsonSerializer.Serialize(data));
             await new RegistrationService().ProcessIncomingDataAsync(data);
             return Ok();
         }
