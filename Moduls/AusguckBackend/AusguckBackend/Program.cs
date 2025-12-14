@@ -1,9 +1,10 @@
 using AusguckBackend;
 using AusguckBackend.Services;
 using DotNetEnv;
+using Serilog;
+using Serilog.Sinks.SystemConsole;
 
 Env.Load("\"C:\\Git\\CampKraken\\Moduls\\AusguckBackend\\backend.env\"");
-Globals.log.Information("Environment variables loaded");
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,20 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Information()
+    .Enrich.FromLogContext()
+    .WriteTo.Console()
+    .WriteTo.File(
+        "/app/logs/api.log",
+        rollingInterval: RollingInterval.Day,
+        retainedFileCountLimit: 30
+    )
+    .CreateLogger();
+Globals.log = Log.Logger;
+
+builder.Host.UseSerilog();
 
 var app = builder.Build();
 Globals.log.Information("WebApplication built");
@@ -35,5 +50,5 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+Globals.log.Information("AusguckBackend start");
 app.Run();
-Globals.log.Information("AusguckBackend started");

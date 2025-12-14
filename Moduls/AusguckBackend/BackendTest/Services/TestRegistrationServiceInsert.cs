@@ -1,9 +1,11 @@
-﻿using AusguckBackend.Models;
+﻿using AusguckBackend;
+using AusguckBackend.Models;
 using AusguckBackend.Services;
 using BackendTest.Data;
 using BackendTest.Models;
 using DotNetEnv;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +22,17 @@ namespace BackendTest.Services
         public void Init() 
         {
             Env.Load("C:\\Git\\CampKraken\\Moduls\\AusguckBackend\\backend.env");
-
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Information()
+                .Enrich.FromLogContext()
+                .WriteTo.Console()
+                .WriteTo.File(
+                    "/app/logs/api.log",
+                    rollingInterval: RollingInterval.Day,
+                    retainedFileCountLimit: 30
+                )
+                .CreateLogger();
+            Globals.log = Log.Logger;
         }
 
 
