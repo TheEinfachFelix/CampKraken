@@ -602,7 +602,6 @@
   ],
   "showCompletePage": false,
   "showProgressBar": true,
-  "progressBarLocation": "topbottom",
   "progressBarType": "requiredQuestions",
   "completeText": {
     "de": "Verbindlich Anmelden"

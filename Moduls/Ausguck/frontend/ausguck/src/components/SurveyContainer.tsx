@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Model } from "survey-core";
+import { Model, type ITheme } from "survey-core";
 import { Survey } from "survey-react-ui";
 import "survey-core/survey-core.min.css";
 import "../index.css";
 import json from "./assets/survey.json";
+import themeJson from "./assets/theme.json";
 import SubmitSurevey from "../hooks/useApi";
 import "survey-core/survey.i18n";
 import { surveyLocalization } from "survey-core";
@@ -11,6 +12,7 @@ import { surveyLocalization } from "survey-core";
 surveyLocalization.defaultLocale = "de";
 
 function SurveyComponent() {
+    
     const [surveyModel, setSurveyModel] = useState(() => new Model(json));
     const [showDialog, setShowDialog] = useState(false);
     const [submitSuccess, setSubmitSuccess] = useState<boolean | null>(null);
@@ -46,9 +48,13 @@ function SurveyComponent() {
         setSurveyModel(new Model(json));
     };
 
+    surveyModel.applyTheme(themeJson as ITheme);
+
     return (
         <>
-            <Survey model={surveyModel} />
+            <div style={surveyContainerStyle}>
+                <Survey model={surveyModel} />
+            </div>
 
             {showDialog && (
                 <div style={modalBackdropStyle} role="dialog" aria-modal="true">
@@ -99,3 +105,6 @@ const buttonStyle: React.CSSProperties = {
 };
 
 export default SurveyComponent; 
+
+const surveyContainerStyle: React.CSSProperties = {
+};

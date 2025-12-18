@@ -30,9 +30,9 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.traefik-ui.rule=PathPrefix(`/dashboard`) || PathPrefix(`/api`)"
       - "traefik.http.routers.traefik-ui.entrypoints=traefik"
-      - "traefik.http.routers.traefik-ui.tls.certresolver=letsencrypt"
+    #  - "traefik.http.routers.traefik-ui.tls.certresolver=letsencrypt"
       - "traefik.http.routers.traefik-ui.service=api@internal"
-      - "traefik.http.middlewares.traefik-ip.ipwhitelist.sourcerange=192.168.178.0/24"
+      - "traefik.http.middlewares.traefik-ip.ipallowlist.sourcerange=192.168.178.0/24,10.10.0.0/16"
       - "traefik.http.routers.traefik-ui.middlewares=traefik-ip"
     ports:
       - "80:80"
