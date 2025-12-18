@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Model } from "survey-core";
+import { Model, type ITheme } from "survey-core";
 import { Survey } from "survey-react-ui";
 import "survey-core/survey-core.min.css";
 import "../index.css";
@@ -7,7 +7,7 @@ import json from "./assets/survey.json";
 import themeJson from "./assets/theme.json";
 import SubmitSurevey from "../hooks/useApi";
 import "survey-core/survey.i18n";
-import { surveyLocalization, settings} from "survey-core";
+import { surveyLocalization } from "survey-core";
 
 surveyLocalization.defaultLocale = "de";
 
@@ -48,9 +48,7 @@ function SurveyComponent() {
         setSurveyModel(new Model(json));
     };
 
-    surveyModel.applyTheme(themeJson);
-
-
+    surveyModel.applyTheme(themeJson as ITheme);
 
     return (
         <>
