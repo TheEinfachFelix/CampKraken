@@ -6,7 +6,7 @@ import "../index.css";
 import json from "./assets/survey.json";
 import SubmitSurevey from "../hooks/useApi";
 import "survey-core/survey.i18n";
-import { surveyLocalization } from "survey-core";
+import { surveyLocalization, settings} from "survey-core";
 
 surveyLocalization.defaultLocale = "de";
 

@@ -23,13 +23,14 @@
         - "{{ project_dir }}/backend"
         - "{{ project_dir }}/data/letsencrypt"
 
-    - name: Set ownership of project directory to deploy user
-      file:
-        path: "{{ project_dir }}"
-        state: directory
-        recurse: true
-        owner: campnode
-        group: campnode
+# Dekativiert da CamoNode-2-Prod einen anderen Nutzer hat
+#    - name: Set ownership of project directory to deploy user
+#      file:
+#        path: "{{ project_dir }}"
+#        state: directory
+#        recurse: true
+#        owner: campnode
+#        group: campnode
 
     - name: Copy docker-compose.yml
       ansible.builtin.template:
