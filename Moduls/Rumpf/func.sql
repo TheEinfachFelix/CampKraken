@@ -94,12 +94,28 @@ BEGIN
             SELECT value::text FROM jsonb_array_elements_text(_data->'nutrition') AS t(value)
         LOOP
             IF nut_raw IS NOT NULL AND nut_raw <> '' THEN
-                -- Wenn ID gegeben ist, wiederverwenden, sonst neu erzeugen
-                IF _data ? 'nutritionId' THEN
-                    nut_id := (_data->>'nutritionId')::int;
-                ELSE
+                nut_id := NULL;
+
+                -- 1. Versuch: Ist nut_raw eine ID? (Nur wenn es rein numerisch ist)
+                IF nut_raw ~ '^[0-9]+$' THEN
+                    SELECT "nutritionId" INTO nut_id 
+                    FROM "nutritions" 
+                    WHERE "nutritionId" = nut_raw::int;
+                END IF;
+
+                -- 2. Versuch: Wenn keine ID gefunden, suche über den Namen
+                IF nut_id IS NULL THEN
+                    SELECT "nutritionId" INTO nut_id 
+                    FROM "nutritions" 
+                    WHERE "name" = nut_raw 
+                    LIMIT 1;
+                END IF;
+
+                -- 3. Wenn immer noch nichts gefunden, neu anlegen
+                IF nut_id IS NULL THEN
                     INSERT INTO "nutritions" ("name")
                     VALUES (nut_raw)
+                    --ON CONFLICT ("name") DO UPDATE SET "name" = EXCLUDED."name"
                     RETURNING "nutritionId" INTO nut_id;
                 END IF;
 

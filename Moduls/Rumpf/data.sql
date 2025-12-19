@@ -54,6 +54,7 @@ INSERT INTO "nutritions" ("nutritionId", "name") VALUES (0, 'normal') ON CONFLIC
 INSERT INTO "nutritions" ("nutritionId", "name") VALUES (1, 'vegitarisch') ON CONFLICT ON CONSTRAINT "nutritions_pkey" DO UPDATE SET "name" = EXCLUDED."name";
 INSERT INTO "nutritions" ("nutritionId", "name") VALUES (2, 'vegan') ON CONFLICT ON CONSTRAINT "nutritions_pkey" DO UPDATE SET "name" = EXCLUDED."name";
 INSERT INTO "nutritions" ("nutritionId", "name") VALUES (3, 'halal') ON CONFLICT ON CONSTRAINT "nutritions_pkey" DO UPDATE SET "name" = EXCLUDED."name";
+SELECT setval(pg_get_serial_sequence('"nutritions"', 'nutritionId'), COALESCE(MAX("nutritionId"), 0) + 1, false) FROM "nutritions";
 
 -- School Types
 INSERT INTO "schoolTypes" ("schoolTypeId", "name") VALUES (0, 'Grundschule') ON CONFLICT ON CONSTRAINT "schoolTypes_pkey" DO UPDATE SET "name" = EXCLUDED."name";

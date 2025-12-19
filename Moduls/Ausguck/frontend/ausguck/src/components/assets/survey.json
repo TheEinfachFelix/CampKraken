@@ -483,8 +483,7 @@
                 "de": "halal"
               }
             }
-          ],
-          "showOtherItem": true
+          ]
         },
         {
           "type": "text",
@@ -602,7 +601,6 @@
   ],
   "showCompletePage": false,
   "showProgressBar": true,
-  "progressBarLocation": "topbottom",
   "progressBarType": "requiredQuestions",
   "completeText": {
     "de": "Verbindlich Anmelden"

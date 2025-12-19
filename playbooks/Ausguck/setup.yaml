@@ -28,8 +28,8 @@
         path: "{{ project_dir }}"
         state: directory
         recurse: true
-        owner: campnode
-        group: campnode
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
 
     - name: Copy docker-compose.yml
       ansible.builtin.template:
@@ -39,12 +39,21 @@
 
     # --- FRONTEND ---
     - name: Copy frontend source code
-      synchronize:
+      ansible.builtin.synchronize:
         src: "{{ frontend_dir }}/"
         dest: "{{ project_dir }}/frontend/"
         delete: true
         recursive: true
       become: false
+
+    - name: Deploy Prometheus config from template
+      ansible.builtin.template:
+        src: "ApiUrl.ts.j2"
+        dest: "{{ project_dir }}/frontend/src/hooks/ApiUrl.ts"
+        owner: root
+        group: root
+        mode: "0644"
+      become: true
 
     # --- BACKEND ---
     - name: Copy backend source code

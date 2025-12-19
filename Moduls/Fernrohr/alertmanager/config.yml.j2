@@ -1,50 +1,26 @@
 # alertmanager.yml.j2
 global:
-  smtp_from: '{{ alert_smtp_from }}'
-  smtp_smarthost: '{{ alert_smtp_smarthost }}'
-  smtp_hello: '{{ alert_smtp_hello }}'
-  smtp_auth_username: '{{ alert_smtp_user }}'
-  smtp_auth_password: '{{ alert_smtp_pass }}'
-  smtp_require_tls: true
   resolve_timeout: 5m
 
 route:
-  receiver: 'email-notifier'
+  receiver: 'telegram-notifier'
   group_by: ['alertname', 'cluster']
   group_wait: 30s
   group_interval: 5m
   repeat_interval: 4h
   routes:
-    - receiver: 'email-notifier-critical'
+    - receiver: 'telegram-notifier'
       matchers:
         - severity="critical"
       group_wait: 10s
       continue: false
 
 receivers:
-  - name: 'email-notifier'
-    email_configs:
-      - to: '{{ alert_mail_default_to }}'
-        require_tls: true
-        html: |
-          <html>
-            <body>
-              <h2>Alert: {{ "{{ .CommonLabels.alertname }}" }}</h2>
-              <p><strong>Status:</strong> {{ "{{ .Status }}" }}</p>
-              <p><strong>Severity:</strong> {{ "{{ .CommonLabels.severity }}" }}</p>
-              <p><strong>Instance:</strong> {{ "{{ .CommonLabels.instance }}" }}</p>
-              <p><strong>Summary:</strong> {{ "{{ .CommonAnnotations.summary }}" }}</p>
-              <pre>{{ "{{ range .Alerts }}- {{ .Labels }} {{ .Annotations }}{{ \"\\n\" }}{{ end }}" }}</pre>
-              <p>Link: <a href="{{ "{{ .ExternalURL }}" }}">{{ "{{ .ExternalURL }}" }}</a></p>
-            </body>
-          </html>
-
-  - name: 'email-notifier-critical'
-    email_configs:
-      - to: '{{ alert_mail_critical_to }}'
-        require_tls: true
-        html: '{{ "{{ template \"email.default.html\" . }}" }}'
-
+  - name: 'telegram-notifier'
+    telegram_configs:
+      - api_url: https://api.telegram.org
+        bot_token: '{{ telegram_bot_token }}'
+        chat_id: {{ telegram_chat_id | quote }}
 inhibit_rules:
   - source_matchers:
       - severity="critical"
